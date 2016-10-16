@@ -4,15 +4,14 @@ Proof of concept static site generator from Elm files.
 
 setup
 
-```
-npm install
+```bash
 elm-package install
 ```
 
 To see an example, run
 
 ```bash
-python3 crawl.py
+elm-reactor
 ```
 
 This will take the Elm files from `examples`, and convert them to static views in the `output` folder.
