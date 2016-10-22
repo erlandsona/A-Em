@@ -1,7 +1,10 @@
 module Colors exposing
-  (black
+  ( black
+  , yellow
   )
 
 import Css exposing (hex)
 
-black = hex "#000000"
+black = hex "#000267"
+
+yellow = hex "#FFFF00"

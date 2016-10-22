@@ -1,36 +1,46 @@
 {
-  "name": "a-and-em",
+  "name": "A-Em",
   "version": "1.0.0",
-  "description": "Band page for the duo A&Em",
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
-    "dev": "webpack-dev-server --port 7777"
-  },
+  "description": "Band page for A&Em",
+  "keywords": [
+    "elm",
+    "webpack"
+  ],
+  "author": "erlandsona <austin@erlandson.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/erlandsona/A-Em.git"
+    "url": "git@github.com:erlandsona/A-Em.git"
   },
-  "author": "Austin Erlandson",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/erlandsona/A-Em/issues"
-  },
-  "homepage": "https://github.com/erlandsona/A-Em#readme",
+  "main": "index.html",
+  "dependencies": {},
   "devDependencies": {
-    "css-loader": "^0.25.0",
-    "elm-css": "^0.6.0",
+    "autoprefixer": "^6.3.7",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.23.1",
+    "elm-css": "^0.5.1",
     "elm-css-webpack-loader": "^2.0.1",
+    "elm-hot-loader": "^0.3.3",
     "elm-webpack-loader": "^3.0.6",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "font-awesome": "^4.6.3",
+    "html-webpack-plugin": "^2.22.0",
+    "postcss-loader": "^0.10.1",
+    "rimraf": "^2.5.3",
+    "shx": "^0.1.4",
     "style-loader": "^0.13.1",
-    "url-loader": "^0.5.7",
+    "unminified-webpack-plugin": "^1.1.0",
     "webpack": "^1.13.2",
-    "webpack-dev-middleware": "^1.8.4",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.14.0"
   },
-  "dependencies": {
-    "font-awesome": "^4.6.3"
+  "scripts": {
+    "clean": "rimraf dist node_modules elm-stuff",
+    "prebuild": "rimraf dist",
+    "build": "webpack",
+    "build-ci": "elm-package install --yes && npm run build && npm run build-css",
+    "build-css": "shx mkdir -p ./dist && elm-css build/Stylesheets.elm -o ./dist",
+    "start": "webpack-dev-server"
   }
 }

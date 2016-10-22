@@ -12,4 +12,5 @@ import Html exposing (..)
 main =
   main' []
     [ h1 [] [ text "A&Em" ]
+    , text "Stuff and things"
     ]
