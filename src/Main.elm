@@ -1,11 +1,11 @@
-module Index exposing (main)
+module Main exposing (main)
 
 -- Libraries
 import Html exposing (..)
-import Html.CssHelpers as A
+-- import Html.CssHelpers as A
 
 -- Src
-import Styles
+-- import Styles
 
 
 -- HTML
@@ -13,6 +13,3 @@ main =
   main' []
     [ h1 [] [ text "A&Em" ]
     ]
-
-
-fader = node "fader"
