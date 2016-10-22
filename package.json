@@ -1,0 +1,22 @@
+{
+  "name": "a-and-em",
+  "version": "1.0.0",
+  "description": "Band page for the duo A&Em",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erlandsona/A-Em.git"
+  },
+  "author": "Austin Erlandson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erlandsona/A-Em/issues"
+  },
+  "homepage": "https://github.com/erlandsona/A-Em#readme",
+  "devDependencies": {
+    "elm-css": "^0.6.0"
+  }
+}
