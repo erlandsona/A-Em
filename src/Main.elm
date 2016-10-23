@@ -4,11 +4,10 @@ module Main exposing (main)
 import Html exposing (..)
 -- import Html.CssHelpers as A
 
--- Src
--- import Styles
+import Styles
 
 
--- HTML
+main : Html a
 main =
   main' []
     [ h1 [] [ text "A&Em" ]

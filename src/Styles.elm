@@ -12,12 +12,13 @@ css : Stylesheet
 css = stylesheet
   [ body
     [ before blackOverlay
-    , backgroundColor black
+    , backgroundColor red
+    , margin (px 8)
     ]
   ]
 
 blackOverlay =
-  [ backgroundColor black
+  [ backgroundColor red
   , height (100|>vh)
   , width  (100|>vw)
   , position absolute

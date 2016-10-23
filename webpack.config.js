@@ -32,7 +32,7 @@ var common = {
   module: {
     loaders: [{
       test: /\.(eot|svg|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?/,
-      loader: 'file-loader'
+      loader: 'file'
     }],
 
     noParse: /^(?!.*Stylesheets).*\.elm$/
@@ -57,12 +57,10 @@ var common = {
 };
 
 var extractCssVendor = null;
-var extractCssApp = null;
 
 if (environment === 'development') {
   console.log('running development');
   extractCssVendor = new ExtractTextPlugin('vendor.css');
-  extractCssApp = new ExtractTextPlugin('app.css');
 
   var devOnly = {
     output: {
@@ -70,47 +68,44 @@ if (environment === 'development') {
     },
 
     module: {
-      loaders: [{
-        test: /\.css$/,
-        loader: extractCssVendor.extract('style-loader', 'css-loader')
-      },
+      loaders: [
+        {
+          test: /\.css$/,
+          loader: extractCssVendor.extract('style', 'css')
+        },
 
-      {
-        test: /build\/Stylesheets.elm$/,
-        loader: extractCssApp.extract(
-          'style-loader', [
-            'css-loader',
-            'postcss-loader',
-            'elm-css-webpack-loader'
-        ])
-      },
+        {
+          test: /build\/Stylesheets.elm$/,
+          loaders: [
+            'style',
+            'css',
+            'postcss',
+            'elm-css-webpack'
+          ]
+        },
 
-      {
-        test: /\.elm$/,
-        exclude: [
-          /elm-stuff/,
-          /node_modules/,
-          /build\/Stylesheets.elm$/
-        ],
-        loaders: [
-          'elm-hot-loader',
-          'elm-webpack-loader'
-        ]
-      }
+        {
+          test: /\.elm$/,
+          exclude: [
+            /elm-stuff/,
+            /node_modules/,
+            /build\/Stylesheets.elm/
+          ],
+          loaders: [
+            'elm-hot',
+            'elm-webpack'
+          ]
+        }
       ]
     },
 
     plugins: [
-      extractCssApp,
-      extractCssVendor,
+      extractCssVendor
     ],
 
     devServer: {
-      inline        : true,
       progress      : true,
-      hot           : true,
       port          : 7777,
-      'content-base': 'src/',
       stats         : 'errors-only'
     }
   };
@@ -119,7 +114,7 @@ if (environment === 'development') {
 } else {
   console.log('building for production');
   extractCssVendor = new ExtractTextPlugin('vendor-[chunkhash].css');
-  extractCssApp = new ExtractTextPlugin('app-[chunkhash].css', {
+  var extractCssApp = new ExtractTextPlugin('app-[chunkhash].css', {
     allChunks: true
   });
 
@@ -131,30 +126,31 @@ if (environment === 'development') {
     },
 
     module: {
-      loaders: [{
-        test: /\.css$/,
-        loader: extractCssVendor.extract('style-loader', 'css-loader')
-      },
+      loaders: [
+        {
+          test: /\.css$/,
+          loader: extractCssVendor.extract('style', 'css')
+        },
 
-      {
-        test: /build\/Stylesheets.elm/,
-        loader: extractCssApp.extract(
-          'style-loader', [
-            'css-loader',
-            'postcss-loader',
-            'elm-css-webpack-loader'
-          ])
-      },
+        {
+          test: /build\/Stylesheets.elm/,
+          loader: extractCssApp.extract(
+            'style', [
+              'css',
+              'postcss',
+              'elm-css-webpack'
+            ])
+        },
 
-      {
-        test: /\.elm$/,
-        exclude: [
-          /elm-stuff/,
-          /node_modules/,
-          /build\/Stylesheets.elm$/
-        ],
-        loader: 'elm-webpack-loader'
-      }
+        {
+          test: /\.elm$/,
+          exclude: [
+            /elm-stuff/,
+            /node_modules/,
+            /build\/Stylesheets.elm$/
+          ],
+          loader: 'elm-webpack'
+        }
       ]
     },
 
