@@ -4,9 +4,6 @@ module Main exposing (main)
 import Html exposing (..)
 -- import Html.CssHelpers as A
 
-import Styles
-
-
 main : Html a
 main =
   main' []

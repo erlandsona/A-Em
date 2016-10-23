@@ -78,7 +78,7 @@ if (environment === 'development') {
           test: /build\/Stylesheets.elm$/,
           loaders: [
             'style',
-            'css',
+            'css?sourceMap',
             'postcss',
             'elm-css-webpack'
           ]
@@ -93,7 +93,7 @@ if (environment === 'development') {
           ],
           loaders: [
             'elm-hot',
-            'elm-webpack'
+            'elm-webpack?verbose=true&warn=true'
           ]
         }
       ]
