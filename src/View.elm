@@ -1,4 +1,4 @@
-module Main exposing (main)
+module View exposing (main)
 
 -- Libraries
 import Html exposing (..)

@@ -16,11 +16,13 @@
     "font-awesome": "^4.6.3"
   },
   "devDependencies": {
+    "elm": "^0.17.1",
     "elm-css": "^0.5.1",
     "elm-live": "^2.6.0"
   },
   "scripts": {
-    "start": "elm-live src/Main.elm --output dist/app.js --dir=./dist --port=7777 --before-build=./build/buildCss",
+    "postinstall": "elm-package install",
+    "start": "elm-live src/View.elm --output dist/app.js --dir=./dist --port=7777 --before-build=./build/buildCss",
     "elm-css": "elm-css build/Stylesheets.elm -o dist"
   }
 }
