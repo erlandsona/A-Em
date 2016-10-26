@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-rm -rf ./dist
+# Copy Static Assets
+cp -r src/assets dist/
+cp build/index.tpl.html dist/index.html
 
-cp -r ./src/assets ./dist/
-cp ./build/index.tpl.html ./dist/index.html
-npm run elm-css
+# Compile elm-css
+elm-css build/Stylesheets.elm -o dist/
