@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-
 set -e
 
+rm -rf ./dist
+
 cp -r ./src/assets ./dist/
+cp ./build/index.tpl.html ./dist/index.html
 npm run elm-css

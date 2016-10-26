@@ -22,7 +22,7 @@
   },
   "scripts": {
     "postinstall": "elm-package install",
-    "start": "elm-live src/View.elm --output dist/app.js --dir=./dist --port=7777 --before-build=./build/buildCss",
+    "start": "elm-live src/View.elm --output dist/app.js --dir=./dist --port=7777 --before-build=./build/tasks",
     "elm-css": "elm-css build/Stylesheets.elm -o dist"
   }
 }
