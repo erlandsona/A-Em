@@ -4,6 +4,7 @@ set -e
 # Copy Static Assets
 cp -r src/assets dist/
 cp build/index.tpl.html dist/index.html
+cp build/start-app.js dist/
 
 # Compile elm-css
 elm-css build/Stylesheets.elm -o dist/

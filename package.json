@@ -22,7 +22,7 @@
   },
   "scripts": {
     "postinstall": "elm-package install",
-    "prestart": "rm -rf ./dist",
+    "prestart": "rm -rf ./dist && mkdir dist",
     "start": "elm-live src/View.elm --output dist/app.js --dir=dist --port=7777 --before-build=./build/tasks"
   }
 }
