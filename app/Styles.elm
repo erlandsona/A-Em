@@ -2,29 +2,35 @@ module Styles exposing (css)
 
 -- Libs
 import Css exposing (..)
-import Css.Elements exposing (body, main')
+import Css.Elements exposing (..)
 
 -- Src
 import Colors exposing (..)
 
 
-prop = property
-
 css : Stylesheet
 css = stylesheet
-  [ body
-    [ margin (px 0)
-    , before blackOverlay
+  [ container
+    [ before blackOverlay
     , prop "background" "url(assets/images/stairs.jpg) center 37% no-repeat"
     , prop "background-size" "cover"
-    , width  (vw 100)
+    , displayFlex
+    , flexWrap wrap
     , height (vh 100)
+    , width  (vw 100)
+    , margin (px 0)
+    , children
+      [ section
+        [ width (pct 50) 
+        , color white
+        ]
+      ]
     ]
-  , main'
-    [ margin (px 0)
-    , position relative
-    , color yellow
-    ]
+  -- , main'
+  --   [ margin (px 0)
+  --   , position relative
+  --   , color yellow
+  --   ]
   ]
 
 
@@ -33,7 +39,7 @@ css = stylesheet
 
 
 
--- Hide Implementation Details
+-- Implementation Details
 
 blackOverlay =
   [ backgroundColor black
@@ -44,3 +50,7 @@ blackOverlay =
   , position absolute
   , prop "content" "''"
   ]
+
+
+prop = property
+container = selector "container"
