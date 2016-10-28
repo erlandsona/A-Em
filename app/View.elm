@@ -7,14 +7,13 @@ import Html exposing (..)
 main : Html a
 main =
   container []
-    [ section []
-      [ text "A&Em" ]
+    [ section [] []
     , section []
       [ text "Top Right - NavBar" ]
     , section []
-      [ text "Bottom Right - Social" ]
-    , section []
       [ text "Bottom Left - Bio?" ]
+    , section []
+      [ text "Bottom Right - Social" ]
     ]
 
 
