@@ -34,7 +34,7 @@ css = stylesheet
         , prop "z-index" "1"
         , margin (pct 2)
         , children
-          [ h1
+          [ button
             [ fontFamily cursive
             , fontFamilies ["Megrim"]
             , fontSize (Css.rem 2)
@@ -47,11 +47,6 @@ css = stylesheet
     [ fontFamily cursive
     , fontFamilies ["League Script"]]
   ]
-
-
-
-
-
 
 
 -- Implementation Details

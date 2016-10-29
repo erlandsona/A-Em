@@ -191,5 +191,36 @@ snippets =
     [ property "border-collapse" "collapse"
     , property "border-spacing" "0"
     ]
+
+
+
+
+
+  , selector
+    """ [role="button"]
+    , input[type="submit"]
+    , input[type="reset"]
+    , input[type="button"]
+    , button
+    """
+    [ prop "-webkit-box-sizing" "content-box"
+    , prop    "-moz-box-sizing" "content-box"
+    ,               boxSizing    contentBox
+    , prop "background" "none"
+    , border zero
+    , color inherit
+    , cursor default
+    , prop "line-height" "normal"
+    , overflow visible
+    , padding zero
+    , textAlign center
+    , textDecoration none
+    , prop "white-space" "pre"
+    , prop "-webkit-appearance" "button"
+    , prop "-webkit-user-select" "none"
+    , prop    "-moz-user-select" "none"
+    , prop     "-ms-user-select" "none"
+    ]
   ]
 
+prop = property
