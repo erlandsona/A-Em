@@ -4,7 +4,7 @@ import Css.File exposing (CssFileStructure, compile, toFileStructure)
 import Html exposing (div)
 import Html.App as Html
 
-import Css.Normalize as Normalize
+import Css.ReNormalizer as ReNormalizer
 import Styles
 
 port files : CssFileStructure -> Cmd msg
@@ -12,7 +12,7 @@ port files : CssFileStructure -> Cmd msg
 
 cssFiles : CssFileStructure
 cssFiles =
-  toFileStructure [ ( "styles.css", compile [ Normalize.css, Styles.css ] ) ]
+  toFileStructure [ ( "styles.css", compile [ ReNormalizer.css, Styles.css ] ) ]
 
 
 main : Program Never

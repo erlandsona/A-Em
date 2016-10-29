@@ -4,17 +4,17 @@ module View exposing (main)
 import Html exposing (..)
 -- import Html.CssHelpers as A
 
+
+container = node "container"
+
 main : Html a
 main =
   container []
-    [ section [] []
-    , section []
-      [ text "Top Right - NavBar" ]
-    , section []
-      [ text "Bottom Left - Bio?" ]
-    , section []
-      [ text "Bottom Right - Social" ]
+    [ nav []
+      [ h1 [] [ text  "caldwell" ] ]
     ]
+  -- Intersperse a list of Nav Actionables
+  -- with content to be 3dTransformed in css.
 
 
-container = node "container"
+

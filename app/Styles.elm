@@ -8,34 +8,44 @@ import Css.Elements exposing (..)
 import Colors exposing (..)
 
 
+-- stylesheet : List Snippet -> Stylesheet
+-- stylesheet snippets =
+--     { charset = Nothing
+--     , imports = []
+--     , namespaces = []
+--     , snippets = snippets
+--     }
+
 css : Stylesheet
 css = stylesheet
   [ container
     [ before blackOverlay
-    , prop "background" "url(assets/images/stairs.jpg) center 37% no-repeat"
+    , prop "background" "url(assets/images/stairs-crop.jpg) center 27% no-repeat"
     , prop "background-size" "cover"
     , displayFlex
     , flexWrap wrap
+    , alignItems baseline
     , height (vh 100)
     , width  (vw 100)
     , margin (px 0)
     , children
-      [ section
-        [ width (pct 50) 
-        , color white
+      [ nav
+        [ color white
         , prop "z-index" "1"
-        , firstOfType
-          [ prop "background" "url(assets/images/logo-white-fade.png) 10% 25% no-repeat"
-          , prop "background-size" "50%"
+        , margin (pct 2)
+        , children
+          [ h1
+            [ fontFamily cursive
+            , fontFamilies ["Megrim"]
+            , fontSize (Css.rem 2)
+            ]
           ]
         ]
       ]
     ]
-  -- , main'
-  --   [ margin (px 0)
-  --   , position relative
-  --   , color yellow
-  --   ]
+  , p
+    [ fontFamily cursive
+    , fontFamilies ["League Script"]]
   ]
 
 
