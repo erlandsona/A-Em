@@ -37,70 +37,47 @@ import Html.Events exposing (onClick)
 --     ]
 --   ]
 
-main : Model -> Html msg
+main : Program Never
 main = beginnerProgram
     { model = False
     , view = view
     , update = update
     }
 
-view =
-  div [ class "SiteContainer" ]
-    [ div [ class "SitePusher" ]
-      [ header [ class "Header" ]
-        [ a [ onClick True, class "HeaderLogo", href "#", id "HeaderIcon" ]
-          [ text "Caldwell" ]
-        , nav [ class "Menu" ]
-          [ a [ href "#" ]
-            [ text "Music" ]
-          , a [ href "#" ]
-            [ text "Shows" ]
-          , a [ href "#" ]
-            [ text "Bio" ]
-          , a [ href "#" ]
-            [ text "Contact" ]
-          ]
-        ]
-      , div [ class "SiteContent" ]
-        [ div [ class "Container" ]
-          [ h1 []
-            [ text "Responsive Navigation Bar" ]
-          , p []
-            [ text "Tutorial by Grafikart.fr           "
-            , a [ href "https://www.youtube.com/watch?v=_X2N_yw9Boo", attribute "style" "color: blue", target "_blank" ]
-              [ text "https://www.youtube.com/watch?v=_X2N_yw9Boo" ]
+view : Bool -> Html Bool
+view model =
+    container [ class (if model then "Drawer" else "") ] -- SiteContainer
+        [ drawer -- SitePusher
+            [ header [ class "Header" ]
+                [ a [ onClick True, class "HeaderLogo", href "#", id "HeaderIcon" ]
+                  [ text "Caldwell" ]
+                , nav [ class "Menu" ]
+                  [ a [ href "#" ]
+                    [ text "Music" ]
+                  , a [ href "#" ]
+                    [ text "Shows" ]
+                  , a [ href "#" ]
+                    [ text "Bio" ]
+                  , a [ href "#" ]
+                    [ text "Contact" ]
+                  ]
+                ]
+            , div [ class "SiteContent" ]
+                [ div [ class "Container" ]
+                    [ h1 []
+                        [ text "Responsive Navigation Bar" ]
+                    ]
+                ]
+            , div [ onClick True, class "SiteCache", id "SiteCache" ] []
             ]
-          ]
         ]
-      , div [ class "SiteCache", id "SiteCache" ] []
-      ]
-    ]
 
 update msg drawerState = (not drawerState)
 
--- $(document).ready(function(){
-
--- 	(function($) {
-
--- 		$('#header__icon').click(function(e){
--- 			e.preventDefault();
--- 			$('body').toggleClass('with--sidebar');
--- 		});
-
---     $('#site-cache').click(function(e){
---       $('body').removeClass('with--sidebar');
---     });
-
--- 	})(jQuery);
-
--- });
-
-
-
 -- Custom Elements
 
-container : List (Html a) -> Html a
-container = node "container" []
+container : List (Html.Attribute a) -> List (Html a) -> Html a
+container = node "container"
 
 drawer : List (Html a) -> Html a
 drawer = node "drawer" []

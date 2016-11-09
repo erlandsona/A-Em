@@ -18,13 +18,12 @@ import Colors exposing (..)
 
 type Classes =
     Container
-  | SiteContainer
   | SitePusher
   | Header
   | HeaderLogo
   | Menu
   | SiteContent
-  | WithSidebar
+  | Drawer
   | SiteCache
 
 type Ids =
@@ -40,6 +39,12 @@ css = stylesheet
       , height (pct 100)
       , margin zero
       , padding zero
+      ]
+  , each [ container, drawer ]
+      [ display block ]
+  , container
+      [ height (vh 100)
+      , width (vw 100)
       ]
   , a
       [ textDecoration none
@@ -64,9 +69,9 @@ css = stylesheet
       , padding2 zero (px 25)
       , float left
       ]
-  , each [ (.) SitePusher, (.) SiteContainer ]
+  , each [ drawer, container ]
       [ height (pct 100) ]
-  , (.) SiteContainer
+  , container
       [ before blackOverlay
       , prop "background" "url(assets/images/stairs-crop.jpg) center 27% no-repeat"
       , prop "background-size" "cover"
@@ -92,7 +97,7 @@ css = stylesheet
               ]
           ]
       ]
-  , (.) SitePusher
+  , drawer
       [ prop "transition-duration" "0.3s"
       , transform (translateX (px 0))
       ]
@@ -126,9 +131,9 @@ css = stylesheet
               ]
           ]
       ]
-  , (.) WithSidebar
+  , (.) Drawer
       [ descendants
-          [ (.) SitePusher
+          [ drawer
               [ transform (translateX (px menuWidth))
               ]
           , (.) SiteCache
