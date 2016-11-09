@@ -19,15 +19,11 @@ import Colors exposing (..)
 type Classes =
     Container
   | SitePusher
-  | Header
   | HeaderLogo
   | Menu
   | SiteContent
   | Drawer
   | SiteCache
-
-type Ids =
-    HeaderIcon
 
 css : Stylesheet
 css = stylesheet
@@ -55,19 +51,17 @@ css = stylesheet
       , margin2 (px 0) (px 20)
       ]
   , (.) SiteContent [ paddingTop (px 66) ]
-  , (.) Header
+  , header
       [ position fixed
       , left zero
       , right zero
       , height (px 66)
       , lineHeight (px 66)
       , color white
-      , backgroundColor headerBackground
+      , backgroundColor transparent
       ]
   , (.) HeaderLogo
-      [ fontWeight (int 700)
-      , padding2 zero (px 25)
-      , float left
+      [ padding2 zero (pt 25)
       ]
   , each [ drawer, container ]
       [ height (pct 100) ]
@@ -111,14 +105,14 @@ css = stylesheet
       , overflowY scroll
       , prop "-webkit-overflow-scrolling" "touch"
       ]
-  , (.) Header
+  , header
       [ position static ]
   , (.) Menu
       [ position absolute
       , left zero
       , top zero
       , bottom zero
-      , backgroundColor (darken headerBackground)
+      , backgroundColor darkFade
       , width (px menuWidth)
       , transform (translateX (px (menuWidth * -1)))
       , descendants
@@ -127,7 +121,6 @@ css = stylesheet
               , height (px 40)
               , textAlign center
               , lineHeight (px 40)
-              , borderBottom3 (px 1) solid headerBackground
               ]
           ]
       ]
@@ -142,7 +135,7 @@ css = stylesheet
               , left zero
               , right zero
               , bottom zero
-              , backgroundColor (rgba 0 0 0 0.6)
+              , backgroundColor darkFade
               ]
           ]
       ]

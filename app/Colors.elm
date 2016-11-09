@@ -1,6 +1,6 @@
 module Colors exposing (..)
 
-import Css exposing (hex, Color)
+import Css exposing (rgba, hex, Color)
 
 black : Color
 black = hex "#000000"
@@ -22,6 +22,9 @@ purple = hex "#FF00FF"
 
 headerBackground : Color
 headerBackground = hex "#3f51b5"
+
+darkFade : Color
+darkFade = rgba 0 0 0 0.6
 
 darken : Color -> Color
 darken color =
