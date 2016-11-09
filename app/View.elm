@@ -2,10 +2,12 @@ module View exposing (main)
 
 -- Libraries
 import Html exposing (..)
+import Html.App exposing (beginnerProgram)
 import Html.Attributes exposing (class, id, href, attribute, target, alt, src)
+import Html.Events exposing (onClick)
 
 
-main : Html a
+-- main : Html a
 -- main = container
 --   [ drawer
 --     [ header []
@@ -35,64 +37,46 @@ main : Html a
 --     ]
 --   ]
 
-main = div [ class "SiteContainer" ]
-  [ div [ class "SitePusher" ]
-    [ header [ class "Header" ]
-      [ a [ class "HeaderLogo", href "#", id "HeaderIcon" ]
-        [ text "Caldwell" ]
-      , nav [ class "Menu" ]
-        [ a [ href "#" ]
-          [ text "Music" ]
-        , a [ href "#" ]
-          [ text "Shows" ]
-        , a [ href "#" ]
-          [ text "Bio" ]
-        , a [ href "#" ]
-          [ text "Contact" ]
-        ]
-      ]
-    , div [ class "SiteContent" ]
-      [ div [ class "Container" ]
-        [ h1 []
-          [ text "Responsive Navigation Bar" ]
-        , p []
-          [ text "Tutorial by Grafikart.fr           "
-          , a [ href "https://www.youtube.com/watch?v=_X2N_yw9Boo", attribute "style" "color: blue", target "_blank" ]
-            [ text "https://www.youtube.com/watch?v=_X2N_yw9Boo" ]
+main : Model -> Html msg
+main = beginnerProgram
+    { model = False
+    , view = view
+    , update = update
+    }
+
+view =
+  div [ class "SiteContainer" ]
+    [ div [ class "SitePusher" ]
+      [ header [ class "Header" ]
+        [ a [ onClick True, class "HeaderLogo", href "#", id "HeaderIcon" ]
+          [ text "Caldwell" ]
+        , nav [ class "Menu" ]
+          [ a [ href "#" ]
+            [ text "Music" ]
+          , a [ href "#" ]
+            [ text "Shows" ]
+          , a [ href "#" ]
+            [ text "Bio" ]
+          , a [ href "#" ]
+            [ text "Contact" ]
           ]
         ]
+      , div [ class "SiteContent" ]
+        [ div [ class "Container" ]
+          [ h1 []
+            [ text "Responsive Navigation Bar" ]
+          , p []
+            [ text "Tutorial by Grafikart.fr           "
+            , a [ href "https://www.youtube.com/watch?v=_X2N_yw9Boo", attribute "style" "color: blue", target "_blank" ]
+              [ text "https://www.youtube.com/watch?v=_X2N_yw9Boo" ]
+            ]
+          ]
+        ]
+      , div [ class "SiteCache", id "SiteCache" ] []
       ]
-    , div [ class "SiteCache", id "SiteCache" ] []
     ]
-  ]
 
-
-  -- UnZip a list of Nav Actionables
-  -- with content to be 3dTransformed in css.
-
--- <div class="site-container">
---   <div class="site-pusher">
---     <header class="header">
---       <a href="#" class="header__logo" id="header__icon">Logo</a>
---       <nav class="menu">
---         <a href="#">Home</a>
---         <a href="#">About</a>
---         <a href="#">Blog</a>
---         <a href="#">Contact</a>
---       </nav>
---     </header>
---     <div class="site-content">
---       <div class="container">
-
---         <h1>Responsive Navigation Bar</h1>
---         <p>Tutorial by Grafikart.fr
---           <a href="https://www.youtube.com/watch?v=_X2N_yw9Boo" target="_blank" style="color: blue">https://www.youtube.com/watch?v=_X2N_yw9Boo</a>
---         </p>
---       </div> <!-- END container -->
---     </div> <!-- END site-content -->
---     <div class="site-cache" id="site-cache"></div> // Closes Nav...
---   </div> <!-- END site-pusher -->
--- </div> <!-- END site-container -->
+update msg drawerState = (not drawerState)
 
 -- $(document).ready(function(){
 
