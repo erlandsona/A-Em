@@ -17,11 +17,8 @@ import Colors exposing (..)
 --     }
 
 type Classes =
-    Container
-  | SitePusher
-  | HeaderLogo
+    SitePusher
   | Menu
-  | SiteContent
   | Drawer
   | SiteCache
 
@@ -46,23 +43,6 @@ css = stylesheet
       [ textDecoration none
       , color inherit
       ]
-  , (.) Container
-      [ overflow hidden
-      , margin2 (px 0) (px 20)
-      ]
-  , (.) SiteContent [ paddingTop (px 66) ]
-  , header
-      [ position fixed
-      , left zero
-      , right zero
-      , height (px 66)
-      , lineHeight (px 66)
-      , color white
-      , backgroundColor transparent
-      ]
-  , (.) HeaderLogo
-      [ padding2 zero (pt 25)
-      ]
   , each [ drawer, container ]
       [ height (pct 100) ]
   , container
@@ -84,10 +64,10 @@ css = stylesheet
           ]
       , descendants
           [ a
-              [-- margin (pct 2)
-                fontFamily cursive
+              [ margin (pct 2)
+              , fontFamily cursive
               , fontFamilies ["Megrim"]
-              , fontSize (Css.rem 2)
+              , fontSize (Css.rem 3)
               ]
           ]
       ]
@@ -95,24 +75,16 @@ css = stylesheet
       [ prop "transition-duration" "0.3s"
       , transform (translateX (px 0))
       ]
-  , (.) SiteContent
-      [ position absolute
-      , top (px 66)
-      , right zero
-      , left zero
-      , bottom zero
-      , paddingTop zero
-      , overflowY scroll
-      , prop "-webkit-overflow-scrolling" "touch"
-      ]
-  , header
-      [ position static ]
-  , (.) Menu
-      [ position absolute
-      , left zero
+  , nav
+      [ displayFlex
+      , flexDirection column
+      , prop "justify-content" "center"
+      , position absolute
       , top zero
+      , left zero
       , bottom zero
-      , backgroundColor darkFade
+      , height (vh 100)
+      , backgroundColor transparent
       , width (px menuWidth)
       , transform (translateX (px (menuWidth * -1)))
       , descendants
@@ -135,7 +107,7 @@ css = stylesheet
               , left zero
               , right zero
               , bottom zero
-              , backgroundColor darkFade
+              , backgroundColor transparent
               ]
           ]
       ]

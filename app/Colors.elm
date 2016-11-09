@@ -22,14 +22,3 @@ purple = hex "#FF00FF"
 
 headerBackground : Color
 headerBackground = hex "#3f51b5"
-
-darkFade : Color
-darkFade = rgba 0 0 0 0.6
-
-darken : Color -> Color
-darken color =
-    if color == (hex "#3f51b5") then
-        hex "#333333"
-    else
-      color
-
