@@ -51,6 +51,7 @@ css = stylesheet
 
 -- Implementation Details
 
+blackOverlay : List Mixin
 blackOverlay =
   [ backgroundColor black
   , height (pct 100)
@@ -63,5 +64,7 @@ blackOverlay =
   ]
 
 
+prop : String -> String -> Mixin
 prop = property
+container : List Mixin -> Snippet
 container = selector "container"
