@@ -18,25 +18,45 @@ import Colors exposing (..)
 
 type Classes =
     Container
+  | SiteContainer
+  | SitePusher
+  | Header
   | HeaderLogo
+  | Menu
+  | SiteContent
+  | WithSidebar
+  | SiteCache
+
 type Ids =
     HeaderIcon
 
 css : Stylesheet
 css = stylesheet
-  [ body
+  [ each [body, html]
       [ fontFamily cursive
       , fontFamilies [ "League Script" ]
+      , fontSize (em 1)
+      , lineHeight (pct 140)
+      , height (pct 100)
+      , margin zero
+      , padding zero
+      ]
+  , a
+      [ textDecoration none
+      , color inherit
       ]
   , (.) Container
       [ overflow hidden
       , margin2 (px 0) (px 20)
       ]
-  , header
+  , (.) SiteContent [ paddingTop (px 66) ]
+  , (.) Header
       [ position fixed
       , left zero
       , right zero
       , height (px 66)
+      , lineHeight (px 66)
+      , color white
       , backgroundColor headerBackground
       ]
   , (.) HeaderLogo
@@ -44,39 +64,39 @@ css = stylesheet
       , padding2 zero (px 25)
       , float left
       ]
-
-  , container
+  , each [ (.) SitePusher, (.) SiteContainer ]
+      [ height (pct 100) ]
+  , (.) SiteContainer
       [ before blackOverlay
       , prop "background" "url(assets/images/stairs-crop.jpg) center 27% no-repeat"
       , prop "background-size" "cover"
-      , displayFlex
-      , flexWrap wrap
-      , alignItems baseline
-      , height (vh 100)
-      , width  (vw 100)
-      , margin (px 0)
+      -- , displayFlex
+      -- , flexWrap wrap
+      -- , alignItems baseline
+      -- , height (vh 100)
+      -- , width  (vw 100)
+      -- , margin (px 0)
       , overflow hidden
       , children
           [ everything
               [ color white
-              , prop "z-index" "1"
+              -- , prop "z-index" "1"
               ]
           ]
       , descendants
           [ a
-              [ margin (pct 2)
-              , fontFamily cursive
+              [-- margin (pct 2)
+                fontFamily cursive
               , fontFamilies ["Megrim"]
               , fontSize (Css.rem 2)
               ]
           ]
       ]
-  , drawer
-      [ height (vh 100)
-      , prop "transition-duration" "0.3s"
+  , (.) SitePusher
+      [ prop "transition-duration" "0.3s"
       , transform (translateX (px 0))
       ]
-  , main'
+  , (.) SiteContent
       [ position absolute
       , top (px 66)
       , right zero
@@ -86,20 +106,48 @@ css = stylesheet
       , overflowY scroll
       , prop "-webkit-overflow-scrolling" "touch"
       ]
-  , header
-      [ position static
-      ]
-  , nav
+  , (.) Header
+      [ position static ]
+  , (.) Menu
       [ position absolute
       , left zero
       , top zero
       , bottom zero
       , backgroundColor (darken headerBackground)
+      , width (px menuWidth)
+      , transform (translateX (px (menuWidth * -1)))
+      , descendants
+          [ a
+              [ display block
+              , height (px 40)
+              , textAlign center
+              , lineHeight (px 40)
+              , borderBottom3 (px 1) solid headerBackground
+              ]
+          ]
+      ]
+  , (.) WithSidebar
+      [ descendants
+          [ (.) SitePusher
+              [ transform (translateX (px menuWidth))
+              ]
+          , (.) SiteCache
+              [ position absolute
+              , top zero
+              , left zero
+              , right zero
+              , bottom zero
+              , backgroundColor (rgba 0 0 0 0.6)
+              ]
+          ]
       ]
   ]
 
 
 -- Implementation Details
+
+menuWidth : Float
+menuWidth = 250
 
 blackOverlay : List Mixin
 blackOverlay =
@@ -123,128 +171,3 @@ container = selector "container"
 
 drawer : List Mixin -> Snippet
 drawer = selector "drawer"
-
-
--- /* VARIABLES */
--- $header-bg: #3f51b5;
--- $menu-width: 250px !default;
-
--- /* BASE */
--- html,
--- body {
---   font-family: 'Roboto', sans-serif;
---   font-size: 1em;
---   line-height: 1.4;
---   height: 100%;
-  
---   margin: 0;
---   padding: 0;
--- }
-
--- .container {
---   @include clearfix;
---   margin: 0 20px;
--- }
-
--- main {
---   padding-top: 66px;
--- }
-
--- /* HEADER */
--- header {
---   position: fixed;
---   left: 0;
---   right: 0;
---   height: 66px;
-  
---   line-height: 66px;
---   color: #fff;
-  
---   background-color: $header-bg;
--- }
-
--- .header__logo {
---   font-weight: 700;
---   padding: 0 25px;
---   float: left;
--- }
-
--- /* MENU */
--- // nav {
--- //   float: left;
-  
--- //   a {
--- //     padding: 0 10px;
--- //   }
-  
--- //   a:hover {
--- //     color: #c5cae9;
--- //   }
--- // }
-
--- drawer,
--- container {
---   height: 100%;
--- }
-
--- container {
---   overflow: hidden;
--- }
-
--- drawer {
---   @include transition-duration(0.3s);
---   @include transform(translateX(0px));
--- }
-
--- main {
---   position: absolute;
---   top: 66px;
---   right: 0;
---   left: 0;
---   bottom: 0;
---   padding-top: 0;
---   overflow-y: scroll;
---   -webkit-overflow-scrolling: touch;
--- }
-
--- header {
---   position: static;
--- }
-
--- nav {
---   position: absolute;
---   left: 0;
---   top: 0;
---   bottom: 0;
---   background-color: darken($header-bg, 5);
--- /*    overflow-y: scroll;
---   -webkit-overflow-scrolling: touch;*/
-
---   width: $menu-width;
-
---   @include transform(translateX($menu-width * -1));
---   a {
---     display: block;
---     height: 40px;
-
---     text-align: center;
---     line-height: 40px;
-
---     border-bottom: 1px solid $header-bg;
---   }
-
--- }
-
--- .with--sidebar {
---   drawer {
---     @include transform(translateX($menu-width));
---   }
---   .site-cache {
---     position: absolute;
---     top: 0;
---     left: 0;
---     right: 0;
---     bottom: 0;
---     background-color: rgba(0,0,0,0.6);
---   }
--- }
