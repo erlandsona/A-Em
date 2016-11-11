@@ -66,6 +66,7 @@ css = stylesheet
           [ a
               [ margin (pct 2)
               , fontFamily cursive
+              , cursor pointer
               , fontFamilies ["Megrim"]
               , fontSize (Css.rem 3)
               ]

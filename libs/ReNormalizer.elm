@@ -1,6 +1,6 @@
+module ReNormalizer exposing (css, snippets)
 -- Copy Pasta from https://github.com/scottcorgan/elm-css-reset/blob/1.0.2/src/Css/Reset.elm#L96
 -- until the version of elm-css get's updated
-module Css.ReNormalizer exposing (css, snippets)
 
 import Css exposing (..)
 import Css.Elements exposing (..)
@@ -191,11 +191,6 @@ snippets =
     [ property "border-collapse" "collapse"
     , property "border-spacing" "0"
     ]
-
-
-
-
-
   , selector
     """ [role="button"]
     , input[type="submit"]
@@ -223,4 +218,5 @@ snippets =
     ]
   ]
 
+prop : String -> String -> Mixin
 prop = property

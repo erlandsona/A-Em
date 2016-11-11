@@ -44,14 +44,13 @@ main = beginnerProgram
     , update = update
     }
 
-view : Bool -> Html Bool
+view : Bool -> Html Toggle
 view model =
     container [ class (if model then "Drawer" else "") ] -- SiteContainer
         [ drawer -- SitePusher
             [ header []
-                [ a [ onClick True ]
-                    [ text "Caldwell" ]
-                , nav [ onClick True, class "Menu" ]
+                [ a [ onClick Toggle ] [ text "Caldwell" ]
+                , nav [ onClick Toggle, class "Menu" ]
                     [ a [ href "music" ]
                         [ text "Music" ]
                     , a [ href "shows" ]
@@ -65,11 +64,12 @@ view model =
             , main' []
                 [ h1 [] [ text "Responsive Navigation Bar" ]
                 ]
-            , div [ onClick True, class "SiteCache", id "SiteCache" ] []
+            , div [ onClick Toggle, class "SiteCache", id "SiteCache" ] []
             ]
         ]
 
 update msg drawerState = (not drawerState)
+type Toggle = Toggle
 
 -- Custom Elements
 
