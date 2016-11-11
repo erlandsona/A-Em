@@ -5,7 +5,7 @@ import Html exposing (div)
 import Html.App as Html
 
 import ReNormalizer
-import Styles
+import Caldwell.Styles as Styles
 
 port files : CssFileStructure -> Cmd msg
 

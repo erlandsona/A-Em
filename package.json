@@ -23,6 +23,6 @@
   "scripts": {
     "postinstall": "elm-package install",
     "prestart": "rm -rf ./dist && mkdir dist",
-    "start": "elm-live app/View.elm --output dist/bundle.js --dir=dist --port=7777 --before-build=./build/tasks"
+    "start": "elm-live app/Caldwell.elm --output dist/bundle.js --dir=dist --port=7777 --before-build=./build/tasks"
   }
 }
