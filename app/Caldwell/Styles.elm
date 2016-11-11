@@ -62,7 +62,7 @@ css =
             , top (vh 50)
             , bottom (vh 50)
             , backgroundColor transparent
-            , prop "transform" "translateX(calc(-101% - 1vw))"
+            , prop "transform" "translateX(calc(-101% - 3vw))"
             , children
                 [ a
                     [ cursor pointer
@@ -71,7 +71,7 @@ css =
                     , borderBottom3 (px 3) solid transparent
                     , prop "transition" "0.7s"
                     , width (pct 0)
-                    , padding4 (vh 7) zero zero (vw 1)
+                    , padding4 (vh 7) zero zero (vw 3)
                     , prop "white-space" "nowrap"
                     , textAlign right
                     , fontSize (pct 200)
