@@ -1,14 +1,15 @@
-module Caldwell.View exposing (html)
+module Caldwell.View exposing (view)
 
 -- Libraries
 
 import Html exposing (..)
 import Html.Attributes exposing (class, id, href, attribute, target, alt, src)
-import Html.Events exposing (onClick)
+import Html.Events exposing (onClick, on)
+import Json.Decode as JSON
 
 
-html : Bool -> Html Bool
-html model =
+view : Bool -> Html Bool
+view model =
     container
         [ onClick model
         , class
@@ -20,22 +21,42 @@ html model =
         ]
         [ header [ onClick (not model) ]
             [ text "Caldwell" ]
-        , nav [ onClick model ]
-            [ a [ href "music" ]
+        , nav [ onClick (not model) ]
+            [ a [ href "#home" ]
+                [ text "Home" ]
+            , a [ href "#music" ]
                 [ text "Music" ]
-            , a [ href "shows" ]
+            , a [ href "#shows" ]
                 [ text "Shows" ]
-            , a [ href "about" ]
+            , a [ href "#about" ]
                 [ text "About" ]
-            , a [ href "contact" ]
+            , a [ href "#contact" ]
                 [ text "Contact" ]
             ]
-        , main' []
-            [ h1 [] [ text "Hey Y'all!" ]
+        , main' [ onScroll False ]
+            [ section [ id "home" ]
+                [ h1 [] [ text "Home" ] ]
+            , section [ id "music" ]
+                [ h1 [] [ text "Music" ] ]
+            , section [ id "shows" ]
+                [ h1 [] [ text "Shows" ] ]
+            , section [ id "about" ]
+                [ h1 [] [ text "About" ]
+                , p []
+                    [ text "Stuff and things"
+                    ]
+                ]
+            , section [ id "contact" ]
+                [ h1 [] [ text "Contact" ] ]
             ]
         ]
 
 
+
+-- Helper functions
+onScroll : msg -> Attribute msg
+onScroll message =
+  on "scroll" (JSON.succeed message)
 
 -- Custom Elements
 

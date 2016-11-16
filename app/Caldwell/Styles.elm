@@ -50,6 +50,7 @@ css =
             [ prop "user-select" "none"
             , fontFamily cursive
             , cursor pointer
+            , display initial
             , fontFamilies [ "Megrim" ]
             , fontSize (Css.rem 3)
             ]
@@ -63,6 +64,7 @@ css =
             , bottom (vh 50)
             , backgroundColor transparent
             , prop "transform" "translateX(calc(-101% - 3vw))"
+            , prop "z-index" "1"
             , children
                 [ a
                     [ cursor pointer
@@ -90,6 +92,20 @@ css =
             [ children
                 [ nav
                     [ transform (translateX (px 0))
+                    ]
+                ]
+            ]
+        , main'
+            [ position absolute
+            , top (vh 7)
+            , left (vw 7)
+            , height (vh 93)
+            , width (vw 93)
+            , overflow auto
+            , children
+                [ section
+                    [ height (pct 100)
+                    , width (pct 100)
                     ]
                 ]
             ]

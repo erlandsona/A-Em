@@ -7,7 +7,7 @@ import Html.App exposing (beginnerProgram)
 
 -- Source
 
-import Caldwell.View exposing (html)
+import Caldwell.View exposing (view)
 import Caldwell.Update exposing (update)
 
 
@@ -15,6 +15,6 @@ main : Program Never
 main =
     beginnerProgram
         { model = False
-        , view = html
+        , view = view
         , update = update
         }

@@ -87,6 +87,13 @@ snippets =
       -- , each
       --   [ ol, ul ]
       --   [ property "list-style" "none" ]
+    , html
+        [ boxSizing borderBox ]
+    , everything
+        [ before [ boxSizing inherit ]
+        ,          boxSizing inherit
+        , after  [ boxSizing inherit ]
+        ]
     , a
         [ backgroundColor transparent
         , property "-webkit-text-decoration-skip" "objects"
