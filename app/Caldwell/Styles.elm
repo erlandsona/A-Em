@@ -108,6 +108,8 @@ css =
                 [ section
                     [ height (pct 100)
                     , width (pct 100)
+                    , prop "transition" "1s"
+                    , padding (em 1)
                     ]
                 ]
             ]

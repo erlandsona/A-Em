@@ -7,11 +7,11 @@ import Html exposing (beginnerProgram)
 
 -- Source
 
-import Caldwell.View exposing (view, update, model)
+import Caldwell.View exposing (..)
 -- import Caldwell.Update exposing (update)
 
 
-main : Program Never Bool Bool
+main : Program Never Model Message
 main =
     beginnerProgram
         { model = model

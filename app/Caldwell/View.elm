@@ -1,4 +1,4 @@
-module Caldwell.View exposing (view)
+module Caldwell.View exposing (view, update, model, Model, Message(..))
 
 -- Libraries
 
@@ -17,26 +17,26 @@ import Html.Events
 view : Model -> Html Message
 view {navbar, currentPage} =
     container
-        [ onClick navbar
+        [ onClick (toggle navbar)
         , class
-            (if navbar == Open then
+            (if navbar == Opened then
                 "Nav"
              else
                 ""
             )
         ]
-        [ header [ onClick (not navbar) ]
+        [ header [ onClick (toggle navbar) ]
             [ text "Caldwell" ]
-        , nav [ onClick (not navbar) ]
-            [ a [ href "#Home", onClick Home ]
+        , nav [ onClick (toggle navbar) ]
+            [ a [ onClick GoHome ]
                 [ text "Home" ]
-            , a [ href "#Music", onClick Music ]
+            , a [ onClick GoMusic ]
                 [ text "Music" ]
-            , a [ href "#Shows", onClick Shows ]
+            , a [ onClick GoShows ]
                 [ text "Shows" ]
-            , a [ href "#About", onClick About ]
+            , a [ onClick GoAbout ]
                 [ text "About" ]
-            , a [ href "#Contact", onClick Contact ]
+            , a [ onClick GoContact ]
                 [ text "Contact" ]
             ]
         , main_ []
@@ -91,7 +91,7 @@ view {navbar, currentPage} =
 paginate : Page -> Attribute msg
 paginate page =
     style
-        [ ( "transform", "translateY(" ++ translatify page ++ "00%)" )
+        [ ( "transform", "translateY(-" ++ translatify page ++ "00%)" )
         ]
 
 translatify : Page -> String
@@ -113,15 +113,22 @@ translatify page =
             "4"
 
 
-not : Nav -> Nav
-not nav =
+toggle : Nav -> Message
+toggle nav =
     case nav of
-        Open ->
-            Closed
+        Opened ->
+            Close
 
         Closed ->
             Open
 
+identity : Nav -> Message
+identity nav =
+    case nav of
+        Opened ->
+            Open
+        Closed ->
+            Close
 
 
 -- Update
@@ -129,39 +136,49 @@ not nav =
 
 update : Message -> Model -> Model
 update msg model =
-    if msg.updateNav == Open then
-        model
-    else if msg.updateNav == Closed then
-        { model | navbar = Open }
-    else if msg.updatePage == Home then
-        { model | currentPage = Home }
-    else
-        model
+    case msg of
+        Open ->
+            log (toString msg)
+            { model | navbar = Opened }
 
-        -- Home ->
-        --     { model | currentPage = Home }
+        Close ->
+            log (toString msg)
+            { model | navbar = Closed }
 
-        -- Music ->
-        --     { model | currentPage = Music }
+        GoHome ->
+            log (toString msg)
+            { model | currentPage = Home }
 
-        -- Shows ->
-        --     { model | currentPage = Shows }
+        GoMusic ->
+            log (toString msg)
+            { model | currentPage = Music }
 
-        -- About ->
-        --     { model | currentPage = About }
+        GoShows ->
+            log (toString msg)
+            { model | currentPage = Shows }
 
-        -- Contact ->
-        --     { model | currentPage = Contact }
+        GoAbout ->
+            log (toString msg)
+            { model | currentPage = About }
+
+        GoContact ->
+            log (toString msg)
+            { model | currentPage = Contact }
 
 
 
 -- MODEL
 
 
-type alias Message =
-    { updateNav : Nav
-    , updatePage : Page
-    }
+type Message
+    = Close
+    | Open
+    | GoHome
+    | GoMusic
+    | GoShows
+    | GoAbout
+    | GoContact
+
 
 
 type alias Model =
@@ -179,7 +196,7 @@ model =
 
 type Nav
     = Closed
-    | Open
+    | Opened
 
 
 type Page
