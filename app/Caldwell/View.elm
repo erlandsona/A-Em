@@ -2,6 +2,7 @@ module Caldwell.View exposing (view, update, model, Model, Message(..))
 
 -- Libraries
 
+import Debug exposing (log)
 import Html exposing (..)
 import Html.Attributes exposing (class, id, style, href, attribute, target, alt, src)
 import Html.Events
@@ -19,7 +20,7 @@ view {navbar, currentPage} =
     container
         [ onClick (toggle navbar)
         , class
-            (if navbar == Opened then
+            (if navbar == Open then
                 "Nav"
              else
                 ""
@@ -28,15 +29,15 @@ view {navbar, currentPage} =
         [ header [ onClick (toggle navbar) ]
             [ text "Caldwell" ]
         , nav [ onClick (toggle navbar) ]
-            [ a [ onClick GoHome ]
+            [ a [ onClick (Go Home) ]
                 [ text "Home" ]
-            , a [ onClick GoMusic ]
+            , a [ onClick (Go Music) ]
                 [ text "Music" ]
-            , a [ onClick GoShows ]
+            , a [ onClick (Go Shows) ]
                 [ text "Shows" ]
-            , a [ onClick GoAbout ]
+            , a [ onClick (Go About) ]
                 [ text "About" ]
-            , a [ onClick GoContact ]
+            , a [ onClick (Go Contact) ]
                 [ text "Contact" ]
             ]
         , main_ []
@@ -116,20 +117,11 @@ translatify page =
 toggle : Nav -> Message
 toggle nav =
     case nav of
-        Opened ->
-            Close
+        Open ->
+            Toggle Closed
 
         Closed ->
-            Open
-
-identity : Nav -> Message
-identity nav =
-    case nav of
-        Opened ->
-            Open
-        Closed ->
-            Close
-
+            Toggle Open
 
 -- Update
 
@@ -137,33 +129,13 @@ identity nav =
 update : Message -> Model -> Model
 update msg model =
     case msg of
-        Open ->
+        Toggle nav ->
             log (toString msg)
-            { model | navbar = Opened }
+            { model | navbar = nav }
 
-        Close ->
+        Go page ->
             log (toString msg)
-            { model | navbar = Closed }
-
-        GoHome ->
-            log (toString msg)
-            { model | currentPage = Home }
-
-        GoMusic ->
-            log (toString msg)
-            { model | currentPage = Music }
-
-        GoShows ->
-            log (toString msg)
-            { model | currentPage = Shows }
-
-        GoAbout ->
-            log (toString msg)
-            { model | currentPage = About }
-
-        GoContact ->
-            log (toString msg)
-            { model | currentPage = Contact }
+            { model | currentPage = page }
 
 
 
@@ -171,14 +143,8 @@ update msg model =
 
 
 type Message
-    = Close
-    | Open
-    | GoHome
-    | GoMusic
-    | GoShows
-    | GoAbout
-    | GoContact
-
+    = Toggle Nav
+    | Go Page
 
 
 type alias Model =
@@ -196,7 +162,7 @@ model =
 
 type Nav
     = Closed
-    | Opened
+    | Open
 
 
 type Page
