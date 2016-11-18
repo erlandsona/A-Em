@@ -5,6 +5,7 @@ module ReNormalizer exposing (css, snippets)
 
 import Css exposing (..)
 import Css.Elements exposing (..)
+import String.Extra exposing (clean)
 
 
 css : Stylesheet
@@ -15,44 +16,64 @@ css =
 snippets : List Snippet
 snippets =
     [ each
-        [ html, body
-        , div, span
-        , h1, h2, h3, h4, h5, h6
-        , a, p
-        , ol, ul, li
+        [ html
+        , body
+        , div
+        , span
+        , h1
+        , h2
+        , h3
+        , h4
+        , h5
+        , h6
+        , a
+        , p
+        , ol
+        , ul
+        , li
         , img
         , form
         , pre
         , fieldset
         , legend
         , caption
-        , table, tbody, tfoot, thead, tr, th, td
+        , table
+        , tbody
+        , tfoot
+        , thead
+        , tr
+        , th
+        , td
         , label
         , article
         , selector "aside"
         , section
-        , header, footer, nav
-        , audio, video
+        , header
+        , footer
+        , nav
+        , audio
+        , video
         , strong
         , canvas
-        , selector
-            " center, iframe,
-              abbr, acronym,
-              address, big,
-              blockquote, cite,
-              code, del,
-              dl, dt, dd,
-              dfn, em, ins, kbd,
-              object,
-              q, s,
-              samp, small,
-              b, u, i,
-              strike, sub, sup, tt,
-              var, details, embed,
-              figure, figcaption,
-              menu, output, ruby,
-              summary, time, mark
-            "
+        , selector <|
+            clean """
+                center, iframe,
+                abbr, acronym,
+                address, big,
+                blockquote, cite,
+                code, del,
+                dl, dt, dd,
+                dfn, em, ins, kbd,
+                object,
+                q, s,
+                samp, small,
+                b, u, i,
+                strike, sub, sup, tt,
+                var, details, embed,
+                figure, figcaption,
+                menu, output, ruby,
+                summary, time, mark
+            """
         ]
         [ margin zero
         , padding zero
@@ -91,8 +112,8 @@ snippets =
         [ boxSizing borderBox ]
     , everything
         [ before [ boxSizing inherit ]
-        ,          boxSizing inherit
-        , after  [ boxSizing inherit ]
+        , boxSizing inherit
+        , after [ boxSizing inherit ]
         ]
     , a
         [ backgroundColor transparent
@@ -268,4 +289,5 @@ snippets =
 
 
 prop : String -> String -> Mixin
-prop = property
+prop =
+    property

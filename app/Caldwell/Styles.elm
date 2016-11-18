@@ -33,6 +33,8 @@ css =
             , fontSize (pct 100)
             , height (vh 100)
             ]
+        , html
+            [ backgroundColor black ]
         , body
             [ before blackOverlay
             , prop "background" "url(assets/images/stairs-crop.jpg) center 27% no-repeat"
@@ -95,7 +97,7 @@ css =
                     ]
                 ]
             ]
-        , main'
+        , main_
             [ position absolute
             , top (vh 7)
             , left (vw 7)
