@@ -1,0 +1,1 @@
+-- module Caldwell.Model exposing (model, Model, Message(..))

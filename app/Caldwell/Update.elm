@@ -1,15 +1,15 @@
-module Caldwell.Update exposing (update)
-
-import Debug exposing (log)
+-- module Caldwell.Update exposing (update)
 
 
-update : Bool -> Bool -> Bool
-update msg model =
-    case msg of
-        True ->
-            log (toString model)
-            not model
+-- update : Message -> Model -> Model
+-- update msg model =
+--     case msg of
+--         ShowNav True ->
+--             log (toString model)
+--             { model | showNav = (not showNav) }
 
-        False ->
-            log (toString model)
-            model
+--         -- ShowNav False ->
+--         --     log (toString model)
+--         --     { model | showNav = (not showNav)
+--         CurrentPage a ->
+--             log (toString )
