@@ -11,8 +11,6 @@ import UrlParser as Url
 
 import Caldwell.Types.UI exposing (Msg(..))
 import Caldwell.Model exposing (Model)
-import Caldwell.Routes exposing (urlParser)
-
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -23,7 +21,7 @@ update msg model =
             )
 
         GoToUrl page ->
-            ( { model | history = Url.parsePath urlParser page :: model.history }
+            ( { model | history = (page :: model.history) }
             , Cmd.none
             )
 

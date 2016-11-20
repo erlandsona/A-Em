@@ -7,13 +7,13 @@ import UrlParser as Url
 
 -- Source
 import Caldwell.Types.UI exposing (Msg, Nav(..), Page(..))
-import Caldwell.Routes exposing (urlParser)
+import Caldwell.Routes exposing (parsePage)
 
 
 -- MODEL
 
 type alias Model =
-    { history : List (Maybe Page)
+    { history : List Page
     , navbar : Nav
     }
 
@@ -22,9 +22,9 @@ init : Location -> ( Model, Cmd Msg )
 init location =
     let
         model =
-            { history = [ Url.parsePath urlParser location ]
+            { history = [ parsePage location ]
             , navbar = Closed
             }
     in
-        ( model, Cmd.none )
+        ( log "init model" model, Cmd.none )
 

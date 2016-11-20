@@ -1,7 +1,5 @@
 module Caldwell.Types.UI exposing (..)
 
-import Navigation exposing (Location)
-
 type Page
     = Home
     | Music
@@ -15,5 +13,5 @@ type Nav
 
 type Msg
     = Toggle Nav
-    | GoToUrl Location
+    | GoToUrl Page
     | SetUrl String

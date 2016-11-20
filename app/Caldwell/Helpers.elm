@@ -1,14 +1,14 @@
 module Caldwell.Helpers exposing (..)
 
+import Css exposing (Mixin, property)
 import Html exposing (node, Html, Attribute)
 import Html.Attributes exposing (style)
-import Css exposing (Mixin, property)
+import UrlParser as Url
 
 
 -- Source
 
 import Caldwell.Types.UI exposing (..)
-
 
 -- Custom Elements
 
@@ -24,12 +24,9 @@ drawer =
 
 
 
--- Event Handlers
--- onScroll : msg -> Attribute msg
--- onScroll message =
---     on "scroll" (JSON.succeed message)
 
 
+-- Update Helper
 toggle : Nav -> Msg
 toggle nav =
     case nav of

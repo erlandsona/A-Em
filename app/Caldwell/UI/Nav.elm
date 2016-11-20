@@ -10,20 +10,21 @@ import Html.Events exposing (onClick)
 -- Source
 
 import Caldwell.Helpers exposing (toggle)
-import Caldwell.Types.UI exposing (Msg(..), Nav(..))
+import Caldwell.Types.UI exposing (Msg(..), Nav(..), Page(..))
 
 
 view : Nav -> Html Msg
 view navbar =
     nav [ onClick (toggle navbar) ]
-        [ a [ href "/" ]
-            [ text "Home" ]
-        , a [ href "/music" ]
-            [ text "Music" ]
-        , a [ href "/shows" ]
-            [ text "Shows" ]
-        , a [ href "/about" ]
-            [ text "About" ]
-        , a [ href "/contact" ]
-            [ text "Contact" ]
-        ]
+        (List.map aTag pageList)
+
+
+aTag : Page -> Html Msg
+aTag page =
+    a [ onClick (GoToUrl page) ]
+        [ text (toString page) ]
+
+
+pageList : List Page
+pageList =
+    [ Home, Music, Shows, About, Contact ]

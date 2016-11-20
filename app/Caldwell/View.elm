@@ -32,7 +32,7 @@ view { navbar, history } =
         ]
         [ Header.view navbar
         , Nav.view navbar
-        , Main.view <| withDefault (Just Home) (List.head history)
+        , Main.view <| withDefault Home (List.head history)
         ]
 
 
