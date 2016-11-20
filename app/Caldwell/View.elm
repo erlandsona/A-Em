@@ -3,8 +3,8 @@ module Caldwell.View exposing (view)
 -- Libraries
 
 import Debug exposing (log)
-import Html exposing (..)
-import Html.Attributes exposing (class, id, style, href, attribute, target, alt, src)
+import Html exposing (Html)
+import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
 
