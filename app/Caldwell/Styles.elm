@@ -1,13 +1,18 @@
 module Caldwell.Styles exposing (css)
 
--- Libs
+-- Libraries
 
 import Css exposing (..)
 import Css.Elements exposing (..)
 
 
--- Src
+-- Source
 
+import Caldwell.Helpers exposing (prop)
+import Caldwell.UI.HeaderStyles as Header
+import Caldwell.UI.MainStyles as Main
+import Caldwell.UI.NavStyles as Nav
+import Caldwell.Types.Styles exposing (..)
 import Colors exposing (..)
 
 
@@ -20,8 +25,7 @@ import Colors exposing (..)
 --     }
 
 
-type Classes
-    = Nav
+
 
 
 css : Stylesheet
@@ -41,54 +45,16 @@ css =
             , prop "background-size" "cover"
             , color white
             ]
+        , a
+            [ textDecoration none
+            , color inherit
+            ]
         , container
             [ position relative
             , display block
             , height (vh 100)
             , width (vw 100)
             , overflow hidden
-            ]
-        , header
-            [ prop "user-select" "none"
-            , fontFamily cursive
-            , cursor pointer
-            , display initial
-            , fontFamilies [ "Megrim" ]
-            , fontSize (Css.rem 3)
-            ]
-        , nav
-            [ displayFlex
-            , flexDirection column
-            , prop "justify-content" "center"
-            , prop "transition" "0.3s"
-            , position absolute
-            , top (vh 50)
-            , bottom (vh 50)
-            , backgroundColor transparent
-            , prop "transform" "translateX(calc(-101% - 3vw))"
-            , prop "z-index" "1"
-            , children
-                [ a
-                    [ cursor pointer
-                    , display inlineBlock
-                    , textDecoration none
-                    , borderBottom3 (px 3) solid transparent
-                    , prop "transition" "0.7s"
-                    , width (pct 0)
-                    , padding4 (vh 7) zero zero (vw 3)
-                    , prop "white-space" "nowrap"
-                    , textAlign right
-                    , fontSize (pct 200)
-                    , hover
-                        [ borderBottom2 (px 3) solid
-                        , width (pct 100)
-                        ]
-                    ]
-                ]
-            ]
-        , a
-            [ textDecoration none
-            , color inherit
             ]
         , (.) Nav
             [ children
@@ -97,33 +63,14 @@ css =
                     ]
                 ]
             ]
-        , main_
-            [ position absolute
-            , top (vh 7)
-            , left (vw 7)
-            , height (vh 93)
-            , width (vw 93)
-            , overflow auto
-            , children
-                [ section
-                    [ height (pct 100)
-                    , width (pct 100)
-                    , prop "transition" "1s"
-                    , padding (em 1)
-                    ]
-                ]
-            ]
+        , Header.css
+        , Nav.css
+        , Main.css
         ]
 
 
 
--- Implementation Details
-
-
-menuWidth : Float
-menuWidth =
-    250
-
+-- Helpers
 
 blackOverlay : List Mixin
 blackOverlay =
@@ -138,16 +85,6 @@ blackOverlay =
     ]
 
 
-prop : String -> String -> Mixin
-prop =
-    property
-
-
 container : List Mixin -> Snippet
 container =
     selector "container"
-
-
-drawer : List Mixin -> Snippet
-drawer =
-    selector "drawer"

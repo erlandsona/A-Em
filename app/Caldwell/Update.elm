@@ -1,15 +1,21 @@
--- module Caldwell.Update exposing (update)
+module Caldwell.Update exposing (update)
+
+-- Libraries
+
+import Debug exposing (log)
 
 
--- update : Message -> Model -> Model
--- update msg model =
---     case msg of
---         ShowNav True ->
---             log (toString model)
---             { model | showNav = (not showNav) }
+-- Source
 
---         -- ShowNav False ->
---         --     log (toString model)
---         --     { model | showNav = (not showNav)
---         CurrentPage a ->
---             log (toString )
+import Caldwell.Types.UI exposing (Msg(..))
+import Caldwell.Model exposing (Model)
+
+
+update : Msg -> Model -> Model
+update msg model =
+    case log "Stuff" msg of
+        Toggle nav ->
+            { model | navbar = nav }
+
+        Go page ->
+            { model | currentPage = page }
