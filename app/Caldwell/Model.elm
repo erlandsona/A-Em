@@ -7,7 +7,7 @@ import UrlParser as Url
 
 -- Source
 import Caldwell.Types.UI exposing (Msg, Nav(..), Page(..))
-import Caldwell.Routes exposing (parsePage)
+import Caldwell.Helpers exposing (urlParser)
 
 
 -- MODEL
@@ -27,4 +27,15 @@ init location =
             }
     in
         ( log "init model" model, Cmd.none )
+
+
+parsePage : Location -> Page
+parsePage loc =
+  let
+      page = Url.parsePath urlParser loc
+
+  in
+      case page of
+        Just a -> a
+        _ -> Home
 

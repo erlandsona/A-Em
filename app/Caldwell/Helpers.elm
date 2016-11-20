@@ -3,7 +3,8 @@ module Caldwell.Helpers exposing (..)
 import Css exposing (Mixin, property)
 import Html exposing (node, Html, Attribute)
 import Html.Attributes exposing (style)
-import UrlParser as Url
+import Navigation exposing (Location)
+import UrlParser as Url exposing (top, oneOf)
 
 
 -- Source
@@ -22,6 +23,20 @@ drawer : List (Html a) -> Html a
 drawer =
     node "drawer" []
 
+
+-- Route Helpers
+
+
+
+urlParser : Url.Parser (Page -> a) a
+urlParser =
+    oneOf
+        [ Url.map Home top
+        , Url.map Music top
+        , Url.map Shows top
+        , Url.map About top
+        , Url.map Contact top
+        ]
 
 
 
