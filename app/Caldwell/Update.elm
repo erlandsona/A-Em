@@ -4,20 +4,21 @@ module Caldwell.Update exposing (update)
 
 import Debug exposing (log)
 import Navigation as Nav
-import UrlParser as Url exposing ((</>), (<?>), s, int, stringParam, top)
+import UrlParser as Url
 
 
 -- Source
 
 import Caldwell.Types.UI exposing (Msg(..))
 import Caldwell.Model exposing (Model)
+import Caldwell.Routes exposing (urlParser)
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-    case log "Stuff" msg of
+    case log "message" msg of
         SetUrl url ->
-            ( model
+            ( log "page" model
             , Nav.newUrl url
             )
 
@@ -25,7 +26,7 @@ update msg model =
             ( { model | history = Url.parsePath urlParser page :: model.history }
             , Cmd.none
             )
-            
+
 
         Toggle nav ->
             ( { model | navbar = nav }
