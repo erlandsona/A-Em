@@ -13,7 +13,7 @@ import Caldwell.UI.HeaderStyles as Header
 import Caldwell.UI.MainStyles as Main
 import Caldwell.UI.NavStyles as Nav
 import Caldwell.Types.Styles exposing (..)
-import Colors exposing (..)
+import Caldwell.Colors exposing (..)
 
 
 -- stylesheet : List Snippet -> Stylesheet

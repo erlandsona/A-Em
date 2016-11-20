@@ -6,14 +6,13 @@ import Html exposing (..)
 import Html.Attributes exposing (id)
 
 
-
 -- Source
 
 import Caldwell.Helpers exposing (paginate)
-import Caldwell.Types.UI exposing (Msg, Page(..))
+import Caldwell.Types.UI exposing (Msg, Page)
 
 view : Page -> Html Msg
-view page = 
+view page =
   main_ []
       [ section
           [ id "Home"

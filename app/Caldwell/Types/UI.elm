@@ -1,10 +1,6 @@
 module Caldwell.Types.UI exposing (..)
 
-
-type Nav
-    = Closed
-    | Open
-
+import Navigation exposing (Location)
 
 type Page
     = Home
@@ -13,7 +9,11 @@ type Page
     | About
     | Contact
 
+type Nav
+    = Closed
+    | Open
 
 type Msg
     = Toggle Nav
-    | Go Page
+    | GoToUrl Location
+    | SetUrl String
