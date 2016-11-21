@@ -26,6 +26,6 @@ view navbar =
 
 aTag : Page -> Html Msg
 aTag page =
-    a [ onClick (GoToUrl page) ]
+    a [ onClick (SetUrl page) ]
         [ text (toString page) ]
 

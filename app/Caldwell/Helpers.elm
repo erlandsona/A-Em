@@ -4,7 +4,7 @@ import Css exposing (Mixin, property)
 import Html exposing (node, Html, Attribute)
 import Html.Attributes exposing (style)
 import Navigation exposing (Location)
-import UrlParser as Url exposing (top, oneOf)
+import UrlParser as Url exposing (top, oneOf, s)
 
 
 -- Source
@@ -32,10 +32,10 @@ urlParser : Url.Parser (Page -> a) a
 urlParser =
     oneOf
         [ Url.map Home top
-        , Url.map Music top
-        , Url.map Shows top
-        , Url.map About top
-        , Url.map Contact top
+        , Url.map Music (s "music")
+        , Url.map Shows (s "shows")
+        , Url.map About (s "about")
+        , Url.map Contact (s "contact")
         ]
 
 

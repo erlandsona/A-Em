@@ -2,6 +2,7 @@ module Caldwell.Model exposing (init, Model)
 
 -- Libraries
 import Debug exposing (log)
+import Maybe exposing (withDefault)
 import Navigation exposing (Location)
 import UrlParser as Url
 
@@ -26,16 +27,9 @@ init location =
             , navbar = Closed
             }
     in
-        ( log "init model" model, Cmd.none )
+        ( model, Cmd.none )
 
 
 parsePage : Location -> Page
 parsePage loc =
-  let
-      page = Url.parsePath urlParser loc
-
-  in
-      case page of
-        Just a -> a
-        _ -> Home
-
+  withDefault Home (Url.parsePath urlParser loc)

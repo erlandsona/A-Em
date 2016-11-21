@@ -2,6 +2,8 @@ module Caldwell exposing (main)
 
 -- Libs
 
+import Debug exposing (log)
+import Maybe exposing (withDefault)
 import Navigation exposing (program, Location)
 import UrlParser as Url
 
@@ -15,6 +17,7 @@ import Caldwell.Types.UI exposing (Msg(..), Page(..))
 import Caldwell.Helpers exposing (urlParser)
 
 
+
 main : Program Never Model Msg
 main =
     program parseMsg
@@ -26,12 +29,5 @@ main =
 
 parseMsg : Location -> Msg
 parseMsg loc =
-  let
-      maybePage : Maybe Page
-      maybePage = Url.parsePath urlParser loc
-
-  in
-      case maybePage of
-        Just a -> GoToUrl a
-        _ -> GoToUrl Home
+    GoToUrl (withDefault Home <| Url.parsePath urlParser loc)
 

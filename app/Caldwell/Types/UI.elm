@@ -14,4 +14,4 @@ type Nav
 type Msg
     = Toggle Nav
     | GoToUrl Page
-    | SetUrl String
+    | SetUrl Page

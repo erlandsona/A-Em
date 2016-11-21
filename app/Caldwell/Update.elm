@@ -2,8 +2,8 @@ module Caldwell.Update exposing (update)
 
 -- Libraries
 
-import Debug exposing (log)
 import Navigation as Nav
+import String exposing (toLower)
 import UrlParser as Url
 
 
@@ -14,10 +14,10 @@ import Caldwell.Model exposing (Model)
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-    case log "message" msg of
+    case msg of
         SetUrl url ->
-            ( log "page" model
-            , Nav.newUrl url
+            ( model
+            , Nav.newUrl (toLower <| toString url)
             )
 
         GoToUrl page ->
