@@ -3,6 +3,8 @@ module Caldwell.Helpers exposing (..)
 import Css exposing (Mixin, property)
 import Html exposing (node, Html, Attribute)
 import Html.Attributes exposing (style)
+import Html.Events exposing (onWithOptions, Options)
+import Json.Decode exposing (succeed)
 import Navigation exposing (Location)
 import UrlParser as Url exposing (top, oneOf, s)
 
@@ -31,26 +33,11 @@ drawer =
 urlParser : Url.Parser (Page -> a) a
 urlParser =
     oneOf
-        [ Url.map Home top
-        , Url.map Music (s "music")
+        [ Url.map Music (s "music")
         , Url.map Shows (s "shows")
         , Url.map About (s "about")
         , Url.map Contact (s "contact")
         ]
-
-
-
-
--- Update Helper
-toggle : Nav -> Msg
-toggle nav =
-    case nav of
-        Open ->
-            Toggle Closed
-
-        Closed ->
-            Toggle Open
-
 
 
 -- View Helpers
@@ -80,6 +67,11 @@ translatify page =
 
         _ ->
             "0"
+
+clickWithStopProp : Msg -> Attribute Msg
+clickWithStopProp msg =
+    onWithOptions "click" (Options True     False) (succeed msg)
+                        -- Options stopProp prevDefault
 
 
 

@@ -9,13 +9,13 @@ import Html.Events exposing (onClick)
 
 -- Source
 
-import Caldwell.Helpers exposing (toggle)
-import Caldwell.Types.UI exposing (Msg(..), Nav(..), Page(..))
+import Caldwell.Helpers exposing (clickWithStopProp)
+import Caldwell.Types.UI exposing (Msg(..), Page(..))
 
 
-view : Nav -> Html Msg
-view navbar =
-    nav [ onClick (toggle navbar) ]
+view : Bool -> Html Msg
+view bool =
+    nav [ clickWithStopProp (ToggleNav bool) ]
         [ aTag Home
         , aTag Music
         , aTag Shows

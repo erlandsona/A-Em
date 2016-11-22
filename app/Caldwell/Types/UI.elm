@@ -7,11 +7,7 @@ type Page
     | About
     | Contact
 
-type Nav
-    = Closed
-    | Open
-
 type Msg
-    = Toggle Nav
+    = ToggleNav Bool
     | GoToUrl Page
     | SetUrl Page

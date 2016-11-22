@@ -3,16 +3,15 @@ module Caldwell.UI.Header exposing (..)
 -- Libs
 
 import Html exposing (..)
-import Html.Events exposing (onClick)
 
 
 -- Source
 
-import Caldwell.Helpers exposing (toggle)
-import Caldwell.Types.UI exposing (Msg, Nav(..))
+import Caldwell.Helpers exposing (clickWithStopProp)
+import Caldwell.Types.UI exposing (Msg(..))
 
 
-view : Nav -> Html Msg
-view navbar =
-    header [ onClick (toggle navbar) ]
+view : Bool -> Html Msg
+view bool =
+    header [ clickWithStopProp (ToggleNav bool) ]
         [ text "Caldwell" ]
