@@ -7,7 +7,9 @@ mkdir dist
 
 # Copy Static Assets
 cp -R app/assets dist/
+
 cp build/index.tpl.html dist/index.html
+cp build/index.tpl.html dist/404.html
 cp build/bundle-init.js dist/
 
 # Compile elm-css
@@ -17,9 +19,6 @@ elm-css build/Stylesheets.elm -o dist/
 elm-make app/Caldwell.elm --output=dist/bundle.js
 
 # Send to gh-pages branch
-if [ `git branch --list gh-pages` ] then
-  git checkout gh-pages
-fi
 
 # copy index.html to 404.html for "pushstate" imitation
 
