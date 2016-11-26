@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+######################################
+# Boot up elm-live server with options
+elm-live app/Caldwell.elm \
+  --output=dist/bundle.js \
+  --dir=dist \
+  --port=7777 \
+  --before-build=./build/development/tasks \
+  --pushstate

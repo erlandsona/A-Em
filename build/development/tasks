@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+
+# Compile elm-css
+elm-css build/Stylesheets.elm -o dist/

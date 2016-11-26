@@ -39,6 +39,20 @@ css =
             ]
         , html
             [ backgroundColor black ]
+        , selector "*::-webkit-scrollbar"
+            [ width (em 0.7)
+            -- , display none
+            ]
+        , selector "*::-webkit-scrollbar-track"
+            [ prop "box-shadow" "inset 5px 0 0 0 black, inset -5px 0 0 0 black, inset 0 5px 0 0 black, inset 0 -5px 0 0 black"
+            , backgroundColor white
+            ]
+
+        , selector "*::-webkit-scrollbar-thumb"
+            [ prop "background-color" "white"
+            , borderRadius (em 1)
+            ]
+
         , body
             [ before blackOverlay
             , prop "background" "url(assets/images/stairs-crop.jpg) center 27% no-repeat"
