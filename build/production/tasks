@@ -12,6 +12,8 @@ cp build/index.tpl.html public/index.html
 cp build/index.tpl.html public/404.html
 cp build/bundle-init.js public/
 
+echo caldwell.band >> public/CNAME
+
 # Compile elm-css
 elm-css build/Stylesheets.elm -o public/
 
