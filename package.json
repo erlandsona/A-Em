@@ -24,6 +24,6 @@
     "postinstall": "elm-package install",
     "prestart": "./build/development/prestart",
     "start": "./build/development/start",
-    "deploy": "./build/deploy/tasks"
+    "deploy": "./build/production/tasks"
   }
 }
