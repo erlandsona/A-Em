@@ -2,21 +2,21 @@
 set -e
 
 # Clean
-rm -rf ./dist
-mkdir dist
+rm -rf ./public
+mkdir public
 
 # Copy Static Assets
-cp -R app/assets dist/
+cp -R app/assets public/
 
-cp build/index.tpl.html dist/index.html
-cp build/index.tpl.html dist/404.html
-cp build/bundle-init.js dist/
+cp build/index.tpl.html public/index.html
+cp build/index.tpl.html public/404.html
+cp build/bundle-init.js public/
 
 # Compile elm-css
-elm-css build/Stylesheets.elm -o dist/
+elm-css build/Stylesheets.elm -o public/
 
 # Compile elm-js
-elm-make app/Caldwell.elm --output=dist/bundle.js
+elm-make app/Caldwell.elm --output=public/bundle.js
 
 # Send to gh-pages branch
 

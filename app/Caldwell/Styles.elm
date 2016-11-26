@@ -55,7 +55,7 @@ css =
 
         , body
             [ before blackOverlay
-            , prop "background" "url(assets/images/stairs-crop.jpg) center 27% no-repeat"
+            , prop "background" "url(assets/images/stairs.jpg) center 27% no-repeat"
             , prop "background-size" "cover"
             , color white
             ]

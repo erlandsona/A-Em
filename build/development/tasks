@@ -2,4 +2,4 @@
 set -e
 
 # Compile elm-css
-elm-css build/Stylesheets.elm -o dist/
+elm-css build/Stylesheets.elm -o public/

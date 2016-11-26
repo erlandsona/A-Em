@@ -5,4 +5,4 @@ repl-temp-*
 _main.js
 node_modules
 runner.sh
-dist/
+public/
