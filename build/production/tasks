@@ -19,6 +19,7 @@ elm-css build/Stylesheets.elm -o public/
 elm-make app/Caldwell.elm --output=public/bundle.js
 
 # Send to gh-pages branch
+./build/production/deploy
 
 # copy index.html to 404.html for "pushstate" imitation
 
