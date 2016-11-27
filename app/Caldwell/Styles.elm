@@ -36,7 +36,7 @@ css =
             , fontFamilies [ "Josefin Sans" ]
             , fontSize (pct 100)
             , fontWeight (int 100)
-            , height (vh 100)
+            , height (pct 100)
             ]
         , html
             [ backgroundColor black ]
@@ -59,6 +59,7 @@ css =
             , prop "background" "url(assets/images/stairs.jpg) center 27% no-repeat"
             , prop "background-size" "cover"
             , color white
+            , overflow hidden
             ]
         , a
             [ textDecoration none

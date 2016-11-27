@@ -27,6 +27,7 @@ css =
                 , width (pct 100)
                 , prop "transition" "1s"
                 , overflow auto
+                , prop "-webkit-overflow-scrolling" "touch"
                 , padding (em 1)
                 ]
             ]
