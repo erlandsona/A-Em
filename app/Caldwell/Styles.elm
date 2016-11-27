@@ -60,12 +60,15 @@ css =
             , prop "background-attachment" "fixed"
             , color white
             , overflow hidden
+            , height (vh 100)
+            , width (vw 100)
             ]
         , each
             [h1, h2, h3, h4, h5, h6]
             [ fontSize (pct 200)
             , fontWeight (int 100)
             ]
+        , p [ fontSize (pct 115) ]
         , a
             [ textDecoration none
             , color inherit
@@ -93,11 +96,11 @@ css =
 blackOverlay : List Mixin
 blackOverlay =
     [ backgroundColor black
-    , height (pct 100)
-    , width (pct 100)
+    , height (vh 100)
+    , width (vw 100)
     , opacity (num 0.7)
     , display block
-    , position fixed
+    , position absolute
     , prop "z-index" "0"
     , prop "content" "''"
     ]
