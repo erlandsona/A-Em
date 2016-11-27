@@ -2,7 +2,7 @@ module Caldwell.View exposing (view)
 
 -- Libraries
 
-import Html exposing (Html)
+import Html exposing (Html, node)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Maybe exposing (withDefault)
@@ -23,7 +23,14 @@ view { navOpen, history } =
         [ onClick (ToggleNav True)
         , class <| if navOpen then "Nav" else ""
         ]
-        [ Nav.view navOpen
+        [ caldwellBackground
+        , blackOverlay
+        , Nav.view navOpen
         , Main.view navOpen <| withDefault Home (List.head history)
         ]
 
+blackOverlay : Html a
+blackOverlay = node "black-overlay" [] []
+
+caldwellBackground : Html a
+caldwellBackground = node "caldwell-background" [] []
