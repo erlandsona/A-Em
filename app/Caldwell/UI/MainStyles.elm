@@ -19,13 +19,14 @@ css =
         , left (vw 7)
         , height (vh 93)
         , width (vw 93)
-        , overflow auto
+        , overflow hidden
+        , prop "transition" "0.1s"
         , children
             [ section
                 [ height (pct 100)
                 , width (pct 100)
                 , prop "transition" "1s"
-                , overflow hidden
+                , overflow auto
                 , padding (em 1)
                 ]
             ]

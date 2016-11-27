@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
+
+# Copy Static Assets
+cp -R app/assets public/
+cp build/index.tpl.html public/index.html
+cp build/bundle-init.js public/
+
+
 # Compile elm-css
 elm-css build/Stylesheets.elm -o public/

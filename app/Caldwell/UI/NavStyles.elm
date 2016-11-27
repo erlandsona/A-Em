@@ -25,7 +25,7 @@ css =
                 [ cursor pointer
                 , display inlineBlock
                 , textDecoration none
-                , borderBottom3 (px 3) solid transparent
+                , borderBottom3 (px 1) solid transparent
                 , prop "transition" "0.7s"
                 , width (pct 0)
                 , padding4 (vh 7) zero zero (vw 3)
@@ -33,7 +33,7 @@ css =
                 , textAlign right
                 , fontSize (pct 200)
                 , hover
-                    [ borderBottom2 (px 3) solid
+                    [ borderBottom2 (px 1) solid
                     , width (pct 100)
                     ]
                 ]

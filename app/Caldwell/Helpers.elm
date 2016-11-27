@@ -5,13 +5,15 @@ import Html exposing (node, Html, Attribute)
 import Html.Attributes exposing (style)
 import Html.Events exposing (onWithOptions, Options)
 import Json.Decode exposing (succeed)
-import Navigation exposing (Location)
+import List.Extra exposing (elemIndex)
+import Maybe exposing (withDefault)
 import UrlParser as Url exposing (top, oneOf, s)
 
 
 -- Source
 
 import Caldwell.Types.UI exposing (..)
+
 
 -- Custom Elements
 
@@ -26,8 +28,8 @@ drawer =
     node "drawer" []
 
 
--- Route Helpers
 
+-- Route Helpers
 
 
 urlParser : Url.Parser (Page -> a) a
@@ -40,33 +42,22 @@ urlParser =
         ]
 
 
+
 -- View Helpers
 
 
-paginate : Page -> Attribute msg
-paginate page =
-    style
-        [ ( "transform", "translateY(-" ++ translatify page ++ "00%)" )
-        ]
+goTo : Page -> Attribute msg
+goTo page =
+    let
+        translatify page =
+            elemIndex page [ Home, Music, Shows, About, Contact ]
+                |> withDefault (0)
+                |> toString
+    in
+        style
+            [ ( "transform", "translateY(-" ++ translatify page ++ "00%)" )
+            ]
 
-
-translatify : Page -> String
-translatify page =
-    case page of
-        Music ->
-            "1"
-
-        Shows ->
-            "2"
-
-        About ->
-            "3"
-
-        Contact ->
-            "4"
-
-        _ ->
-            "0"
 
 clickWithStopProp : Msg -> Attribute Msg
 clickWithStopProp msg =

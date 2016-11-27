@@ -9,6 +9,7 @@ mkdir public
 cp -R app/assets public/
 
 cp build/index.tpl.html public/index.html
+# copy index.tpl.html to 404.html for "pushstate" imitation
 cp build/index.tpl.html public/404.html
 cp build/bundle-init.js public/
 
@@ -22,6 +23,4 @@ elm-make app/Caldwell.elm --output=public/bundle.js
 
 # Send to gh-pages branch
 ./build/production/deploy
-
-# copy index.html to 404.html for "pushstate" imitation
 

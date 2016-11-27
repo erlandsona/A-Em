@@ -2,7 +2,6 @@ module Caldwell.View exposing (view)
 
 -- Libraries
 
-import Debug exposing (log)
 import Html exposing (Html)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)

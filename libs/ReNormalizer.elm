@@ -16,43 +16,21 @@ css =
 snippets : List Snippet
 snippets =
     [ each
-        [ html
-        , body
-        , div
-        , span
-        , h1
-        , h2
-        , h3
-        , h4
-        , h5
-        , h6
-        , a
-        , p
-        , ol
-        , ul
-        , li
+        [ html, body
+        , div, span
+        , h1, h2, h3, h4, h5, h6
+        , a, p
+        , ol, ul, li
         , img
         , form
         , pre
-        , fieldset
-        , legend
-        , caption
-        , table
-        , tbody
-        , tfoot
-        , thead
-        , tr
-        , th
-        , td
+        , fieldset, legend, caption
+        , table, tbody, tfoot, thead
+        , tr, th, td
         , label
-        , article
-        , selector "aside"
-        , section
-        , header
-        , footer
-        , nav
-        , audio
-        , video
+        , article, selector "aside", section
+        , header, footer, nav
+        , audio, video
         , strong
         , canvas
         , selector <|

@@ -32,26 +32,27 @@ css : Stylesheet
 css =
     stylesheet
         [ each [ body, html ]
-            [ fontFamily cursive
-            , fontFamilies [ "League Script" ]
+            [ fontFamily sansSerif
+            , fontFamilies [ "Josefin Sans" ]
             , fontSize (pct 100)
+            , fontWeight (int 100)
             , height (vh 100)
             ]
         , html
             [ backgroundColor black ]
-        , selector "*::-webkit-scrollbar"
-            [ width (em 0.7)
-            -- , display none
-            ]
-        , selector "*::-webkit-scrollbar-track"
-            [ prop "box-shadow" "inset 5px 0 0 0 black, inset -5px 0 0 0 black, inset 0 5px 0 0 black, inset 0 -5px 0 0 black"
-            , backgroundColor white
-            ]
 
-        , selector "*::-webkit-scrollbar-thumb"
-            [ prop "background-color" "white"
-            , borderRadius (em 1)
-            ]
+        -- , selector "::-webkit-scrollbar"
+        --     [ width (em 0.6)
+        --     ]
+        -- , selector "::-webkit-scrollbar-track"
+        --     [ prop "box-shadow" "inset 4px 0 0 0 black, inset -4px 0 0 0 black, inset 0 5px 0 0 black, inset 0 -5px 0 0 black"
+        --     , backgroundColor white
+        --     ]
+
+        -- , selector "::-webkit-scrollbar-thumb"
+        --     [ prop "background-color" "white"
+        --     , borderRadius (em 1)
+        --     ]
 
         , body
             [ before blackOverlay
@@ -73,8 +74,9 @@ css =
         , (.) Nav
             [ children
                 [ nav
-                    [ transform (translateX (px 0))
-                    ]
+                    [ transform <| translateX (px 0) ]
+                , main_
+                    [ opacity (num 0.7) ]
                 ]
             ]
         , Header.css

@@ -4,9 +4,3 @@ set -e
 # Clean
 rm -rf ./public
 mkdir public
-
-# Copy Static Assets
-cp -R app/assets public/
-cp build/index.tpl.html public/index.html
-cp build/bundle-init.js public/
-
