@@ -6,6 +6,9 @@ import Css exposing (..)
 import Css.Elements exposing (..)
 import Caldwell.Helpers exposing (prop)
 
+-- Source
+
+import Caldwell.Constants exposing (sideGutter)
 
 css : Snippet
 css =
@@ -16,7 +19,7 @@ css =
         , prop "transition" "0.3s"
         , position fixed
         , top (vh 50)
-        , prop "padding-left" "calc(1rem - 1px)" -- adjust for fontness
+        , prop "padding-left" ("calc("++(toString sideGutter)++"rem - 1px)") -- adjust for fontness
         , bottom (vh 50)
         , backgroundColor transparent
         , prop "transform" "translateX(calc(-101% - 3vw))"

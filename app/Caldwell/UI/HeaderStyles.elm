@@ -6,6 +6,7 @@ import Css exposing (..)
 import Css.Elements exposing (header)
 
 import Caldwell.Helpers exposing (prop)
+import Caldwell.Constants exposing (sideGutter)
 
 css : Snippet
 css =
@@ -17,7 +18,7 @@ css =
         , position fixed
         , fontFamilies [ "Megrim" ]
         , fontSize (pct 300)
-        , prop "padding" "calc(1rem - 2px)" -- adjust for fontness
+        , prop "padding" ("calc("++(toString sideGutter)++"rem - 2px)") -- adjust for fontness
         , prop "z-index" "1"
         ]
 

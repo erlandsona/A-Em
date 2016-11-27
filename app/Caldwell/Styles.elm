@@ -9,11 +9,10 @@ import Css.Elements exposing (..)
 -- Source
 
 import Caldwell.Helpers exposing (prop)
-import Caldwell.UI.HeaderStyles as Header
 import Caldwell.UI.MainStyles as Main
 import Caldwell.UI.NavStyles as Nav
 import Caldwell.Types.Styles exposing (..)
-import Caldwell.Colors exposing (..)
+import Caldwell.Constants exposing (..)
 
 
 -- stylesheet : List Snippet -> Stylesheet
@@ -35,7 +34,7 @@ css =
             [ fontFamily sansSerif
             , fontFamilies [ "Josefin Sans" ]
             , fontSize (pct 100)
-            , fontWeight (int 100)
+            , fontWeight (int 300)
             ]
         , html
             [ backgroundColor black ]
@@ -57,7 +56,8 @@ css =
             [ before blackOverlay
             , prop "background" "url(assets/images/stairs.jpg) center 27% no-repeat"
             , prop "background-size" "cover"
-            , prop "background-attachment" "fixed"
+            -- , prop "background-attachment" "fixed"
+            , position relative
             , color white
             , overflow hidden
             , height (vh 100)
@@ -66,7 +66,7 @@ css =
         , each
             [h1, h2, h3, h4, h5, h6]
             [ fontSize (pct 200)
-            , fontWeight (int 100)
+            , fontWeight inherit
             ]
         , p [ fontSize (pct 115) ]
         , a
@@ -81,10 +81,13 @@ css =
                 [ nav
                     [ transform <| translateX (px 0) ]
                 , main_
-                    [ opacity (num 0.7) ]
+                    [ children
+                        [ section
+                            [ opacity (num 0.3) ]
+                        ]
+                    ]
                 ]
             ]
-        , Header.css
         , Nav.css
         , Main.css
         ]

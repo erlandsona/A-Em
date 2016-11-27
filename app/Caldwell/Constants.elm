@@ -1,4 +1,4 @@
-module Caldwell.Colors exposing (..)
+module Caldwell.Constants exposing (..)
 
 import Css exposing (rgba, hex, Color)
 
@@ -12,3 +12,5 @@ white : Color
 white =
     hex "#FFFFFF"
 
+sideGutter : Float
+sideGutter = 0.5

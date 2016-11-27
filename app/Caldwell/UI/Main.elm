@@ -10,11 +10,13 @@ import String.Extra exposing (clean)
 
 import Caldwell.Helpers exposing (goTo)
 import Caldwell.Types.UI exposing (Msg, Page(..))
+import Caldwell.UI.Header as Header
 
-view : Page -> Html Msg
-view page =
+view : Bool -> Page -> Html Msg
+view navOpen page =
     main_ []
-        [ section
+        [ Header.view navOpen
+        , section
             [ id (toString Home)
             , goTo page
             ]

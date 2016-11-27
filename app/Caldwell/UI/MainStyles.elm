@@ -8,20 +8,23 @@ import Css.Elements exposing (..)
 
 -- Source
 
+import Caldwell.Constants exposing (sideGutter)
 import Caldwell.Helpers exposing (prop)
+import Caldwell.UI.HeaderStyles as Header
 
 
 css : Snippet
 css =
     main_
-        [ prop "transition" "0.1s"
-        , children
-            [ section
+        [ children
+            [ Header.css
+            , section
                 [ height (vh 100)
                 , width (pct 100)
-                , prop "transition" "1s"
+                , prop "transition" "opacity .1s, transform 1s;"
                 , prop "-webkit-overflow-scrolling" "touch"
-                , paddingLeft (em 1)
+                , paddingLeft (em sideGutter)
+                , paddingRight (em sideGutter)
                 , paddingTop (vh 12)
                 , overflow auto
                 , children

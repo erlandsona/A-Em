@@ -12,7 +12,6 @@ import Maybe exposing (withDefault)
 
 import Caldwell.Helpers exposing (container)
 import Caldwell.Model exposing (Model)
-import Caldwell.UI.Header as Header
 import Caldwell.UI.Nav as Nav
 import Caldwell.UI.Main as Main
 import Caldwell.Types.UI exposing (Msg(..), Page(..))
@@ -24,8 +23,7 @@ view { navOpen, history } =
         [ onClick (ToggleNav True)
         , class <| if navOpen then "Nav" else ""
         ]
-        [ Header.view navOpen
-        , Nav.view navOpen
-        , Main.view <| withDefault Home (List.head history)
+        [ Nav.view navOpen
+        , Main.view navOpen <| withDefault Home (List.head history)
         ]
 

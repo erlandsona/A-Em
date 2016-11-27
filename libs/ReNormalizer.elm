@@ -3,10 +3,15 @@ module ReNormalizer exposing (css, snippets)
 -- Copy Pasta from https://github.com/scottcorgan/elm-css-reset/blob/1.0.2/src/Css/Reset.elm#L96
 -- until the version of elm-css get's updated
 
+-- Libraries
+
 import Css exposing (..)
 import Css.Elements exposing (..)
 import String.Extra exposing (clean)
 
+-- Source
+
+import Caldwell.Helpers exposing (prop)
 
 css : Stylesheet
 css =
@@ -15,9 +20,10 @@ css =
 
 snippets : List Snippet
 snippets =
-    [ each
-        [ html, body
-        , div, span
+    [ selector (clean
+        """
+        html, body
+        , center, div, span
         , h1, h2, h3, h4, h5, h6
         , a, p
         , ol, ul, li
@@ -28,41 +34,38 @@ snippets =
         , table, tbody, tfoot, thead
         , tr, th, td
         , label
-        , article, selector "aside", section
+        , article, aside, section
         , header, footer, nav
         , audio, video
         , strong
-        , canvas
-        , selector <|
-            clean """
-                center, iframe,
-                abbr, acronym,
-                address, big,
-                blockquote, cite,
-                code, del,
-                dl, dt, dd,
-                dfn, em, ins, kbd,
-                object,
-                q, s,
-                samp, small,
-                b, u, i,
-                strike, sub, sup, tt,
-                var, details, embed,
-                figure, figcaption,
-                menu, output, ruby,
-                summary, time, mark
-            """
-        ]
+        , canvas, iframe
+        , abbr, acronym
+        , address, big
+        , blockquote, cite
+        , code, del
+        , dl, dt, dd
+        , dfn, em, ins, kbd
+        , object
+        , q, s
+        , samp, small
+        , b, u, i
+        , strike, sub, sup, tt
+        , var, details, embed
+        , figure, figcaption
+        , menu, output, ruby
+        , summary, time, mark
+        """)
         [ margin zero
         , padding zero
         , border zero
         , fontSize (pct 100)
-          -- , property "font" "inherit"
+          -- , prop "font" "inherit"
           -- , fontFamilies [ "sans-serif" ]
-        , property "line-height" "1.15"
+        , prop "line-height" "1.15"
           -- lineHeight doesn't accept floats
-        , property "-ms-text-size-adjust" "100%"
-        , property "-webkit-text-size-adjust" "100%"
+        , prop "-ms-text-size-adjust" "100%"
+        , prop "-webkit-text-size-adjust" "100%"
+        , prop "-webkit-font-smoothing" "antialiased"
         , verticalAlign baseline
         ]
     , each
@@ -78,14 +81,14 @@ snippets =
         , section
         ]
         [ display block ]
-      -- , body [ property "line-height" "1" ]
+      -- , body [ prop "line-height" "1" ]
       -- , h1
       --   [ fontSize (em 2)
       --   -- , margin2 (em 0.67) zero
       --   ]
       -- , each
       --   [ ol, ul ]
-      --   [ property "list-style" "none" ]
+      --   [ prop "list-style" "none" ]
     , html
         [ boxSizing borderBox ]
     , everything
@@ -95,31 +98,31 @@ snippets =
         ]
     , a
         [ backgroundColor transparent
-        , property "-webkit-text-decoration-skip" "objects"
+        , prop "-webkit-text-decoration-skip" "objects"
         , active
-            [ property "outline-width" "0"
+            [ prop "outline-width" "0"
             ]
         , hover
-            [ property "outline-width" "0"
+            [ prop "outline-width" "0"
             ]
         ]
     , img [ borderStyle none ]
     , each [ button, input, optgroup, select, selector "textarea" ]
         [ fontFamilies [ "sans-serif" ]
         , fontSize (pct 100)
-        , property "line-height" "1.15"
+        , prop "line-height" "1.15"
           -- lineHeight doesn't allow floats
         , margin zero
         ]
     , each [ button, input ] [ overflow visible ]
-    , each [ button, select ] [ property "text-transform" "none" ]
+    , each [ button, select ] [ prop "text-transform" "none" ]
     , each
         [ button
         , selector "html [type=\"button\"]"
         , selector "[type=\"reset\"]"
         , selector "[type=\"submit\"]"
         ]
-        [ property "-webkit-appearance" "button" ]
+        [ prop "-webkit-appearance" "button" ]
     , each
         [ selector "button::-moz-focus-inner"
         , selector "[type=\"button\"]::-moz-focus-inner"
@@ -135,7 +138,7 @@ snippets =
         , selector "[type=\"reset\"]::-moz-focusring"
         , selector "[type=\"submit\"]::-moz-focusring"
         ]
-        [ property "outline" "1px dotted ButtonText" ]
+        [ prop "outline" "1px dotted ButtonText" ]
     , fieldset
         [ border3 (px 1) solid (hex "c0c0c0")
         , margin2 zero (px 2)
@@ -143,11 +146,11 @@ snippets =
         ]
     , legend
         [ boxSizing borderBox
-        , property "color" "inherit"
-        , property "display" "table"
+        , prop "color" "inherit"
+        , prop "display" "table"
         , maxWidth (pct 100)
         , padding zero
-        , property "white-space" "normal"
+        , prop "white-space" "normal"
         ]
     , selector "progress"
         [ display inlineBlock
@@ -167,20 +170,20 @@ snippets =
         ]
         [ height auto ]
     , selector "[type=\"search\"]"
-        [ property "-webkit-appearance" "textfield"
-        , property "outline-offset" "-2px"
+        [ prop "-webkit-appearance" "textfield"
+        , prop "outline-offset" "-2px"
         ]
     , each
         [ selector "[type=\"search\"]::-webkit-search-cancel-button"
         , selector "[type=\"search\"]::-webkit-search-decoration"
         ]
-        [ property "-webkit-appearance" "none" ]
+        [ prop "-webkit-appearance" "none" ]
     , selector "::-webkit-file-upload-button"
-        [ property "-webkit-appearance" "button"
-        , property "font" "inherit"
+        [ prop "-webkit-appearance" "button"
+        , prop "font" "inherit"
         ]
     , each [ selector "details", selector "menu" ] [ display block ]
-    , selector "summary" [ property "display" "list-item" ]
+    , selector "summary" [ prop "display" "list-item" ]
     , canvas [ display inlineBlock ]
     , selector "template" [ display none ]
     , selector "[hidden]" [ display none ]
@@ -197,7 +200,7 @@ snippets =
         ]
     , each [ selector "b", strong ] [ fontWeight inherit ]
     , selector "abbr[title]"
-        [ property "border-bottom" "none"
+        [ prop "border-bottom" "none"
           -- borderBottom doesn't accept none
         , textDecoration underline
         , textDecoration2 underline dotted
@@ -228,23 +231,24 @@ snippets =
     , selector "svg:not(:root)" [ overflow hidden ]
     , each
         [ selector "blockquote", selector "q" ]
-        [ property "quotes" "none" ]
+        [ prop "quotes" "none" ]
     , selector "blockquote:before, blockquote:after, q:before, q:after"
-        [ property "content" ""
-        , property "content" "none"
+        [ prop "content" ""
+        , prop "content" "none"
         ]
     , table
-        [ property "border-collapse" "collapse"
-        , property "border-spacing" "0"
+        [ prop "border-collapse" "collapse"
+        , prop "border-spacing" "0"
         ]
     , selector
-        """
-          [role="button"],
-          input[type="submit"],
-          input[type="reset"],
-          input[type="button"],
-          button
-        """
+    (clean
+    """
+      [role="button"]
+      , input[type="submit"]
+      , input[type="reset"]
+      , input[type="button"]
+      , button
+      """)
         [ prop "-webkit-box-sizing" "content-box"
         , prop "-moz-box-sizing" "content-box"
         , boxSizing contentBox
@@ -264,8 +268,3 @@ snippets =
         , prop "-ms-user-select" "none"
         ]
     ]
-
-
-prop : String -> String -> Mixin
-prop =
-    property
