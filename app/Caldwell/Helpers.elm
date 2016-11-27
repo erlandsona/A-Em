@@ -55,7 +55,7 @@ goTo page =
                 |> toString
     in
         style
-            [ ( "transform", "translateY(-" ++ translatify page ++ "00%)" )
+            [ ( "transform", "translateY(-" ++ translatify page ++ "00vh)" )
             ]
 
 

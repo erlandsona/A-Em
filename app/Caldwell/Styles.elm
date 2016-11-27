@@ -36,7 +36,6 @@ css =
             , fontFamilies [ "Josefin Sans" ]
             , fontSize (pct 100)
             , fontWeight (int 100)
-            , height (pct 100)
             ]
         , html
             [ backgroundColor black ]
@@ -58,19 +57,21 @@ css =
             [ before blackOverlay
             , prop "background" "url(assets/images/stairs.jpg) center 27% no-repeat"
             , prop "background-size" "cover"
+            , prop "background-attachment" "fixed"
             , color white
             , overflow hidden
+            ]
+        , each
+            [h1, h2, h3, h4, h5, h6]
+            [ fontSize (pct 200)
+            , fontWeight (int 100)
             ]
         , a
             [ textDecoration none
             , color inherit
             ]
         , container
-            [ position relative
-            , display block
-            , height (vh 100)
-            , width (vw 100)
-            , overflow hidden
+            [ display block
             ]
         , (.) Nav
             [ children
@@ -96,7 +97,7 @@ blackOverlay =
     , width (pct 100)
     , opacity (num 0.7)
     , display block
-    , position absolute
+    , position fixed
     , prop "z-index" "0"
     , prop "content" "''"
     ]

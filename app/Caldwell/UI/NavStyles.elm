@@ -14,8 +14,9 @@ css =
         , flexDirection column
         , prop "justify-content" "center"
         , prop "transition" "0.3s"
-        , position absolute
+        , position fixed
         , top (vh 50)
+        , prop "padding-left" "calc(1rem - 1px)" -- adjust for fontness
         , bottom (vh 50)
         , backgroundColor transparent
         , prop "transform" "translateX(calc(-101% - 3vw))"
@@ -28,10 +29,12 @@ css =
                 , borderBottom3 (px 1) solid transparent
                 , prop "transition" "0.7s"
                 , width (pct 0)
-                , padding4 (vh 7) zero zero (vw 3)
+                , padding3 (vh 7) zero zero
                 , prop "white-space" "nowrap"
                 , textAlign right
-                , fontSize (pct 200)
+                , fontSize (pct 175)
+                , fontFamily sansSerif
+                , fontFamilies [ "Megrim" ]
                 , hover
                     [ borderBottom2 (px 1) solid
                     , width (pct 100)
