@@ -56,7 +56,7 @@ css =
             [ before blackOverlay
             , prop "background" "url(assets/images/stairs.jpg) center 27% no-repeat"
             , prop "background-size" "cover"
-            -- , prop "background-attachment" "fixed"
+            , prop "background-attachment" "fixed"
             , position relative
             , color white
             , overflow hidden

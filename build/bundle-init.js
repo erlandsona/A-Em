@@ -13,11 +13,11 @@
 
 function hideAddressBar() {
   if(!window.location.hash) {
-    if(document.height < window.outerHeight) {
+    if(document.body.clientHeight <= window.outerHeight) {
       document.body.style.height = (window.outerHeight + 50) + 'px';
       setTimeout(function() {
         window.scrollTo(0, 1);
-        document.body.style.height = 'auto';
+        document.body.style.height = '100vh';
       }, 50);
     }
   }
@@ -26,11 +26,11 @@ function hideAddressBar() {
 function stopDocumentOverflow() {
   // Try to prevent iOS document overflow
   var xStart, yStart = 0;
-  document.addEventListener('touchstart', function(e) {
+  document.body.addEventListener('touchstart', function(e) {
     xStart = e.touches[0].screenX;
     yStart = e.touches[0].screenY;
   });
-  document.addEventListener('touchmove', function(e) {
+  document.body.addEventListener('touchmove', function(e) {
     var xMovement = Math.abs(e.touches[0].screenX - xStart);
     var yMovement = Math.abs(e.touches[0].screenY - yStart);
     if((yMovement * 3) > xMovement) {
