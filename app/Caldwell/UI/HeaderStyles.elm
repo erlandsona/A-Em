@@ -17,7 +17,7 @@ css =
         , display initial
         , position fixed
         , fontFamilies [ "Megrim" ]
-        , fontSize (pct 300)
+        , fontSize (pct 305) -- plus padding ends up being 68px
         , prop "padding" ("calc("++(toString sideGutter)++"rem - 2px)") -- adjust for fontness
         , prop "z-index" "1"
         ]

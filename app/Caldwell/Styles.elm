@@ -55,7 +55,7 @@ css =
         , body
             [ color white
             -- , overflow auto
-            -- , height (vh 100)
+            , height (vh 100)
             -- , width (vw 100)
             ]
         , each

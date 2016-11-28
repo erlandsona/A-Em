@@ -26,7 +26,7 @@ view { navOpen, history } =
         [ caldwellBackground
         , blackOverlay
         , Nav.view navOpen
-        , Main.view navOpen <| withDefault Home (List.head history)
+        , Main.view navOpen
         ]
 
 blackOverlay : Html a

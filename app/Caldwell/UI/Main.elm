@@ -12,34 +12,19 @@ import Caldwell.Helpers exposing (goTo)
 import Caldwell.Types.UI exposing (Msg, Page(..))
 import Caldwell.UI.Header as Header
 
-view : Bool -> Page -> Html Msg
-view navOpen page =
+view : Bool ->  Html Msg
+view navOpen =
     main_ []
         [ Header.view navOpen
-        , section
-            [ id (toString Home)
-            -- , goTo page
-            ]
+        , section [ id (toString Home) ]
             [ h1 [] [ text (toString Home) ] ]
-        , section
-            [ id (toString Music)
-            -- , goTo page
-            ]
+        , section [ id (toString Music) ]
             ([ h1 [] [ text (toString Music) ] ] ++ lorem)
-        , section
-            [ id (toString Shows)
-            -- , goTo page
-            ]
+        , section [ id (toString Shows) ]
             [ h1 [] [ text (toString Shows) ] ]
-        , section
-            [ id (toString About)
-            -- , goTo page
-            ]
+        , section [ id (toString About) ]
             ([ h1 [] [ text (toString About) ] ] ++ lorem)
-        , section
-            [ id (toString Contact)
-            -- , goTo page
-            ]
+        , section [ id (toString Contact) ]
             [ h1 [] [ text (toString Contact) ] ]
         ]
 

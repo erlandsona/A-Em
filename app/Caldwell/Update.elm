@@ -2,6 +2,7 @@ module Caldwell.Update exposing (update)
 
 -- Libraries
 
+import Debug exposing (log)
 import Dom.Scroll as Scroll
 import Navigation as Nav
 import String exposing (toLower)
@@ -29,7 +30,7 @@ update msg model =
 
         GoToUrl page ->
             ( { model | history = (page :: model.history) }
-            , Task.attempt (\_ -> NoOp) <| Scroll.easeIntoView (toString page)
+            , Task.attempt (\_ -> NoOp) <| log "scroll" <| Scroll.easeIntoView (toString page)
             )
 
         ToggleNav bool ->

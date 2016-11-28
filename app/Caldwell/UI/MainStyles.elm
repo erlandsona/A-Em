@@ -25,7 +25,7 @@ css =
                 , prop "-webkit-overflow-scrolling" "touch"
                 , paddingLeft (em sideGutter)
                 , paddingRight (em sideGutter)
-                , paddingTop (vh 12)
+                , paddingTop (px 68)
                 , opacity (num 0.999)
                 , children
                     [ h1
