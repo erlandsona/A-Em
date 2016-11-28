@@ -18,28 +18,27 @@ view navOpen page =
         [ Header.view navOpen
         , section
             [ id (toString Home)
-            , goTo page
+            -- , goTo page
             ]
             [ h1 [] [ text (toString Home) ] ]
         , section
             [ id (toString Music)
-            , goTo page
+            -- , goTo page
             ]
             ([ h1 [] [ text (toString Music) ] ] ++ lorem)
         , section
             [ id (toString Shows)
-            , goTo page
+            -- , goTo page
             ]
             [ h1 [] [ text (toString Shows) ] ]
         , section
             [ id (toString About)
-            , goTo page
+            -- , goTo page
             ]
-            ([ h1 [] [ text (toString About) ]
-            ] ++ lorem)
+            ([ h1 [] [ text (toString About) ] ] ++ lorem)
         , section
             [ id (toString Contact)
-            , goTo page
+            -- , goTo page
             ]
             [ h1 [] [ text (toString Contact) ] ]
         ]

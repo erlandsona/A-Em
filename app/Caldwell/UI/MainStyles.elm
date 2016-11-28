@@ -26,6 +26,7 @@ css =
                 , paddingLeft (em sideGutter)
                 , paddingRight (em sideGutter)
                 , paddingTop (vh 12)
+                , opacity (num 0.999)
                 , children
                     [ h1
                         [ marginBottom (pct 3) ]

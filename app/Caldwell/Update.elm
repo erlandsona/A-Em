@@ -2,8 +2,10 @@ module Caldwell.Update exposing (update)
 
 -- Libraries
 
+import Dom.Scroll as Scroll
 import Navigation as Nav
 import String exposing (toLower)
+import Task
 
 
 -- Source
@@ -15,6 +17,8 @@ import Caldwell.Model exposing (Model)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        NoOp -> (model, Cmd.none)
+
         SetUrl url ->
             ( model
             , Nav.newUrl <|
@@ -25,7 +29,7 @@ update msg model =
 
         GoToUrl page ->
             ( { model | history = (page :: model.history) }
-            , Cmd.none
+            , Task.attempt (\_ -> NoOp) <| Scroll.easeIntoView (toString page)
             )
 
         ToggleNav bool ->

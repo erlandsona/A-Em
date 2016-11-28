@@ -5,6 +5,9 @@ set -e
 rm -rf ./public
 mkdir public
 
+# Copy Libraries / Polyfills etc...
+cp node_modules/smoothscroll-polyfill/dist/smoothscroll.js public/
+
 # Copy Static Assets
 cp -R app/assets public/
 

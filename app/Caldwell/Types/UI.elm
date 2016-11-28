@@ -8,6 +8,7 @@ type Page
     | Contact
 
 type Msg
-    = ToggleNav Bool
+    = NoOp
+    | ToggleNav Bool
     | GoToUrl Page
     | SetUrl Page
