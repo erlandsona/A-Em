@@ -2,5 +2,14 @@
   'use strict'
   function ready(fn) {if (document.readyState != 'loading'){fn();} else {document.addEventListener('DOMContentLoaded', function () { fn(); });}}
 
-  ready(Elm.Caldwell.fullscreen);
+  ready(function() {
+    var app = Elm.Caldwell.fullscreen();
+
+    // Attach JS handlers to app instance.
+    app.ports.easeIntoView.subscribe(function(id) {
+      document
+        .getElementById(id)
+        .scrollIntoView({behavior: "smooth", block: "start"});
+    });
+  });
 })();

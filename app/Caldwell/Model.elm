@@ -2,15 +2,14 @@ module Caldwell.Model exposing (init, Model)
 
 -- Libraries
 import Debug exposing (log)
-import Dom.Scroll as Scroll
 import Maybe exposing (withDefault)
 import Navigation exposing (Location)
-import Task
 import UrlParser as Url
 
 -- Source
-import Caldwell.Types.UI exposing (Msg(..), Page(..))
 import Caldwell.Helpers exposing (urlParser)
+import Caldwell.Ports exposing (easeIntoView)
+import Caldwell.Types.UI exposing (Msg(..), Page(..))
 
 
 -- MODEL
@@ -30,7 +29,7 @@ init location =
             }
     in
         ( model
-        , Task.attempt (\_ -> NoOp) <| log "scroll" <| Scroll.easeIntoView (toString <| parsePage location)
+        , log "scroll" <| easeIntoView (toString <| parsePage location)
         )
 
 

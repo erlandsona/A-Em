@@ -16,7 +16,8 @@ import Caldwell.UI.HeaderStyles as Header
 css : Snippet
 css =
     main_
-        [ children
+        [ position relative
+        , children
             [ Header.css
             , section
                 [ minHeight (vh 100)
@@ -26,7 +27,6 @@ css =
                 , paddingLeft (em sideGutter)
                 , paddingRight (em sideGutter)
                 , paddingTop (px 68)
-                , opacity (num 0.999)
                 , children
                     [ h1
                         [ marginBottom (pct 3) ]
