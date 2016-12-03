@@ -11,7 +11,7 @@ import Css.Elements exposing (..)
 import Caldwell.Helpers exposing (prop)
 import Caldwell.UI.MainStyles as Main
 import Caldwell.UI.NavStyles as Nav
-import Caldwell.Types.Styles exposing (..)
+import Caldwell.Types.Styles exposing (Classes(..))
 import Caldwell.Constants exposing (..)
 
 

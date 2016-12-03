@@ -2,34 +2,57 @@ module Caldwell.UI.Main exposing (view)
 
 
 -- Libraries
-import Date exposing (month, year)
+import Date exposing (month, year, Day(..))
 import Html exposing (..)
-import Html.Attributes exposing (id)
+-- import Html.Attributes exposing (id)
+import Html.CssHelpers exposing (withNamespace)
 import String.Extra exposing (clean)
 
 -- Source
 
 import Caldwell.Model exposing (Model)
+import Caldwell.Types.Styles exposing (Classes(..))
 import Caldwell.Types.UI exposing (Msg, Page(..))
 import Caldwell.UI.Header as Header
+
+{id, class} = withNamespace ""
 
 view : Model ->  Html Msg
 view { navOpen, date } =
     main_ []
         [ Header.view navOpen
-        , section [ id (toString Home) ]
+        , section [ id Home ]
             [ h1 [] [ text (toString Home) ] ]
-        , section [ id (toString Music) ]
+        , section [ id Music ]
             ([ h1 [] [ text (toString Music) ] ] ++ lorem)
-        , section [ id (toString Shows) ]
+        , section [ id Shows ]
             [ h1 [] [ text (toString Shows) ]
-            , h2 [] [ text <| toString (month date) ++ " " ++ toString (year date) ]
+            , node "caldwell-calendar" []
+                [ h2 [] [ text <| toString (month date) ++ " " ++ toString (year date) ]
+                , fadingHr
+                , ul [ class [WeekDays] ] <|
+                    List.map (\day -> li [class [day]] [text <| toString day]) <|
+                        [ Mon
+                        , Tue
+                        , Wed
+                        , Thu
+                        , Fri
+                        , Sat
+                        , Sun
+                        ]
+                ]
             ]
-        , section [ id (toString About) ]
+        , section [ id About ]
             ([ h1 [] [ text (toString About) ] ] ++ lorem)
-        , section [ id (toString Contact) ]
+        , section [ id Contact ]
             [ h1 [] [ text (toString Contact) ] ]
         ]
+
+
+
+
+
+
 
 
 lorem =
@@ -56,3 +79,6 @@ lorem =
       , br [] []
       ]
 
+
+fadingHr : Html a
+fadingHr = node "fading-hr" [] []
