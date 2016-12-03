@@ -1,5 +1,7 @@
-port module Caldwell.Ports exposing (easeIntoView)
+port module Caldwell.Ports exposing (easeIntoView, snapIntoView)
 
 port easeIntoView : ID -> Cmd msg
+
+port snapIntoView : ID -> Cmd msg
 
 type alias ID = String

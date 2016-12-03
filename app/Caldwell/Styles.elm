@@ -15,29 +15,32 @@ import Caldwell.Types.Styles exposing (..)
 import Caldwell.Constants exposing (..)
 
 
--- stylesheet : List Snippet -> Stylesheet
--- stylesheet snippets =
---     { charset = Nothing
---     , imports = []
---     , namespaces = []
---     , snippets = snippets
---     }
-
-
-
-
-
 css : Stylesheet
 css =
     stylesheet
-        [ each [ body, html ]
+        [ html
+            [ height (pct 100)
+            , backgroundColor black
+            ]
+        , body
+            [ color white
+            ]
+        , each [ body, html ]
             [ fontFamily sansSerif
             , fontFamilies [ "Josefin Sans" ]
             , fontSize (pct 100)
             , fontWeight (int 300)
             ]
-        , html
-            [ backgroundColor black ]
+        , each
+            [h1, h2, h3, h4, h5, h6]
+            [ fontSize (pct 200)
+            , fontWeight inherit
+            ]
+        , p [ fontSize (pct 115) ]
+        , a
+            [ textDecoration none
+            , color inherit
+            ]
 
         -- , selector "::-webkit-scrollbar"
         --     [ width (em 0.6)
@@ -52,25 +55,8 @@ css =
         --     , borderRadius (em 1)
         --     ]
 
-        , body
-            [ color white
-            -- , overflow auto
-            , height (vh 100)
-            -- , width (vw 100)
-            ]
-        , each
-            [h1, h2, h3, h4, h5, h6]
-            [ fontSize (pct 200)
-            , fontWeight inherit
-            ]
-        , p [ fontSize (pct 115) ]
-        , a
-            [ textDecoration none
-            , color inherit
-            ]
         , container
             [ display block
-            -- , position fixed
             , children
                 [ caldwellBackground
                 , blackOverlay

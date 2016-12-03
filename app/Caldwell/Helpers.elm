@@ -45,20 +45,6 @@ urlParser =
 
 -- View Helpers
 
-
-goTo : Page -> Attribute msg
-goTo page =
-    let
-        translatify page =
-            elemIndex page [ Home, Music, Shows, About, Contact ]
-                |> withDefault (0)
-                |> toString
-    in
-        style
-            [ ( "transform", "translateY(-" ++ translatify page ++ "00vh)" )
-            ]
-
-
 clickWithStopProp : Msg -> Attribute Msg
 clickWithStopProp msg =
     onWithOptions "click" (Options True     False) (succeed msg)

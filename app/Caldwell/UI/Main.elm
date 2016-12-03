@@ -2,18 +2,19 @@ module Caldwell.UI.Main exposing (view)
 
 
 -- Libraries
+import Date exposing (month, year)
 import Html exposing (..)
 import Html.Attributes exposing (id)
 import String.Extra exposing (clean)
 
 -- Source
 
-import Caldwell.Helpers exposing (goTo)
+import Caldwell.Model exposing (Model)
 import Caldwell.Types.UI exposing (Msg, Page(..))
 import Caldwell.UI.Header as Header
 
-view : Bool ->  Html Msg
-view navOpen =
+view : Model ->  Html Msg
+view { navOpen, date } =
     main_ []
         [ Header.view navOpen
         , section [ id (toString Home) ]
@@ -21,7 +22,9 @@ view navOpen =
         , section [ id (toString Music) ]
             ([ h1 [] [ text (toString Music) ] ] ++ lorem)
         , section [ id (toString Shows) ]
-            [ h1 [] [ text (toString Shows) ] ]
+            [ h1 [] [ text (toString Shows) ]
+            , h2 [] [ text <| toString (month date) ++ " " ++ toString (year date) ]
+            ]
         , section [ id (toString About) ]
             ([ h1 [] [ text (toString About) ] ] ++ lorem)
         , section [ id (toString Contact) ]

@@ -1,5 +1,7 @@
 module Caldwell.Types.UI exposing (..)
 
+import Date exposing (Date)
+
 type Page
     = Home
     | Music
@@ -8,6 +10,7 @@ type Page
     | Contact
 
 type Msg
-    = ToggleNav Bool
-    | GoToUrl Page
+    = GoToUrl Page
     | SetUrl Page
+    | Todays Date
+    | ToggleNav Bool

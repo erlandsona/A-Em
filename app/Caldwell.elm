@@ -2,7 +2,6 @@ module Caldwell exposing (main)
 
 -- Libs
 
-import Debug exposing (log)
 import Maybe exposing (withDefault)
 import Navigation exposing (program, Location)
 import UrlParser as Url
@@ -24,7 +23,7 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = (always Sub.none)
+        , subscriptions = always Sub.none
         }
 
 parseMsg : Location -> Msg

@@ -11,5 +11,11 @@
         .getElementById(id)
         .scrollIntoView({behavior: "smooth", block: "start"});
     });
+
+    app.ports.snapIntoView.subscribe(function (id) {
+      document
+        .getElementById(id)
+        .scrollIntoView();
+    });
   });
 })();

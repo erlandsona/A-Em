@@ -2,7 +2,6 @@ module Caldwell.Update exposing (update)
 
 -- Libraries
 
-import Debug exposing (log)
 import Navigation as Nav
 import String exposing (toLower)
 import Task
@@ -18,6 +17,11 @@ import Caldwell.Types.UI exposing (Msg(..), Page(..))
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        GoToUrl page ->
+            ( { model | browserHistory = (page :: model.browserHistory) }
+            ,  easeIntoView (toString page)
+            )
+
         SetUrl url ->
             ( model
             , Nav.newUrl <|
@@ -26,10 +30,10 @@ update msg model =
                     _ -> toLower <| toString url
             )
 
-        GoToUrl page ->
-            ( { model | history = (page :: model.history) }
-            , log "scroll" <| easeIntoView (toString page)
-            )
+        Todays date ->
+          ( { model | date = date }
+          , Cmd.none
+          )
 
         ToggleNav bool ->
             ( { model | navOpen = not bool }

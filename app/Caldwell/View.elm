@@ -18,15 +18,15 @@ import Caldwell.Types.UI exposing (Msg(..), Page(..))
 
 
 view : Model -> Html Msg
-view { navOpen, history } =
+view model =
     container
         [ onClick (ToggleNav True)
-        , class <| if navOpen then "Nav" else ""
+        , class <| if model.navOpen then "Nav" else ""
         ]
         [ caldwellBackground
         , blackOverlay
-        , Nav.view navOpen
-        , Main.view navOpen
+        , Nav.view model.navOpen
+        , Main.view model
         ]
 
 blackOverlay : Html a
