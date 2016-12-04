@@ -3,6 +3,8 @@
   function ready(fn) {if (document.readyState != 'loading'){fn();} else {document.addEventListener('DOMContentLoaded', function () { fn(); });}}
 
   ready(function() {
+    FastClick.attach(document.body);
+
     var app = Elm.Caldwell.fullscreen();
 
     // Attach JS handlers to app instance.

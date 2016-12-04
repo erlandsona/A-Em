@@ -7,6 +7,7 @@ mkdir public
 
 # Copy Libraries / Polyfills etc...
 cp node_modules/smoothscroll-polyfill/dist/smoothscroll.js public/
+cp node_modules/fastclick/lib/fastclick.js public/
 
 # Copy Static Assets
 cp -R app/assets public/

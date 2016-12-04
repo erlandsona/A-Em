@@ -13,6 +13,7 @@
   "license": "MIT",
   "main": "index.html",
   "dependencies": {
+    "fastclick": "^1.0.6",
     "smoothscroll-polyfill": "^0.3.4"
   },
   "devDependencies": {
