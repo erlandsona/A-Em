@@ -8,7 +8,7 @@ import Html exposing (..)
 -- Source
 
 import Caldwell.Helpers exposing (clickWithStopProp)
-import Caldwell.Types.UI exposing (Msg(..))
+import Caldwell.Types exposing (Msg(..))
 
 
 view : Bool -> Html Msg

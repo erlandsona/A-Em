@@ -5,7 +5,7 @@
   ready(function() {
     FastClick.attach(document.body);
 
-    var app = Elm.Caldwell.fullscreen();
+    var app = Elm.Caldwell.fullscreen(Date.now());
 
     // Attach JS handlers to app instance.
     app.ports.easeIntoView.subscribe(function(id) {

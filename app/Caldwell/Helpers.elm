@@ -12,7 +12,7 @@ import UrlParser as Url exposing (top, oneOf, s)
 
 -- Source
 
-import Caldwell.Types.UI exposing (..)
+import Caldwell.Types exposing (..)
 
 
 -- Custom Elements

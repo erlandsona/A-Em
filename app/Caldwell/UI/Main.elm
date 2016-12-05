@@ -11,8 +11,7 @@ import String.Extra exposing (clean)
 -- Source
 
 import Caldwell.Model exposing (Model)
-import Caldwell.Types.Styles exposing (Classes(..))
-import Caldwell.Types.UI exposing (Msg, Page(..))
+import Caldwell.Types exposing (..)
 import Caldwell.UI.Header as Header
 
 {id, class} = withNamespace ""
@@ -30,16 +29,15 @@ view { navOpen, date } =
             , node "caldwell-calendar" []
                 [ h2 [] [ text <| toString (month date) ++ " " ++ toString (year date) ]
                 , fadingHr
-                , ul [ class [WeekDays] ] <|
-                    List.map (\day -> li [class [day]] [text <| toString day]) <|
-                        [ Mon
-                        , Tue
-                        , Wed
-                        , Thu
-                        , Fri
-                        , Sat
-                        , Sun
-                        ]
+                , ul [ class [Gigs] ]
+                    ([Mon, Tue, Wed, Thu, Fri, Sat, Sun] |>
+                        List.map (\day ->
+                            li
+                                [ class [Gig] ]
+                                [ text <| toString day
+                                , fadingHr
+                                ])
+                    )
                 ]
             ]
         , section [ id About ]

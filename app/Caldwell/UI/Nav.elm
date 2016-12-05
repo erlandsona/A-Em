@@ -10,7 +10,7 @@ import Html.Events exposing (onClick)
 -- Source
 
 import Caldwell.Helpers exposing (clickWithStopProp)
-import Caldwell.Types.UI exposing (Msg(..), Page(..))
+import Caldwell.Types exposing (Msg(..), Page(..))
 
 
 view : Bool -> Html Msg

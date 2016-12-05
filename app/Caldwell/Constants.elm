@@ -1,16 +1,21 @@
 module Caldwell.Constants exposing (..)
 
-import Css exposing (rgba, hex, Color)
+import Css exposing (hex, Color)
 
 
-black : Color
-black =
-    hex "#000000"
 
-
-white : Color
-white =
-    hex "#FFFFFF"
+-- Paddings / Margins
 
 sideGutter : Float
 sideGutter = 0.5
+
+
+-- Colors
+
+white     = hex "#FFFFFF"
+lightGrey = hex "#AAAAAA"
+grey      = hex "#777777"
+darkGrey  = hex "#333333"
+black     = hex "#000000"
+
+

@@ -3,7 +3,7 @@ module Caldwell exposing (main)
 -- Libs
 
 import Maybe exposing (withDefault)
-import Navigation exposing (program, Location)
+import Navigation exposing (programWithFlags, Location)
 import UrlParser as Url
 
 
@@ -12,14 +12,14 @@ import UrlParser as Url
 import Caldwell.View exposing (view)
 import Caldwell.Update exposing (update)
 import Caldwell.Model exposing (Model, init)
-import Caldwell.Types.UI exposing (Msg(..), Page(..))
+import Caldwell.Types exposing (Msg(..), Page(..))
 import Caldwell.Helpers exposing (urlParser)
 
 
 
-main : Program Never Model Msg
+main : Program Float Model Msg
 main =
-    program parseMsg
+    programWithFlags parseMsg
         { init = init
         , view = view
         , update = update

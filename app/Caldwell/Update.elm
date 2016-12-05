@@ -11,7 +11,7 @@ import Task
 
 import Caldwell.Model exposing (Model)
 import Caldwell.Ports exposing (easeIntoView)
-import Caldwell.Types.UI exposing (Msg(..), Page(..))
+import Caldwell.Types exposing (Msg(..), Page(..))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

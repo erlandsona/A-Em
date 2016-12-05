@@ -1,4 +1,4 @@
-module Caldwell.Types.UI exposing (..)
+module Caldwell.Types exposing (..)
 
 import Date exposing (Date)
 
@@ -14,3 +14,8 @@ type Msg
     | SetUrl Page
     | Todays Date
     | ToggleNav Bool
+
+type Classes
+    = Nav
+    | Gigs
+    | Gig
