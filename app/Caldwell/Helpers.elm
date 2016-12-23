@@ -2,31 +2,14 @@ module Caldwell.Helpers exposing (..)
 
 import Css exposing (Mixin, property)
 import Html exposing (node, Html, Attribute)
-import Html.Attributes exposing (style)
 import Html.Events exposing (onWithOptions, Options)
 import Json.Decode exposing (succeed)
-import List.Extra exposing (elemIndex)
-import Maybe exposing (withDefault)
 import UrlParser as Url exposing (top, oneOf, s)
 
 
 -- Source
 
 import Caldwell.Types exposing (..)
-
-
--- Custom Elements
-
-
-container : List (Attribute a) -> List (Html a) -> Html a
-container =
-    node "container"
-
-
-drawer : List (Html a) -> Html a
-drawer =
-    node "drawer" []
-
 
 
 -- Route Helpers

@@ -2,15 +2,19 @@ module Caldwell.View exposing (view)
 
 -- Libraries
 
-import Html exposing (Html, node)
+import Html exposing (Html, Attribute, node)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
-import Maybe exposing (withDefault)
 
 
 -- Source
 
-import Caldwell.Helpers exposing (container)
+import Caldwell.Constants
+    exposing
+        ( blackOverlay
+        , caldwellBackground
+        , container
+        )
 import Caldwell.Model exposing (Model)
 import Caldwell.UI.Nav as Nav
 import Caldwell.UI.Main as Main
@@ -19,18 +23,16 @@ import Caldwell.Types exposing (Msg(..), Page(..))
 
 view : Model -> Html Msg
 view model =
-    container
+    node container
         [ onClick (ToggleNav True)
-        , class <| if model.navOpen then "Nav" else ""
+        , class <|
+            if model.navOpen then
+                "Nav"
+            else
+                ""
         ]
-        [ caldwellBackground
-        , blackOverlay
+        [ node caldwellBackground [] []
+        , node blackOverlay [] []
         , Nav.view model.navOpen
         , Main.view model
         ]
-
-blackOverlay : Html a
-blackOverlay = node "black-overlay" [] []
-
-caldwellBackground : Html a
-caldwellBackground = node "caldwell-background" [] []

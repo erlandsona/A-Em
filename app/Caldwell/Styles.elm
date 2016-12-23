@@ -8,11 +8,11 @@ import Css.Elements exposing (..)
 
 -- Source
 
+import Caldwell.Constants exposing (..)
 import Caldwell.Helpers exposing (prop)
 import Caldwell.UI.MainStyles as Main
 import Caldwell.UI.NavStyles as Nav
 import Caldwell.Types exposing (Classes(..))
-import Caldwell.Constants exposing (..)
 
 
 css : Stylesheet
@@ -32,7 +32,7 @@ css =
             , fontWeight (int 300)
             ]
         , each
-            [h1, h2, h3, h4, h5, h6]
+            [ h1, h2, h3, h4, h5, h6 ]
             [ fontSize (pct 200)
             , fontWeight inherit
             ]
@@ -41,25 +41,41 @@ css =
             [ textDecoration none
             , color inherit
             ]
-
-        -- , selector "::-webkit-scrollbar"
-        --     [ width (em 0.6)
-        --     ]
-        -- , selector "::-webkit-scrollbar-track"
-        --     [ prop "box-shadow" "inset 4px 0 0 0 black, inset -4px 0 0 0 black, inset 0 5px 0 0 black, inset 0 -5px 0 0 black"
-        --     , backgroundColor white
-        --     ]
-
-        -- , selector "::-webkit-scrollbar-thumb"
-        --     [ prop "background-color" "white"
-        --     , borderRadius (em 1)
-        --     ]
-
-        , container
+          -- , selector "::-webkit-scrollbar"
+          --     [ width (em 0.6)
+          --     ]
+          -- , selector "::-webkit-scrollbar-track"
+          --     [ prop "box-shadow" "inset 4px 0 0 0 black, inset -4px 0 0 0 black, inset 0 5px 0 0 black, inset 0 -5px 0 0 black"
+          --     , backgroundColor white
+          --     ]
+          -- , selector "::-webkit-scrollbar-thumb"
+          --     [ prop "background-color" "white"
+          --     , borderRadius (em 1)
+          --     ]
+        , selector container
             [ display block
             , children
-                [ caldwellBackground
-                , blackOverlay
+                [ selector caldwellBackground
+                    [ backgroundColor black
+                    , prop "background" "url(assets/images/stairs.jpg) center 27% no-repeat"
+                    , prop "background-size" "cover"
+                    , height (vh 100)
+                    , width (vw 100)
+                    , display block
+                    , position fixed
+                    , prop "z-index" "0"
+                    , prop "content" "''"
+                    ]
+                , selector blackOverlay
+                    [ backgroundColor black
+                    , height (vh 100)
+                    , width (vw 100)
+                    , opacity (num 0.7)
+                    , display block
+                    , position fixed
+                    , prop "z-index" "0"
+                    , prop "content" "''"
+                    ]
                 ]
             ]
         , (.) Nav
@@ -77,36 +93,3 @@ css =
         , Nav.css
         , Main.css
         ]
-
-
-
--- Helpers
-
-blackOverlay : Snippet
-blackOverlay = selector "black-overlay"
-    [ backgroundColor black
-    , height (vh 100)
-    , width (vw 100)
-    , opacity (num 0.7)
-    , display block
-    , position fixed
-    , prop "z-index" "0"
-    , prop "content" "''"
-    ]
-
-caldwellBackground : Snippet
-caldwellBackground = selector "caldwell-background"
-    [ backgroundColor black
-    , prop "background" "url(assets/images/stairs.jpg) center 27% no-repeat"
-    , prop "background-size" "cover"
-    , height (vh 100)
-    , width (vw 100)
-    , display block
-    , position fixed
-    , prop "z-index" "0"
-    , prop "content" "''"
-    ]
-
-container : List Mixin -> Snippet
-container =
-    selector "container"
