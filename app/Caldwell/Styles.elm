@@ -95,13 +95,27 @@ css_ navState =
 
 
 styles_ : Nav -> { css : String, warnings : List String }
-styles_ navState = 
-  let
-      style_ =
-          [ nav <|
-              case navState of
-                Open -> [ transform <| translateX (px 0) ]
-                Closed -> []
-          ]
-  in
-      compile [ stylesheet style_ ]
+styles_ navState =
+    let
+        style_ =
+            [ nav <|
+                case navState of
+                    Open ->
+                        [ transform <| translateX (px 0) ]
+
+                    Closed ->
+                        []
+            , selector container
+                [ children
+                    [ selector blackOverlay <|
+                        case navState of
+                            Open ->
+                                [ prop "z-index" "1" ]
+
+                            Closed ->
+                                []
+                    ]
+                ]
+            ]
+    in
+        compile [ stylesheet style_ ]

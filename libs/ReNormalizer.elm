@@ -89,9 +89,9 @@ snippets =
       --   [ fontSize (em 2)
       --   -- , margin2 (em 0.67) zero
       --   ]
-      -- , each
-      --   [ ol, ul ]
-      --   [ prop "list-style" "none" ]
+    , each
+      [ ol, ul ]
+      [ prop "list-style" "none" ]
     , html
         [ boxSizing borderBox ]
     , everything

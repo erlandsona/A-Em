@@ -21,18 +21,22 @@ css =
         , prop "justify-content" "space-around"
         , prop "transition" "0.3s"
         , position fixed
-        , height (vh 100)
-        , padding2 (vh 25) zero
+        , cursor pointer
+        , height (vh 50)
+        , margin2 (vh 25) zero
         , backgroundColor transparent
         , prop "transform" "translateX(calc(-101% - 3vw))"
         , prop "z-index" "1"
         , children
             [ a
                 [ cursor pointer
-                , display inlineBlock
+                , displayFlex
+                , flexDirection column
+                , flexGrow (int 1)
+                , prop "justify-content" "flex-end"
                 , textDecoration none
                 , borderBottom3 (px 1) solid transparent
-                , prop "transition" "0.7s"
+                , prop "transition" "0.25s"
                 , width (pct 0)
                 , prop "white-space" "nowrap"
                 , textAlign right
@@ -41,7 +45,7 @@ css =
                 , fontFamilies [ "Megrim" ]
                 , hover
                     [ borderBottom2 (px 1) solid
-                    , width (pct 100)
+                    , width (pct 110)
                     ]
                 , children
                     [ span

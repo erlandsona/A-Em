@@ -2,7 +2,7 @@ module Caldwell.Update exposing (update)
 
 -- Libraries
 
-import Debug exposing (log)
+-- import Debug exposing (log)
 import Navigation as Nav
 import String exposing (toLower)
 
@@ -42,13 +42,6 @@ update msg model =
             )
 
         Toggle nav ->
-            ( { model | nav = log "nav" (not nav) }
+            ( { model | nav = nav }
             , Cmd.none
             )
-
-
-not : Nav -> Nav
-not navState =
-  case navState of
-    Open -> Closed
-    Closed -> Open
