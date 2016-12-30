@@ -5,7 +5,7 @@
   ready(function() {
     FastClick.attach(document.body);
 
-    var app = Elm.Caldwell.fullscreen(Date.now());
+    var app = Elm.Caldwell.fullscreen(performance.now());
 
     // Attach JS handlers to app instance.
     app.ports.easeIntoView.subscribe(function(id) {
@@ -19,5 +19,15 @@
         .getElementById(id)
         .scrollIntoView();
     });
+
+    // Initialize Firebase
+    // var config = {
+    //   apiKey: "AIzaSyBKuRiMO3rhBv9cAzhAZJHYf6yyEVCnp5I",
+    //   authDomain: "caldwell-band.firebaseapp.com",
+    //   databaseURL: "https://caldwell-band.firebaseio.com",
+    //   storageBucket: "caldwell-band.appspot.com",
+    //   messagingSenderId: "567749644974"
+    // };
+    // firebase.initializeApp(config);
   });
 })();

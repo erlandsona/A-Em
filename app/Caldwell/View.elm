@@ -16,6 +16,7 @@ import Caldwell.Constants
         , container
         )
 import Caldwell.Model exposing (Model)
+import Caldwell.UI.Header as Header
 import Caldwell.UI.Nav as Nav
 import Caldwell.UI.Main as Main
 import Caldwell.Types exposing (Msg(..), Page(..))
@@ -33,6 +34,7 @@ view model =
         ]
         [ node caldwellBackground [] []
         , node blackOverlay [] []
+        , Header.view model.navOpen
         , Nav.view model.navOpen
-        , Main.view model
+        , Main.view model.date
         ]

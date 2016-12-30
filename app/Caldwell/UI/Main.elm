@@ -2,7 +2,7 @@ module Caldwell.UI.Main exposing (view)
 
 
 -- Libraries
-import Date exposing (month, year, Day(..))
+import Date exposing (month, year, Day(..), Date)
 import Html exposing (..)
 -- import Html.Attributes exposing (id)
 import Html.CssHelpers exposing (withNamespace)
@@ -12,15 +12,13 @@ import String.Extra exposing (clean)
 
 import Caldwell.Model exposing (Model)
 import Caldwell.Types exposing (..)
-import Caldwell.UI.Header as Header
 
 {id, class} = withNamespace ""
 
-view : Model ->  Html Msg
-view { navOpen, date } =
+view : Date -> Html Msg
+view date =
     main_ []
-        [ Header.view navOpen
-        , section [ id Home ]
+        [ section [ id Home ]
             [ h1 [] [ text (toString Home) ] ]
         , section [ id Music ]
             ([ h1 [] [ text (toString Music) ] ] ++ lorem)

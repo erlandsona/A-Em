@@ -6,21 +6,23 @@ import Css exposing (..)
 import Css.Elements exposing (..)
 import Caldwell.Helpers exposing (prop)
 
+
 -- Source
 
 import Caldwell.Constants exposing (sideGutter)
+import Caldwell.Types exposing (Classes(..))
 
-css : Snippet
+
+css : List Snippet
 css =
-    nav
+    [ nav
         [ displayFlex
         , flexDirection column
-        , prop "justify-content" "center"
+        , prop "justify-content" "space-around"
         , prop "transition" "0.3s"
         , position fixed
-        , top (vh 50)
-        , prop "padding-left" ("calc("++(toString sideGutter)++"rem - 1px)") -- adjust for fontness
-        , bottom (vh 50)
+        , height (vh 100)
+        , padding2 (vh 25) zero
         , backgroundColor transparent
         , prop "transform" "translateX(calc(-101% - 3vw))"
         , prop "z-index" "1"
@@ -32,7 +34,6 @@ css =
                 , borderBottom3 (px 1) solid transparent
                 , prop "transition" "0.7s"
                 , width (pct 0)
-                , padding3 (vh 7) zero zero
                 , prop "white-space" "nowrap"
                 , textAlign right
                 , fontSize (pct 175)
@@ -42,6 +43,17 @@ css =
                     [ borderBottom2 (px 1) solid
                     , width (pct 100)
                     ]
+                , children
+                    [ span
+                        [ marginLeft (Css.rem sideGutter) ]
+                    ]
                 ]
             ]
         ]
+    , (.) Nav
+        [ children
+            [ nav
+                [ transform <| translateX (px 0) ]
+            ]
+        ]
+    ]

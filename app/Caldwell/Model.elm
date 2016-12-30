@@ -18,7 +18,7 @@ import Caldwell.Types exposing (Msg(..), Page(..))
 
 type alias Model =
     { browserHistory : List Page
-    , navOpen  : Bool
+    , navOpen  : String
     , date : Date
     }
 
@@ -28,7 +28,7 @@ init now location =
     let
         model =
             { browserHistory = [ parsePage location ]
-            , navOpen  = False
+            , navOpen  = ""
             , date = Date.fromTime now
             }
     in

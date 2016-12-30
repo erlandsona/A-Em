@@ -1,26 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
-# Clean
-rm -rf ./public
-mkdir public
+./build/development/prestart
 
-# Copy Libraries / Polyfills etc...
-cp node_modules/smoothscroll-polyfill/dist/smoothscroll.js public/
-cp node_modules/fastclick/lib/fastclick.js public/
-
-# Copy Static Assets
-cp -R app/assets public/
-
-cp build/index.tpl.html public/index.html
+./build/development/tasks
 # copy index.tpl.html to 404.html for "pushstate" imitation
 cp build/index.tpl.html public/404.html
-cp build/bundle-init.js public/
 
 echo caldwell.band >> public/CNAME
-
-# Compile elm-css
-elm-css build/Stylesheets.elm -o public/
 
 # Compile elm-js
 elm-make app/Caldwell.elm --output=public/bundle.js

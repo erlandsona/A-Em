@@ -3,7 +3,7 @@ set -e
 
 
 # Copy Static Assets
-cp -R app/assets public/
+cp -R app/assets/ public/
 cp build/index.tpl.html public/index.html
 cp build/bundle-init.js public/
 

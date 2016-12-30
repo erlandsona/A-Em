@@ -3,7 +3,6 @@ module Caldwell.UI.Nav exposing (view)
 -- Libs
 
 import Html exposing (..)
-import Html.Attributes exposing (href)
 import Html.Events exposing (onClick)
 
 
@@ -27,5 +26,4 @@ view bool =
 aTag : Page -> Html Msg
 aTag page =
     a [ onClick (SetUrl page) ]
-        [ text (toString page) ]
-
+        [ span [] [ text (toString page) ] ]

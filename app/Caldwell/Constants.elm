@@ -8,8 +8,15 @@ import Css exposing (hex, Color)
 
 sideGutter : Float
 sideGutter =
-    0.5
+    0.75
 
+deviceBar : Float
+deviceBar =
+    20
+
+titleHeight : Float
+titleHeight =
+    deviceBar + 60
 
 
 -- Colors
