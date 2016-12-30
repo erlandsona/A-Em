@@ -16,25 +16,24 @@ import Caldwell.Constants
         , container
         )
 import Caldwell.Model exposing (Model)
+import Caldwell.Styles as Styles
+import Caldwell.Types exposing (Msg(..), Nav(..), Page(..))
 import Caldwell.UI.Header as Header
 import Caldwell.UI.Nav as Nav
 import Caldwell.UI.Main as Main
-import Caldwell.Types exposing (Msg(..), Page(..))
-
 
 view : Model -> Html Msg
 view model =
-    node container
-        [ onClick (ToggleNav True)
-        , class <|
-            if model.navOpen then
-                "Nav"
-            else
-                ""
-        ]
-        [ node caldwellBackground [] []
-        , node blackOverlay [] []
-        , Header.view model.navOpen
-        , Nav.view model.navOpen
-        , Main.view model.date
-        ]
+    let
+        { nav } = model
+    in
+        node container
+            [ onClick (Toggle Open)
+            ]
+            [ Styles.css_ nav
+            , node caldwellBackground [] []
+            , node blackOverlay [] []
+            , Header.view nav
+            , Nav.view nav
+            , Main.view model
+            ]

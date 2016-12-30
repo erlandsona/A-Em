@@ -8,10 +8,9 @@ import Html exposing (..)
 -- Source
 
 import Caldwell.Helpers exposing (clickWithStopProp)
-import Caldwell.Types exposing (Msg(..))
+import Caldwell.Types exposing (Msg(..), Nav)
 
-
-view : Bool -> Html Msg
-view bool =
-    header [ clickWithStopProp (ToggleNav bool) ]
+view : Nav -> Html Msg
+view nav =
+    header [ clickWithStopProp (Toggle nav) ]
         [ text "Caldwell" ]

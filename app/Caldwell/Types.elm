@@ -1,6 +1,7 @@
 module Caldwell.Types exposing (..)
 
 import Date exposing (Date)
+import Navigation exposing (Location)
 
 type Page
     = Home
@@ -10,12 +11,13 @@ type Page
     | Contact
 
 type Msg
-    = GoToUrl Page
+    = GoToUrl Location
     | SetUrl Page
     | Todays Date
-    | ToggleNav Bool
+    | Toggle Nav
 
-type Classes
-    = Nav
-    | Gigs
+type HtmlClass
+    = Gigs
     | Gig
+
+type Nav = Open | Closed

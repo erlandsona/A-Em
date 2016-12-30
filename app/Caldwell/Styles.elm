@@ -1,15 +1,18 @@
-module Caldwell.Styles exposing (css)
+module Caldwell.Styles exposing (css, css_)
 
 -- Libraries
 
 import Css exposing (..)
 import Css.Elements exposing (..)
+import Html exposing (Html, node)
+import String.Extra exposing (clean)
 
 
 -- Source
 
 import Caldwell.Constants exposing (..)
 import Caldwell.Helpers exposing (prop)
+import Caldwell.Types exposing (Nav(..))
 import Caldwell.UI.HeaderStyles as Header
 import Caldwell.UI.MainStyles as Main
 import Caldwell.UI.NavStyles as Nav
@@ -85,3 +88,20 @@ css =
             , Main.css
             ]
 
+
+css_ : Nav -> Html a
+css_ navState =
+    node "style" [] [ Html.text (clean (styles_ navState).css) ]
+
+
+styles_ : Nav -> { css : String, warnings : List String }
+styles_ navState = 
+  let
+      style_ =
+          [ nav <|
+              case navState of
+                Open -> [ transform <| translateX (px 0) ]
+                Closed -> []
+          ]
+  in
+      compile [ stylesheet style_ ]

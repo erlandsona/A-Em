@@ -10,7 +10,7 @@ import Css.Elements exposing (..)
 
 import Caldwell.Constants exposing (sideGutter)
 import Caldwell.Helpers exposing (prop)
-import Caldwell.Types exposing (Page(..), Classes(..))
+import Caldwell.Types exposing (Page(..), HtmlClass(..), Nav(..))
 import Caldwell.Constants exposing (..)
 
 
@@ -54,9 +54,6 @@ css =
                     ]
                 ]
             ]
-        ]
-    , (.) Nav
-        [ prop "z-index" "0"
         ]
     ]
 

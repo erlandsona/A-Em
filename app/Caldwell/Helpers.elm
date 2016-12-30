@@ -4,6 +4,8 @@ import Css exposing (Mixin, property)
 import Html exposing (node, Html, Attribute)
 import Html.Events exposing (onWithOptions, Options)
 import Json.Decode exposing (succeed)
+import Maybe exposing (withDefault)
+import Navigation exposing (Location)
 import UrlParser as Url exposing (top, oneOf, s)
 
 
@@ -25,6 +27,9 @@ urlParser =
         ]
 
 
+parse : Location -> Page
+parse location =
+    withDefault Home (Url.parsePath urlParser location)
 
 -- View Helpers
 

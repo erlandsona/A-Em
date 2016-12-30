@@ -10,7 +10,7 @@ import Caldwell.Helpers exposing (prop)
 -- Source
 
 import Caldwell.Constants exposing (sideGutter)
-import Caldwell.Types exposing (Classes(..))
+import Caldwell.Types exposing (HtmlClass(..), Nav(..))
 
 
 css : List Snippet
@@ -48,12 +48,6 @@ css =
                         [ marginLeft (Css.rem sideGutter) ]
                     ]
                 ]
-            ]
-        ]
-    , (.) Nav
-        [ children
-            [ nav
-                [ transform <| translateX (px 0) ]
             ]
         ]
     ]

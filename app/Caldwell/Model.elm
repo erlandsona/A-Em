@@ -9,16 +9,16 @@ import Time exposing (Time)
 import UrlParser as Url
 
 -- Source
-import Caldwell.Helpers exposing (urlParser)
+import Caldwell.Helpers exposing (parse)
 import Caldwell.Ports exposing (snapIntoView)
-import Caldwell.Types exposing (Msg(..), Page(..))
+import Caldwell.Types exposing (Msg(..), Nav(..), Page(..))
 
 
 -- MODEL
 
 type alias Model =
-    { browserHistory : List Page
-    , navOpen  : String
+    { history : List Page
+    , nav : Nav
     , date : Date
     }
 
@@ -27,16 +27,12 @@ init : Time -> Location -> ( Model, Cmd Msg )
 init now location =
     let
         model =
-            { browserHistory = [ parsePage location ]
-            , navOpen  = ""
+            { history = [ parse location ]
+            , nav = Closed
             , date = Date.fromTime now
             }
     in
         ( model
-        , snapIntoView (toString <| parsePage location)
+        , snapIntoView (toString <| parse location)
         )
 
-
-parsePage : Location -> Page
-parsePage location =
-    withDefault Home (Url.parsePath urlParser location)

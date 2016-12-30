@@ -2,16 +2,17 @@ module ReNormalizer exposing (css, snippets)
 
 -- Copy Pasta from https://github.com/scottcorgan/elm-css-reset/blob/1.0.2/src/Css/Reset.elm#L96
 -- until the version of elm-css get's updated
-
 -- Libraries
 
 import Css exposing (..)
 import Css.Elements exposing (..)
 import String.Extra exposing (clean)
 
+
 -- Source
 
 import Caldwell.Helpers exposing (prop)
+
 
 css : Stylesheet
 css =
@@ -20,41 +21,43 @@ css =
 
 snippets : List Snippet
 snippets =
-    [ selector (clean
-        """
-        html, body
-        , center, div, span
-        , h1, h2, h3, h4, h5, h6
-        , a, p
-        , ol, ul, li
-        , img
-        , form
-        , pre
-        , fieldset, legend, caption
-        , table, tbody, tfoot, thead
-        , tr, th, td
-        , label
-        , article, aside, section
-        , header, footer, nav
-        , audio, video
-        , strong
-        , canvas, iframe
-        , abbr, acronym
-        , address, big
-        , blockquote, cite
-        , code, del
-        , dl, dt, dd
-        , dfn, em, ins, kbd
-        , object
-        , q, s
-        , samp, small
-        , b, u, i
-        , strike, sub, sup, tt
-        , var, details, embed
-        , figure, figcaption
-        , menu, output, ruby
-        , summary, time, mark
-        """)
+    [ selector
+        (clean
+            """
+            html, body
+            , center, div, span
+            , h1, h2, h3, h4, h5, h6
+            , a, p
+            , ol, ul, li
+            , img
+            , form
+            , pre
+            , fieldset, legend, caption
+            , table, tbody, tfoot, thead
+            , tr, th, td
+            , label
+            , article, aside, section
+            , header, footer, nav
+            , audio, video
+            , strong
+            , canvas, iframe
+            , abbr, acronym
+            , address, big
+            , blockquote, cite
+            , code, del
+            , dl, dt, dd
+            , dfn, em, ins, kbd
+            , object
+            , q, s
+            , samp, small
+            , b, u, i
+            , strike, sub, sup, tt
+            , var, details, embed
+            , figure, figcaption
+            , menu, output, ruby
+            , summary, time, mark
+            """
+        )
         [ margin zero
         , padding zero
         , border zero
@@ -233,7 +236,7 @@ snippets =
         [ selector "blockquote", selector "q" ]
         [ prop "quotes" "none" ]
     , selector "blockquote:before, blockquote:after, q:before, q:after"
-        [ prop "content" ""
+        [ prop "content" "\"\""
         , prop "content" "none"
         ]
     , table
@@ -241,14 +244,15 @@ snippets =
         , prop "border-spacing" "0"
         ]
     , selector
-    (clean
-    """
-      [role="button"]
-      , input[type="submit"]
-      , input[type="reset"]
-      , input[type="button"]
-      , button
-      """)
+        (clean
+            """
+            [role="button"]
+            , input[type="submit"]
+            , input[type="reset"]
+            , input[type="button"]
+            , button
+            """
+        )
         [ prop "-webkit-box-sizing" "content-box"
         , prop "-moz-box-sizing" "content-box"
         , boxSizing contentBox

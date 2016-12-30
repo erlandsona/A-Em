@@ -15,8 +15,8 @@ import Caldwell.Types exposing (..)
 
 {id, class} = withNamespace ""
 
-view : Date -> Html Msg
-view date =
+view : Model -> Html Msg
+view { date } =
     main_ []
         [ section [ id Home ]
             [ h1 [] [ text (toString Home) ] ]
@@ -51,6 +51,7 @@ view date =
 
 
 
+lorem : List (Html a)
 lorem =
     List.concat <| List.repeat 5 <|
       [ p []
