@@ -1,4 +1,4 @@
-module ReNormalizer exposing (css, snippets)
+module Normalize exposing (css, snippets)
 
 -- Copy Pasta from https://github.com/scottcorgan/elm-css-reset/blob/1.0.2/src/Css/Reset.elm#L96
 -- until the version of elm-css get's updated

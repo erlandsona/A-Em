@@ -1,4 +1,4 @@
-module Caldwell.UI.Nav exposing (view)
+module Caldwell.Nav.View exposing (template)
 
 -- Libs
 
@@ -12,11 +12,10 @@ import Caldwell.Helpers exposing (clickWithStopProp)
 import Caldwell.Types exposing (Msg(..), Nav(..), Page(..))
 
 
-view : Nav -> Html Msg
-view navState =
+template : Nav -> Html Msg
+template navState =
     nav [ clickWithStopProp (Toggle Closed) ]
-        [ aTag Home
-        , aTag Music
+        [ aTag Music
         , aTag Shows
         , aTag About
         , aTag Contact

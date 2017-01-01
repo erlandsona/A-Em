@@ -1,4 +1,4 @@
-module Caldwell.UI.Main exposing (view)
+module Caldwell.Main.View exposing (template)
 
 
 -- Libraries
@@ -10,20 +10,21 @@ import String.Extra exposing (clean)
 
 -- Source
 
+import Caldwell.Helpers exposing (clickWithStopProp)
 import Caldwell.Model exposing (Model)
 import Caldwell.Types exposing (..)
 
 {id, class} = withNamespace ""
 
-view : Model -> Html Msg
-view { date } =
+template : Model -> Html Msg
+template { date } =
     main_ []
         [ section [ id Home ]
-            [ h1 [] [ text (toString Home) ] ]
+            [ h1 [ clickWithStopProp <| Toggle Open ] [ text (toString Home) ] ]
         , section [ id Music ]
-            ([ h1 [] [ text (toString Music) ] ] ++ lorem)
+            ([ h1 [ clickWithStopProp <| Toggle Open ] [ text (toString Music) ] ] ++ lorem)
         , section [ id Shows ]
-            [ h1 [] [ text (toString Shows) ]
+            [ h1 [ clickWithStopProp <| Toggle Open ] [ text (toString Shows) ]
             , node "caldwell-calendar" []
                 [ h2 [] [ text <| toString (month date) ++ " " ++ toString (year date) ]
                 , fadingHr
@@ -39,9 +40,9 @@ view { date } =
                 ]
             ]
         , section [ id About ]
-            ([ h1 [] [ text (toString About) ] ] ++ lorem)
+            ([ h1 [ clickWithStopProp <| Toggle Open ] [ text (toString About) ] ] ++ lorem)
         , section [ id Contact ]
-            [ h1 [] [ text (toString Contact) ] ]
+            [ h1 [ clickWithStopProp <| Toggle Open ] [ text (toString Contact) ] ]
         ]
 
 

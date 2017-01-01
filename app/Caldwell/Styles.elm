@@ -13,9 +13,9 @@ import String.Extra exposing (clean)
 import Caldwell.Constants exposing (..)
 import Caldwell.Helpers exposing (prop)
 import Caldwell.Types exposing (Nav(..))
-import Caldwell.UI.HeaderStyles as Header
-import Caldwell.UI.MainStyles as Main
-import Caldwell.UI.NavStyles as Nav
+import Caldwell.Header.Styles as Header
+import Caldwell.Main.Styles as Main
+import Caldwell.Nav.Styles as Nav
 
 
 css : Stylesheet
@@ -96,26 +96,23 @@ css_ navState =
 
 styles_ : Nav -> { css : String, warnings : List String }
 styles_ navState =
-    let
-        style_ =
+    compile
+        [ stylesheet
             [ nav <|
-                case navState of
-                    Open ->
-                        [ transform <| translateX (px 0) ]
-
-                    Closed ->
-                        []
+                if navState == Open then
+                    [ transform (translate3d zero zero zero)
+                    ]
+                else
+                    []
             , selector container
                 [ children
                     [ selector blackOverlay <|
-                        case navState of
-                            Open ->
-                                [ prop "z-index" "1" ]
-
-                            Closed ->
-                                []
+                        if navState == Open then
+                            [ prop "z-index" "1"
+                            ]
+                        else
+                            []
                     ]
                 ]
             ]
-    in
-        compile [ stylesheet style_ ]
+        ]

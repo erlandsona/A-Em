@@ -6,9 +6,9 @@ import Css exposing (hex, Color)
 -- Paddings / Margins
 
 
-sideGutter : Float
-sideGutter =
-    0.75
+gutterSize : Float
+gutterSize =
+    1
 
 deviceBar : Float
 deviceBar =
@@ -16,7 +16,7 @@ deviceBar =
 
 titleHeight : Float
 titleHeight =
-    deviceBar + 60
+    80
 
 
 -- Colors

@@ -1,4 +1,4 @@
-module Caldwell.UI.MainStyles exposing (css)
+module Caldwell.Main.Styles exposing (css)
 
 -- Libraries
 
@@ -8,7 +8,7 @@ import Css.Elements exposing (..)
 
 -- Source
 
-import Caldwell.Constants exposing (sideGutter)
+import Caldwell.Constants exposing (gutterSize)
 import Caldwell.Helpers exposing (prop)
 import Caldwell.Types exposing (Page(..), HtmlClass(..), Nav(..))
 import Caldwell.Constants exposing (..)
@@ -22,16 +22,20 @@ css =
             [ section
                 [ minHeight (vh 100)
                 , width (pct 100)
-                -- , prop "transition" "opacity 0.1s"
                 , prop "-webkit-overflow-scrolling" "touch"
-                , paddingLeft (em sideGutter)
-                , paddingRight (em sideGutter)
-                , paddingTop (px titleHeight)
+                  --          top                     sides           bottom
+                , padding3 (px halfTitleHeight) (em gutterSize) (zero)
+                , children
+                    [ h1
+                        [ display inlineBlock
+                        , cursor pointer
+                        ]
+                    ]
                 ]
             , (#) Music
                 [ children
                     [ h1
-                        [ marginBottom (pct 3) ]
+                        [ marginBottom (px halfTitleHeight) ]
                     ]
                 ]
             , (#) Shows
@@ -53,9 +57,20 @@ css =
                         ]
                     ]
                 ]
+            , (#) About
+                [ children
+                    [ h1
+                        [ marginBottom (px halfTitleHeight) ]
+                    ]
+                ]
             ]
         ]
     ]
+
+
+halfTitleHeight : Float
+halfTitleHeight =
+    titleHeight / 2
 
 
 fadingHr : Color -> Snippet
