@@ -4,13 +4,12 @@ module Caldwell.Nav.Styles exposing (css)
 
 import Css exposing (..)
 import Css.Elements exposing (..)
-import String exposing (trim, dropRight)
 
 
 -- Source
 
 import Caldwell.Constants exposing (gutterSize)
-import Caldwell.Helpers exposing (prop)
+import Caldwell.Helpers exposing (prop, shadowList)
 
 
 css : List Snippet
@@ -43,7 +42,7 @@ css =
                 , prop "white-space" "nowrap"
                 , textAlign left
                 , prop "direction" "rtl"
-                , textShadowList 7 7 3
+                , prop "text-shadow" <| shadowList 7 7
                 , fontSize (pct 175)
                 , fontFamily sansSerif
                 , fontFamilies [ "Megrim" ]
@@ -59,24 +58,3 @@ css =
             ]
         ]
     ]
-
-
-
-textShadowList : Int -> Float -> Float -> Mixin
-textShadowList multiplier thickness ratio =
-    let
-        forgroundShadowValues =
-            List.map (\blur -> "0px 0px " ++ (toString blur) ++ "px white, ") <|
-            List.map ((*) (multiplier // 2)) (List.range 1 <| Basics.round <| logBase ratio thickness)
-
-        backgroundShadowValues =
-            List.map (\blur -> "0px 0px " ++ (toString blur) ++ "px black, ") <|
-            List.map ((*) multiplier) (List.range 1 <| Basics.round thickness)
-
-        textShadowValue =
-            ((String.concat forgroundShadowValues) |> trim)
-          ++ (String.concat backgroundShadowValues |> dropComma)
-
-        dropComma = trim >> dropRight 1
-    in
-        prop "text-shadow" textShadowValue

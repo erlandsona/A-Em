@@ -64,8 +64,7 @@ snippets =
         , fontSize (pct 100)
           -- , prop "font" "inherit"
           -- , fontFamilies [ "sans-serif" ]
-        , prop "line-height" "1.15"
-          -- lineHeight doesn't accept floats
+        , lineHeight (int 1)
         , prop "-ms-text-size-adjust" "100%"
         , prop "-webkit-text-size-adjust" "100%"
         , prop "-webkit-font-smoothing" "antialiased"
@@ -84,11 +83,6 @@ snippets =
         , section
         ]
         [ display block ]
-      -- , body [ prop "line-height" "1" ]
-      -- , h1
-      --   [ fontSize (em 2)
-      --   -- , margin2 (em 0.67) zero
-      --   ]
     , each
       [ ol, ul ]
       [ prop "list-style" "none" ]
@@ -113,8 +107,7 @@ snippets =
     , each [ button, input, optgroup, select, selector "textarea" ]
         [ fontFamilies [ "sans-serif" ]
         , fontSize (pct 100)
-        , prop "line-height" "1.15"
-          -- lineHeight doesn't allow floats
+        , lineHeight (int 1)
         , margin zero
         ]
     , each [ button, input ] [ overflow visible ]

@@ -4,7 +4,6 @@ module Caldwell.Header.Styles exposing (css)
 
 import Css exposing (..)
 import Css.Elements exposing (header)
-import String exposing (trim, dropRight)
 
 
 -- Source
@@ -12,7 +11,8 @@ import String exposing (trim, dropRight)
 import Caldwell.Helpers exposing (prop)
 import Caldwell.Constants
     exposing
-        ( deviceBar
+        ( black
+        , deviceBar
         , gutterSize
         , titleHeight
         )
@@ -25,38 +25,18 @@ css =
         , fontFamily cursive
         , fontFamilies [ "Megrim" ]
         , fontSize (pct 330)
+        , lineHeight (int 1)
         , cursor pointer
         , position fixed
         , right zero
           -- plus padding ends up being 68px
         -- , width (pct 100)
-        , textAlign right
-        , padding (Css.rem gutterSize)
-        , textShadowList 7 7
-          -- adjust for fontness
-          -- , paddingTop (px deviceBar)
+        , padding4 (Css.rem gutterSize) (Css.rem gutterSize) zero zero
+        , borderBottomLeftRadius (px 20)
+        , backgroundColor (rgba 0 0 0 0.87)
+        , prop "box-shadow" "0px 0px 7px black, 0px 0px 107px black, 0px 0px 137px black, 0px 0px 177px black"
+        , prop "text-shadow" "0px 0px 7px white"
         , prop "z-index" "1"
         ]
     ]
 
-
-textShadowList : Int -> Float -> Mixin
-textShadowList multiplier thickness =
-    let
-        ratio = 3
-
-        forgroundShadowValues =
-            List.map (\blur -> "0px 0px " ++ (toString blur) ++ "px white, ") <|
-            List.map ((*) (multiplier // 2)) (List.range 1 <| Basics.round <| logBase ratio thickness)
-
-        backgroundShadowValues =
-            List.map (\blur -> "0px 0px " ++ (toString blur) ++ "px black, ") <|
-            List.map ((*) multiplier) (List.range 1 <| Basics.round thickness)
-
-        textShadowValue =
-            ((String.concat forgroundShadowValues) |> trim)
-          ++ (String.concat backgroundShadowValues |> dropComma)
-
-        dropComma = trim >> dropRight 1
-    in
-        prop "text-shadow" textShadowValue
