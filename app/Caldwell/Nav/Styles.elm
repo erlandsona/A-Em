@@ -57,11 +57,12 @@ css =
                     ]
                 ]
             , ul
-                [ position absolute
-                , displayFlex
+                [ displayFlex
                 , flexDirection column
                 , prop "justify-content" "space-around"
                 , prop "align-items" "center"
+                , position absolute
+                , top (pct 47)
                 , height (px <| dotSize * 3)
                 , width (px <| dotSize * 3)
                 , prop "right" "calc(110% + 1rem)"
