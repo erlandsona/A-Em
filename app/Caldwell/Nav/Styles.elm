@@ -8,8 +8,8 @@ import Css.Elements exposing (..)
 
 -- Source
 
-import Caldwell.Constants exposing (gutterSize)
-import Caldwell.Helpers exposing (prop, shadowList)
+import Caldwell.Constants exposing (..)
+import Caldwell.Helpers exposing (prop)
 
 
 css : List Snippet
@@ -26,13 +26,14 @@ css =
         , height (vh 50)
         , margin2 (vh 25) zero
         , backgroundColor transparent
-        , prop "transform" <| "translate3d(calc(100% + "++(toString gutterSize)++"rem), 0, 0)"
+        , prop "transform" <| "translate3d(calc(100% + "++gutterSize.value++"), 0, 0)"
         , prop "z-index" "1"
         , children
             [ a
                 [ cursor pointer
                 , displayFlex
                 , flexDirection column
+                , position relative
                 , flexGrow (int 1)
                 , prop "justify-content" "flex-end"
                 , textDecoration none
@@ -42,7 +43,7 @@ css =
                 , prop "white-space" "nowrap"
                 , textAlign left
                 , prop "direction" "rtl"
-                , prop "text-shadow" <| shadowList 7 7
+                , prop "text-shadow" "0px 0px 7px white"
                 , fontSize (pct 175)
                 , fontFamily sansSerif
                 , fontFamilies [ "Megrim" ]
@@ -52,9 +53,31 @@ css =
                     ]
                 , children
                     [ span
-                        [ marginRight (Css.rem gutterSize) ]
+                        [ marginRight gutterSize ]
+                    ]
+                ]
+            , ul
+                [ position absolute
+                , displayFlex
+                , flexDirection column
+                , prop "justify-content" "space-around"
+                , prop "align-items" "center"
+                , height (px <| dotSize * 3)
+                , width (px <| dotSize * 3)
+                , prop "right" "calc(110% + 1rem)"
+                , children
+                    [ li
+                        [ width (px dotSize)
+                        , height (px dotSize)
+                        , backgroundColor white
+                        , prop "box-shadow" "0px 0px 7px white"
+                        , borderRadius (pct 50)
+                        ]
                     ]
                 ]
             ]
         ]
     ]
+
+dotSize : Float
+dotSize = 7

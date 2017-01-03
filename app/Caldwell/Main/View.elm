@@ -19,8 +19,7 @@ import Caldwell.Types exposing (..)
 template : Model -> Html Msg
 template { date } =
     main_ []
-        [ section [ id Home ]
-            [ h1 [ clickWithStopProp <| Toggle Open ] [ text (toString Home) ] ]
+        [ section [ id Home ] [ ]
         , section [ id Music ]
             ([ h1 [ clickWithStopProp <| Toggle Open ] [ text (toString Music) ] ] ++ lorem)
         , section [ id Shows ]

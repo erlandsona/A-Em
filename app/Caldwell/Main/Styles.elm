@@ -23,19 +23,20 @@ css =
                 [ minHeight (vh 100)
                 , width (pct 100)
                 , prop "-webkit-overflow-scrolling" "touch"
-                  --          top                     sides           bottom
-                , padding3 (px halfTitleHeight) (em gutterSize) (zero)
+                  --          top                                       sides           bottom
+                , padding4
+                    gutterSize
+                    (Css.rem <| gutterSize.numericValue * 3)
+                    zero
+                    gutterSize
                 , children
                     [ h1
-                        [ display inlineBlock
+                        [ prop "display" "inline-flex"
+                        , prop "align-items" "flex-end"
+                        , height titleHeight
                         , cursor pointer
+                        , marginBottom (Css.rem <| gutterSize.numericValue * 2)
                         ]
-                    ]
-                ]
-            , (#) Music
-                [ children
-                    [ h1
-                        [ marginBottom (px halfTitleHeight) ]
                     ]
                 ]
             , (#) Shows
@@ -57,20 +58,9 @@ css =
                         ]
                     ]
                 ]
-            , (#) About
-                [ children
-                    [ h1
-                        [ marginBottom (px halfTitleHeight) ]
-                    ]
-                ]
             ]
         ]
     ]
-
-
-halfTitleHeight : Float
-halfTitleHeight =
-    titleHeight / 2
 
 
 fadingHr : Color -> Snippet

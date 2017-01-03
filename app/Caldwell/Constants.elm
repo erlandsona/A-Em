@@ -1,22 +1,23 @@
 module Caldwell.Constants exposing (..)
 
-import Css exposing (hex, Color)
+-- Libraries
+import Css exposing (hex, Color, Rem)
+
+-- Source
+
+import Caldwell.Types exposing (Page(..))
 
 
 -- Paddings / Margins
 
 
-gutterSize : Float
+gutterSize : Rem
 gutterSize =
-    1
+    Css.rem 1
 
-deviceBar : Float
-deviceBar =
-    20
-
-titleHeight : Float
+titleHeight : Rem
 titleHeight =
-    80
+    Css.rem 3
 
 
 -- Colors
@@ -46,6 +47,20 @@ black : Color
 black =
     hex "#000000"
 
+pageList : List Page
+pageList =
+    [ Home
+    , Music
+    , Shows
+    , About
+    , Contact
+    ]
+
+intOfPages : Int
+intOfPages = List.length pageList
+
+floatOfPages : Float
+floatOfPages = toFloat intOfPages
 
 
 -- Cross FileType Names

@@ -12,10 +12,11 @@ import String.Extra exposing (clean)
 
 import Caldwell.Constants exposing (..)
 import Caldwell.Helpers exposing (prop)
-import Caldwell.Types exposing (Nav(..))
 import Caldwell.Header.Styles as Header
 import Caldwell.Main.Styles as Main
+import Caldwell.Model exposing (Model)
 import Caldwell.Nav.Styles as Nav
+import Caldwell.Types exposing (Nav(..))
 
 
 css : Stylesheet
@@ -32,7 +33,7 @@ css =
               , each [ body, html ]
                     [ fontFamily sansSerif
                     , fontFamilies [ "Josefin Sans" ]
-                    , fontSize (pct 100)
+                    , fontSize (pct 95)
                     , fontWeight (int 300)
                     ]
               , each
@@ -89,13 +90,16 @@ css =
             ]
 
 
-css_ : Nav -> Html a
-css_ navState =
-    node "style" [] [ Html.text (clean (styles_ navState).css) ]
+css_ : Model -> Html a
+css_ model =
+    node "style" [] [ Html.text (clean (styles_ model).css) ]
 
 
-styles_ : Nav -> { css : String, warnings : List String }
-styles_ navState =
+styles_ : Model -> { css : String, warnings : List String }
+styles_ model =
+  let
+      navState = model.nav
+  in
     compile
         [ stylesheet
             [ nav <|

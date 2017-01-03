@@ -30,7 +30,7 @@ template model =
         node container
             [ onClick (Toggle Closed)
             ]
-            [ Styles.css_ nav
+            [ Styles.css_ model
             , node caldwellBackground [] []
             , node blackOverlay [] []
             , Header.template
