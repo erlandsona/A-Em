@@ -13,4 +13,4 @@ import Caldwell.Types exposing (Msg(..), Page(..))
 template : Html Msg
 template =
     header [ onClick (SetUrl Home) ]
-        [ text "caldwell" ]
+        [ text "Caldwell" ]

@@ -23,21 +23,20 @@ css =
                 [ minHeight (vh 100)
                 , width (pct 100)
                 , prop "-webkit-overflow-scrolling" "touch"
-                  --          top                                       sides           bottom
                 , padding4
-                    gutterSize
-                    (Css.rem <| gutterSize.numericValue * 3)
-                    zero
-                    gutterSize
-                , children
-                    [ h1
-                        [ prop "display" "inline-flex"
-                        , prop "align-items" "flex-end"
-                        , height titleHeight
-                        , cursor pointer
-                        , marginBottom (Css.rem <| gutterSize.numericValue * 2)
-                        ]
-                    ]
+                    (Css.rem 5) -- Top
+                    (Css.rem <| gutterSize.numericValue * 3) -- Right
+                    zero -- Bottom
+                    gutterSize -- Left
+                -- , children
+                --     [ h1
+                --         [ prop "display" "inline-flex"
+                --         , prop "align-items" "flex-end"
+                --         , height titleHeight
+                --         , cursor pointer
+                --         , marginBottom (Css.rem <| gutterSize.numericValue * 2)
+                --         ]
+                --     ]
                 ]
             , (#) Shows
                 [ children
@@ -55,6 +54,19 @@ css =
                                     ]
                                 ]
                             ]
+                        ]
+                    ]
+                ]
+            , (#) About
+                [ children
+                    [ h3 [ display inline ]
+                    , p
+                        [ firstOfType
+                            [ prop "text-indent" "80px"
+                            , marginTop (px -20)
+                            ]
+                        , lineHeight (num 1.15)
+                        , marginBottom gutterSize
                         ]
                     ]
                 ]

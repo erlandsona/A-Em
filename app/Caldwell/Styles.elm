@@ -33,14 +33,15 @@ css =
               , each [ body, html ]
                     [ fontFamily sansSerif
                     , fontFamilies [ "Josefin Sans" ]
-                    , fontSize (pct 95)
+                    , fontSize (pct 93)
                     , fontWeight (int 300)
                     ]
-              , each
-                    [ h1, h2, h3, h4, h5, h6 ]
-                    [ fontSize (pct 200)
-                    , fontWeight inherit
-                    ]
+              , h1 [ fontSize (pct 250) , fontWeight inherit ]
+              , h2 [ fontSize (pct 225) , fontWeight inherit ]
+              , h3 [ fontSize (pct 200) , fontWeight inherit ]
+              , h4 [ fontSize (pct 175) , fontWeight inherit ]
+              , h5 [ fontSize (pct 150) , fontWeight inherit ]
+              , h6 [ fontSize (pct 125) , fontWeight inherit ]
               , p [ fontSize (pct 115) ]
               , a
                     [ textDecoration none

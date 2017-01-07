@@ -11,7 +11,7 @@ type Page
     | Contact
 
 type Msg
-    = GoToUrl Location
+    = GoToPage Location
     | SetUrl Page
     | Todays Date
     | Toggle Nav

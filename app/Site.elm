@@ -16,7 +16,7 @@ import Caldwell.Helpers exposing (urlParser)
 
 main : Program Float Model Msg
 main =
-    programWithFlags GoToUrl
+    programWithFlags GoToPage
         { init = init
         , view = template
         , update = update
