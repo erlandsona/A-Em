@@ -5,5 +5,22 @@ set -e
 # Copy Static Assets
 cp -R app/assets/ public/
 
+# Copy images to root names
+# for file in $(ls app/assets/images/favicon/) do
+#   cp app/assets/images/favicon/$file public/favicon-$file
+# done
+
+# for file in $(ls app/assets/images/icon/apple/) do
+#   cp app/assets/images/icon/apple/$file public/apple-touch-icon-$file
+# done
+
+# for file in $(ls app/assets/images/icon/android/) do
+#   cp app/assets/images/icon/android/$file public/android-touch-icon-$file
+# done
+
+# for file in $(ls app/assets/images/icon/microsoft/) do
+#   cp app/assets/images/icon/microsoft/$file public/ms-touch-icon-$file
+# done
+
 # Compile elm-css
 elm-css app/Stylesheets.elm -o public/
