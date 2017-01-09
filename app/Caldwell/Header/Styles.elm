@@ -3,7 +3,11 @@ module Caldwell.Header.Styles exposing (css)
 -- Libraries
 
 import Css exposing (..)
-import Css.Elements exposing (header)
+import Css.Elements
+    exposing
+        ( header
+        , span
+        )
 
 
 -- Source
@@ -28,13 +32,17 @@ css =
         , position fixed
         , right zero
           -- plus padding ends up being 68px
-        -- , width (pct 100)
+          -- , width (pct 100)
         , padding4 gutterSize gutterSize zero zero
         , borderBottomLeftRadius (px 10)
         , backgroundColor (rgba 0 0 0 0.93)
         , prop "box-shadow" "0px 0px 7px black, 0px 0px 37px black, 0px 0px 57px black, 0px 0px 77px black"
         , prop "text-shadow" "0px 0px 7px white"
         , prop "z-index" "1"
+        , children
+            [ span
+                [ fontFamilies [ "Monoton" ]
+                ]
+            ]
         ]
     ]
-
