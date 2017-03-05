@@ -23,8 +23,8 @@ css =
         , position fixed
         , right zero
         , cursor pointer
-        , height (vh 50)
-        , margin2 (vh 25) zero
+        , height (vh 25)
+        , margin2 (vh 11) zero
         , backgroundColor transparent
         , prop "transform" <| "translate3d(calc(100% + "++gutterSize.value++"), 0, 0)"
         , prop "z-index" "1"

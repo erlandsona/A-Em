@@ -26,7 +26,7 @@ css =
                 , margin auto
                 , prop "-webkit-overflow-scrolling" "touch"
                 , padding4
-                    (Css.rem 6) -- Top
+                    (Css.rem 7) -- Top
                     (Css.rem <| gutterSize.numericValue * 3) -- Right
                     zero -- Bottom
                     gutterSize -- Left
