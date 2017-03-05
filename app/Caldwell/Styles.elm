@@ -16,7 +16,7 @@ import Caldwell.Header.Styles as Header
 import Caldwell.Main.Styles as Main
 import Caldwell.Model exposing (Model)
 import Caldwell.Nav.Styles as Nav
-import Caldwell.Types exposing (Nav(..))
+import Caldwell.Types exposing (Nav(..), Page(..))
 
 
 css : Stylesheet
@@ -79,8 +79,9 @@ css =
                             , opacity (num 0.7)
                             , display block
                             , position fixed
-                            , prop "z-index" "0"
+                            , zIndex (int 0)
                             , prop "content" "''"
+                            , prop "transition" "opacity 0.7s"
                             ]
                         ]
                     ]
@@ -100,6 +101,7 @@ styles_ : Model -> { css : String, warnings : List String }
 styles_ model =
   let
       navState = model.nav
+      currentPage = List.head model.history
   in
     compile
         [ stylesheet
@@ -111,12 +113,20 @@ styles_ model =
                     []
             , selector container
                 [ children
-                    [ selector blackOverlay <|
+                    [ main_ <|
                         if navState == Open then
-                            [ prop "z-index" "1"
+                            [ opacity (num 0.25)
                             ]
                         else
                             []
+                    ]
+                ]
+            , selector container
+                [ children
+                    [ selector blackOverlay <|
+                        case currentPage of
+                            Just Home -> []
+                            _ -> [ opacity (num 0.9) ]
                     ]
                 ]
             ]

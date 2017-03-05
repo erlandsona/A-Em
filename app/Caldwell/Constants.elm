@@ -71,11 +71,13 @@ caldwellBackground : String
 caldwellBackground =
     "caldwell-background"
 
+caldwellCalendar : String
+caldwellCalendar =
+    "caldwell-calendar"
 
 blackOverlay : String
 blackOverlay =
     "black-overlay"
-
 
 container : String
 container =

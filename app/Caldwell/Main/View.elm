@@ -1,62 +1,67 @@
 module Caldwell.Main.View exposing (template)
 
-
 -- Libraries
-import Date exposing (month, year, Day(..), Date)
+
+import Date exposing (Month(..), Day(..), Date)
 import Html exposing (..)
+
+
 -- import Html.Attributes exposing (id)
+
 import Html.CssHelpers exposing (withNamespace)
 import String.Extra exposing (clean)
+
 
 -- Source
 
 import Caldwell.Bio.View as Bio
+import Caldwell.Constants exposing (caldwellCalendar)
 import Caldwell.Helpers exposing (clickWithStopProp)
 import Caldwell.Model exposing (Model)
 import Caldwell.Types exposing (..)
 
-{id, class} = withNamespace ""
 
-template : Model -> Html Msg
-template { date } =
+{ id, class } =
+    withNamespace ""
+
+
+template : Html Msg
+template =
     main_ []
-        [ section [ id Home ] [ ]
+        [ section [ id Home ] []
         , section [ id About ] Bio.template
         , section [ id Shows ]
-            [ node "caldwell-calendar" []
-                [ h2 []
-                    [ toString (month date)
-                      ++ " " ++
-                      toString (year date)
-                      |> text
-                    ]
+            [ node caldwellCalendar
+                []
+                [ h2 [] [ text "Shows" ]
                 , fadingHr
-                , ul [ class [Gigs] ]
-                    ([Mon, Tue, Wed, Thu, Fri, Sat, Sun] |>
-                        List.map (\date ->
-                            li
-                                [ class [Gig] ]
-                                [ text <| toString date
-                                , fadingHr
-                                ])
-                    )
+                , ul [ class [ Gigs ] ]
+                    [ li [ class [ Gig ] ]
+                        [ span [] [ text "March 7th" ]
+                        , span [] [ text "Bridge Bar" ]
+                        , span [] [ text "9:15pm" ]
+                        ]
+                    , fadingHr
+                    , li [ class [ Gig ] ]
+                        [ span [] [ text "March 16th" ]
+                        , span [] [ text "Belcourt Taps" ]
+                        , span [] [ text "8:00pm" ]
+                        ]
+                    , fadingHr
+                    , li [ class [ Gig ] ]
+                        [ span [] [ text "April 2nd" ]
+                        , span [] [ text "Nachez Hills Winery" ]
+                        , span [] [ text "2:00pm" ]
+                        ]
+                    , fadingHr
+                    ]
                 ]
             ]
-        -- , section [ id Music ] []
-        , section [ id Contact ] []
+          -- , section [ id Music ] []
+          -- , section [ id Contact ] []
         ]
-
--- March 7 Bridge Bar 9:15
--- March 16th Belcourt Taps 8 pm
--- April 2nd Natchez Hills Winery 2-4 pm 
--- May () Commodore 9 pm
--- May () Commodore 7 pm
-
-
-
-
-
 
 
 fadingHr : Html a
-fadingHr = node "fading-hr" [] []
+fadingHr =
+    node "fading-hr" [] []

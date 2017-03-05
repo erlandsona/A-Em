@@ -8,7 +8,7 @@ import Css.Elements exposing (..)
 
 -- Source
 
-import Caldwell.Constants exposing (gutterSize)
+import Caldwell.Constants exposing (caldwellCalendar, gutterSize)
 import Caldwell.Helpers exposing (prop)
 import Caldwell.Types exposing (Page(..), HtmlClass(..), Nav(..))
 import Caldwell.Constants exposing (..)
@@ -40,26 +40,45 @@ css =
                 --         ]
                 --     ]
                 ]
-            , (#) Shows
+            , id Shows
                 [ children
-                    [ selector "caldwell-calendar"
+                    [ selector caldwellCalendar
                         [ display block
                         , children
                             [ h2
                                 [ textAlign center
                                 ]
                             , fadingHr lightGrey
-                            , (.) Gigs
+                            , class Gigs
                                 [ children
-                                    [ (.) Gig
-                                        [ children [ fadingHr darkGrey ] ]
+                                    [ mediaQuery "screen and ( max-width: 500px )"
+                                        [ class Gig
+                                            [ justifyContent spaceAround
+                                            , children
+                                                [ span
+                                                    [ nthChild "2"
+                                                        [ order (num -1)
+                                                        , width (pct 100)
+                                                        , textAlign center
+                                                        , marginBottom (px 17)
+                                                        ]
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    , class Gig
+                                        [ displayFlex
+                                        , flexFlow2 row wrap
+                                        , justifyContent spaceBetween
+                                        ]
                                     ]
+                                , children [ fadingHr darkGrey ]
                                 ]
                             ]
                         ]
                     ]
                 ]
-            , (#) About
+            , id About
                 [ children
                     [ h3 [ display inline ]
                     , p
@@ -78,8 +97,9 @@ fadingHr : Color -> Snippet
 fadingHr background =
     selector "fading-hr"
         [ display block
-        , margin2 (px 10) zero
+        , margin2 (px 20) zero
         , height (px 1)
+        , width (pct 100)
         , backgroundColor background
         , prop "background" <| "-webkit-gradient(linear, 0 0, 100% 0, from(black), to(black), color-stop(50%, " ++ background.value ++ "))"
         ]

@@ -21,10 +21,10 @@ import Caldwell.Types exposing (..)
 urlParser : Url.Parser (Page -> a) a
 urlParser =
     oneOf
-        [ Url.map Music (s "music")
-        , Url.map Shows (s "shows")
+        [ Url.map Shows (s "shows")
+        , Url.map Music (s "music")
         , Url.map About (s "about")
-        , Url.map Contact (s "contact")
+        -- , Url.map Contact (s "contact")
         ]
 
 

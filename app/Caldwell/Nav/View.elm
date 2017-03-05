@@ -20,7 +20,7 @@ template navState =
         , aTag About
         , aTag Shows
         -- , aTag Music
-        , aTag Contact
+        -- , aTag Contact
         , ul [ clickWithStopProp (Toggle <| not navState) ]
             [ li [] [] ]
         ]

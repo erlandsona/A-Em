@@ -35,5 +35,5 @@ template model =
             , node blackOverlay [] []
             , Header.template
             , Nav.template nav
-            , Main.template model
+            , Main.template
             ]
