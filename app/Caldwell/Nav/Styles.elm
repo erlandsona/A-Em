@@ -63,8 +63,8 @@ css =
                 , prop "align-items" "center"
                 , position absolute
                 , top (pct 47)
-                , height (px <| dotSize * 4)
-                , width (px <| dotSize * 4)
+                , height (px <| dotSize * 3)
+                , width (px <| dotSize * 3)
                 , prop "right" "calc(110% + 1rem)"
                 , children
                     [ li
@@ -81,4 +81,4 @@ css =
     ]
 
 dotSize : Float
-dotSize = 7
+dotSize = 13

@@ -37,12 +37,12 @@ css =
                     , fontWeight (int 300)
                     ]
               , h1 [ fontSize (pct 250) , fontWeight inherit ]
-              , h2 [ fontSize (pct 225) , fontWeight inherit ]
-              , h3 [ fontSize (pct 200) , fontWeight inherit ]
-              , h4 [ fontSize (pct 175) , fontWeight inherit ]
-              , h5 [ fontSize (pct 150) , fontWeight inherit ]
-              , h6 [ fontSize (pct 125) , fontWeight inherit ]
-              , p [ fontSize (pct 115) ]
+              , h2 [ fontSize (pct 240) , fontWeight inherit ]
+              , h3 [ fontSize (pct 225) , fontWeight inherit ]
+              , h4 [ fontSize (pct 200) , fontWeight inherit ]
+              , h5 [ fontSize (pct 175) , fontWeight inherit ]
+              , h6 [ fontSize (pct 150) , fontWeight inherit ]
+              , p [ fontSize (pct 135) ]
               , a
                     [ textDecoration none
                     , color inherit

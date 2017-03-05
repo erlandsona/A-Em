@@ -17,9 +17,9 @@ template : Nav -> Html Msg
 template navState =
     nav [ clickWithStopProp (Toggle Closed) ]
         [ aTag Home
-        , aTag Music
-        , aTag Shows
         , aTag About
+        , aTag Shows
+        -- , aTag Music
         , aTag Contact
         , ul [ clickWithStopProp (Toggle <| not navState) ]
             [ li [] [] ]

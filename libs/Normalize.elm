@@ -61,7 +61,7 @@ snippets =
         [ margin zero
         , padding zero
         , border zero
-        , fontSize (pct 100)
+        , fontSize (pct 115)
           -- , prop "font" "inherit"
           -- , fontFamilies [ "sans-serif" ]
         , lineHeight (int 1)

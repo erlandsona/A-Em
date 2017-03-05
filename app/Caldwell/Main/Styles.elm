@@ -22,6 +22,8 @@ css =
             [ section
                 [ minHeight (vh 100)
                 , width (pct 100)
+                , maxWidth (px 768) -- Tablet Width
+                , margin auto
                 , prop "-webkit-overflow-scrolling" "touch"
                 , padding4
                     (Css.rem 6) -- Top
@@ -61,11 +63,8 @@ css =
                 [ children
                     [ h3 [ display inline ]
                     , p
-                        [ firstOfType
-                            [ prop "text-indent" "80px"
-                            , marginTop (px -20)
-                            ]
-                        , lineHeight (num 1.15)
+                        [ prop "text-indent" "7%"
+                        , lineHeight (num 1.5)
                         , marginBottom gutterSize
                         ]
                     ]

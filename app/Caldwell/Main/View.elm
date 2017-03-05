@@ -6,11 +6,11 @@ import Date exposing (month, year, Day(..), Date)
 import Html exposing (..)
 -- import Html.Attributes exposing (id)
 import Html.CssHelpers exposing (withNamespace)
--- import Markdown
 import String.Extra exposing (clean)
 
 -- Source
 
+import Caldwell.Bio.View as Bio
 import Caldwell.Helpers exposing (clickWithStopProp)
 import Caldwell.Model exposing (Model)
 import Caldwell.Types exposing (..)
@@ -21,50 +21,41 @@ template : Model -> Html Msg
 template { date } =
     main_ []
         [ section [ id Home ] [ ]
-        , section [ id Music ]
-            []
+        , section [ id About ] Bio.template
         , section [ id Shows ]
             [ node "caldwell-calendar" []
-                [ h2 [] [ text <| toString (month date) ++ " " ++ toString (year date) ]
+                [ h2 []
+                    [ toString (month date)
+                      ++ " " ++
+                      toString (year date)
+                      |> text
+                    ]
                 , fadingHr
                 , ul [ class [Gigs] ]
                     ([Mon, Tue, Wed, Thu, Fri, Sat, Sun] |>
-                        List.map (\day ->
+                        List.map (\date ->
                             li
                                 [ class [Gig] ]
-                                [ text <| toString day
+                                [ text <| toString date
                                 , fadingHr
                                 ])
                     )
                 ]
             ]
-        , section [ id About ]
-            [ h3 [] [ text "A&Em "]
-            , p [] [ text
-                    "started playing together as a duo about a year after they had met and fallen in love under the fireworks and neon signs of downtown Nashville."
-                ]
-            , p [] [ text
-                    "They've played together for the past year at numerous Nashville venues and are currently working to record an EP."
-                ]
-            ]
-        , section [ id Contact ]
-            []
+        -- , section [ id Music ] []
+        , section [ id Contact ] []
         ]
 
+-- March 7 Bridge Bar 9:15
+-- March 16th Belcourt Taps 8 pm
+-- April 2nd Natchez Hills Winery 2-4 pm 
+-- May () Commodore 9 pm
+-- May () Commodore 7 pm
 
 
 
 
 
-
-
--- bio : Html a
--- bio = Markdown.toHtml [] """
--- ### A&Em...
--- started playing together as a duo about a year after they had met and fallen in love under the fireworks and neon signs of downtown Nashville.
-
--- They've played together for the past year at numerous Nashville venues and are currently working to record an EP.
--- """
 
 
 fadingHr : Html a
