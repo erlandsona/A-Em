@@ -40,6 +40,16 @@ css =
                 --         ]
                 --     ]
                 ]
+            , id About
+                [ children
+                    [ h3 [ display inline ]
+                    , p
+                        [ prop "text-indent" "7%"
+                        , lineHeight (num 1.5)
+                        , marginBottom gutterSize
+                        ]
+                    ]
+                ]
             , id Shows
                 [ children
                     [ selector caldwellCalendar
@@ -78,14 +88,13 @@ css =
                         ]
                     ]
                 ]
-            , id About
+            , id Contact
                 [ children
-                    [ h3 [ display inline ]
-                    , p
-                        [ prop "text-indent" "7%"
-                        , lineHeight (num 1.5)
-                        , marginBottom gutterSize
+                    [ h2
+                        [ textAlign center
                         ]
+                    , fadingHr lightGrey
+                    , p [textAlign center ]
                     ]
                 ]
             ]

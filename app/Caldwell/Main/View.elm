@@ -33,7 +33,7 @@ template =
         , section [ id Shows ]
             [ node caldwellCalendar
                 []
-                [ h2 [] [ text "Shows" ]
+                [ h2 [] [ text (toString Shows) ]
                 , fadingHr
                 , ul [ class [ Gigs ] ]
                     [ li [ class [ Gig ] ]
@@ -57,8 +57,16 @@ template =
                     ]
                 ]
             ]
-          -- , section [ id Music ] []
-          -- , section [ id Contact ] []
+          , section [ id Music ]
+              [ h2 [] [ text (toString Music) ]
+              , fadingHr
+              -- , audio [ src "" ]
+              ]
+          , section [ id Contact ]
+              [ h2 [] [ text (toString Contact) ]
+              , fadingHr
+              , p [] [ text "emilykrollmusic@yahoo.com" ]
+              ]
         ]
 
 

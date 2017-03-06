@@ -16,10 +16,11 @@ import Caldwell.Types exposing (Msg(..), Nav(..), Page(..))
 template : Nav -> Html Msg
 template navState =
     nav [ clickWithStopProp (Toggle Closed) ]
-        [ aTag About
+        [ aTag Home
+        , aTag About
         , aTag Shows
-        -- , aTag Music
-        -- , aTag Contact
+        , aTag Music
+        , aTag Contact
         , ul [ clickWithStopProp (Toggle <| not navState) ]
             [ li [] [] ]
         ]
