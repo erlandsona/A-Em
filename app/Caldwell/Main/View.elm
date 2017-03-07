@@ -6,7 +6,7 @@ import Date exposing (Month(..), Day(..), Date)
 import Html exposing (..)
 
 
--- import Html.Attributes exposing (id)
+import Html.Attributes exposing (..)
 
 import Html.CssHelpers exposing (withNamespace)
 import String.Extra exposing (clean)
@@ -53,14 +53,26 @@ template =
                         , span [] [ text "Nachez Hills Winery" ]
                         , span [] [ text "2:00pm" ]
                         ]
-                    , fadingHr
                     ]
                 ]
             ]
           , section [ id Music ]
               [ h2 [] [ text (toString Music) ]
               , fadingHr
-              -- , audio [ src "" ]
+              , iframe
+                  [ seamless True
+                  , src <| soundCloudiFrameBaseUrl ++ "276527707" ++ soundCloudiFrameParams
+                  ] []
+              , fadingHr
+              , iframe
+                  [ seamless True
+                  , src <| soundCloudiFrameBaseUrl ++ "278360717" ++ soundCloudiFrameParams
+                  ] []
+              , fadingHr
+              , iframe
+                  [ seamless True
+                  , src <| soundCloudiFrameBaseUrl ++ "192483435" ++ soundCloudiFrameParams
+                  ] []
               ]
           , section [ id Contact ]
               [ h2 [] [ text (toString Contact) ]
@@ -69,6 +81,13 @@ template =
               ]
         ]
 
+soundCloudiFrameBaseUrl : String
+soundCloudiFrameBaseUrl =
+    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/"
+
+soundCloudiFrameParams : String
+soundCloudiFrameParams =
+    "&amp;color=000000&amp;auto_play=false&amp;hide_related=true&amp;liking=false&amp;show_artwork=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false"
 
 fadingHr : Html a
 fadingHr =

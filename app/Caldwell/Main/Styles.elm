@@ -88,6 +88,16 @@ css =
                         ]
                     ]
                 ]
+            , id Music
+                [ children
+                    [ h2
+                        [ textAlign center
+                        ]
+                    , selector "iframe"
+                        [ width (pct 100) ]
+                    , fadingHr lightGrey
+                    ]
+                ]
             , id Contact
                 [ children
                     [ h2
