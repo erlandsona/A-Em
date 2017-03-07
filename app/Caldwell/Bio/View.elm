@@ -14,7 +14,7 @@ It started on a whim one evening in 2014 when Austin, almost jokingly, turns to 
 
 What are we up to now? Well, Em pursues her passion for songwriting, so she spends most of her time writing in Nashville. Caldwell is an outlet for Austin to hone his skills in production and performance. It’s the songs that we write that we want to share with the world. There’s a song about when we broke up that one time, and songs about falling in love, and songs that make us feel at home.
 
-This year, we’re working on getting together a band and putting out an EP. So come hang out with us at one of our shows or in our living room. I loves holiday parties and Austin will make you a mean cup of coffee.
+This year, we’re working on getting together a band and putting out an EP. So come hang out with us at one of our shows or in our living room. I love holiday parties and Austin will make you a mean cup of coffee.
 
 P.S.
 
