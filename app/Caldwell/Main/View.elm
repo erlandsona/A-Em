@@ -77,7 +77,7 @@ template =
           , section [ id Contact ]
               [ h2 [] [ text (toString Contact) ]
               , fadingHr
-              , p [] [ text "emilykrollmusic@yahoo.com" ]
+              , p [] [ text "booking@caldwell.band" ]
               ]
         ]
 
