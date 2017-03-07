@@ -17,7 +17,7 @@ gutterSize =
 
 titleHeight : Rem
 titleHeight =
-    Css.rem 3
+    Css.rem 2.7
 
 
 -- Colors
