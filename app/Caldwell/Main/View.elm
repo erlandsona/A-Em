@@ -49,6 +49,12 @@ template =
                         ]
                     , fadingHr
                     , li [ class [ Gig ] ]
+                        [ span [] [ text "March 31st" ]
+                        , span [] [ text "Tennessee Brew Works" ]
+                        , span [] [ text "7:00pm" ]
+                        ]
+                    , fadingHr
+                    , li [ class [ Gig ] ]
                         [ span [] [ text "April 2nd" ]
                         , span [] [ text "Nachez Hills Winery" ]
                         , span [] [ text "2:00pm" ]
