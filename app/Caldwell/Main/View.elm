@@ -37,12 +37,6 @@ template =
                 , fadingHr
                 , ul [ class [ Gigs ] ]
                     [ li [ class [ Gig ] ]
-                        [ span [] [ text "March 7th" ]
-                        , span [] [ text "Bridge Bar" ]
-                        , span [] [ text "9:15pm" ]
-                        ]
-                    , fadingHr
-                    , li [ class [ Gig ] ]
                         [ span [] [ text "March 16th" ]
                         , span [] [ text "Belcourt Taps" ]
                         , span [] [ text "8:00pm" ]
@@ -58,6 +52,12 @@ template =
                         [ span [] [ text "April 2nd" ]
                         , span [] [ text "Nachez Hills Winery" ]
                         , span [] [ text "2:00pm" ]
+                        ]
+                    , fadingHr
+                    , li [ class [ Gig ] ]
+                        [ span [] [ text "April 15th" ]
+                        , span [] [ text "Belcourt Taps" ]
+                        , span [] [ text "7:00pm" ]
                         ]
                     ]
                 ]
