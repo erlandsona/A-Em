@@ -25,6 +25,8 @@ import Caldwell.Types exposing (..)
     withNamespace ""
 
 
+type Venue = Venue String String String
+
 template : Html Msg
 template =
     main_ []
@@ -35,30 +37,20 @@ template =
                 []
                 [ h2 [] [ text (toString Shows) ]
                 , fadingHr
-                , ul [ class [ Gigs ] ]
-                    [ li [ class [ Gig ] ]
-                        [ span [] [ text "March 16th" ]
-                        , span [] [ text "Belcourt Taps" ]
-                        , span [] [ text "8:00pm" ]
-                        ]
-                    , fadingHr
-                    , li [ class [ Gig ] ]
-                        [ span [] [ text "March 31st" ]
-                        , span [] [ text "Tennessee Brew Works" ]
-                        , span [] [ text "7:00pm" ]
-                        ]
-                    , fadingHr
-                    , li [ class [ Gig ] ]
-                        [ span [] [ text "April 2nd" ]
-                        , span [] [ text "Nachez Hills Winery" ]
-                        , span [] [ text "2:00pm" ]
-                        ]
-                    , fadingHr
-                    , li [ class [ Gig ] ]
-                        [ span [] [ text "April 15th" ]
-                        , span [] [ text "Belcourt Taps" ]
-                        , span [] [ text "7:00pm" ]
-                        ]
+                , ul [ class [ Gigs ] ] <|
+                    List.intersperse fadingHr <|
+                    List.map (\(Venue a b c) ->
+                        li [ class [ Gig ] ]
+                            [ span [] [ text a ]
+                            , span [] [ text b ]
+                            , span [] [ text c ]
+                            ]
+                        )
+                    [ Venue "March 16th" "Belcourt Taps" "8:00pm"
+                    , Venue "March 31st" "Tennessee Brew Works" "7:00pm"
+                    , Venue "April 2nd"  "Natchez Hills Winery" "2:00pm"
+                    , Venue "April 9th"  "Drifter's BBQ" "2:00pm"
+                    , Venue "April 15th" "Belcourt Taps" "7:00pm"
                     ]
                 ]
             ]
