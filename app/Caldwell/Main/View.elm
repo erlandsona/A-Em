@@ -3,6 +3,10 @@ module Caldwell.Main.View exposing (template)
 -- Libraries
 
 import Date exposing (Month(..), Day(..), Date)
+
+import FontAwesome.Brand as Social
+import FontAwesome.Web as Icon
+
 import Html exposing (..)
 
 
@@ -30,7 +34,18 @@ type Venue = Venue String String String
 template : Html Msg
 template =
     main_ []
-        [ section [ id Home ] []
+        [ section [ id Home ]
+            [ node "social-icons" []
+                    -- , target "_blank"
+                    -- , target "_blank"
+                    -- , target "_blank"
+                    -- , target "_blank"
+                [ a [ href ""] [ Social.facebook_square ]
+                , a [ href ""] [ Social.twitter_square ]
+                , a [ href ""] [ Social.instagram ]
+                , a [ href ""] [ Icon.star ]
+                ]
+            ]
         , section [ id About ] Bio.template
         , section [ id Shows ]
             [ node caldwellCalendar
@@ -40,11 +55,8 @@ template =
                 , ul [ class [ Gigs ] ] <|
                     List.intersperse fadingHr <|
                     List.map (\(Venue a b c) ->
-                        li [ class [ Gig ] ]
-                            [ span [] [ text a ]
-                            , span [] [ text b ]
-                            , span [] [ text c ]
-                            ]
+                        li [ class [ Gig ] ] <|
+                            List.map (\string -> span [] [ text string ]) [a,b,c]
                         )
                     [ Venue "March 16th" "Belcourt Taps" "8:00pm"
                     , Venue "March 31st" "Tennessee Brew Works" "7:00pm"
@@ -75,7 +87,7 @@ template =
           , section [ id Contact ]
               [ h2 [] [ text (toString Contact) ]
               , fadingHr
-              , p [] [ text "booking@caldwell.band" ]
+              , a [ href "mailto:booking@caldwell.band" ] [ text "booking@caldwell.band" ]
               ]
         ]
 

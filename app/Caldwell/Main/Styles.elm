@@ -40,6 +40,20 @@ css =
                 --         ]
                 --     ]
                 ]
+            , id Home
+                [ displayFlex
+                , alignItems flexEnd
+                , paddingBottom gutterSize
+                , maxWidth (pct 100)
+                , descendants
+                    [ a
+                        [ display inlineBlock
+                        , marginRight gutterSize
+                        ]
+                    , class "fa"
+                        [ fontSize (Css.rem 2) ]
+                    ]
+                ]
             , id About
                 [ children
                     [ h3 [ display inline ]
@@ -104,7 +118,10 @@ css =
                         [ textAlign center
                         ]
                     , fadingHr lightGrey
-                    , p [textAlign center ]
+                    , a
+                        [ display block
+                        , textAlign center
+                        ]
                     ]
                 ]
             ]
