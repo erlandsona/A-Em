@@ -30,15 +30,6 @@ css =
                     (Css.rem <| gutterSize.numericValue * 3) -- Right
                     zero -- Bottom
                     gutterSize -- Left
-                -- , children
-                --     [ h1
-                --         [ prop "display" "inline-flex"
-                --         , prop "align-items" "flex-end"
-                --         , height titleHeight
-                --         , cursor pointer
-                --         , marginBottom (Css.rem <| gutterSize.numericValue * 2)
-                --         ]
-                --     ]
                 ]
             , id Home
                 [ displayFlex
@@ -111,6 +102,12 @@ css =
                     , selector "iframe"
                         [ width (pct 100) ]
                     , fadingHr lightGrey
+                    , selector "fading-hr"
+                        [ nthOfType "1n+2"
+                            [ backgroundColor darkGrey
+                            , prop "background" <| "-webkit-gradient(linear, 0 0, 100% 0, from(black), to(black), color-stop(50%, " ++ darkGrey.value ++ "))"
+                            ]
+                        ]
                     ]
                 ]
             , id Contact
