@@ -26,8 +26,9 @@ css =
         , height (vh 50)
         , margin2 (vh 25) zero
         , backgroundColor transparent
+        , prop "-ms-transform" "translateX(110%)"
         , prop "transform" <| "translate3d(calc(100% + "++gutterSize.value++"), 0, 0)"
-        , prop "z-index" "1"
+        , zIndex (int 1)
         , children
             [ a
                 [ cursor pointer

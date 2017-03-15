@@ -35,16 +35,14 @@ template : Html Msg
 template =
     main_ []
         [ section [ id Home ]
-            [ node "social-icons" []
-                    -- , target "_blank"
-                    -- , target "_blank"
-                    -- , target "_blank"
-                    -- , target "_blank"
-                [ a [ href ""] [ Social.facebook_square ]
-                , a [ href ""] [ Social.twitter_square ]
-                , a [ href ""] [ Social.instagram ]
-                , a [ href ""] [ Icon.star ]
-                ]
+                -- , target "_blank"
+                -- , target "_blank"
+                -- , target "_blank"
+                -- , target "_blank"
+            [ a [ href ""] [ Social.facebook_square ]
+            , a [ href ""] [ Social.twitter_square ]
+            , a [ href ""] [ Social.instagram ]
+            , a [ href ""] [ Icon.star ]
             ]
         , section [ id About ] Bio.template
         , section [ id Shows ]

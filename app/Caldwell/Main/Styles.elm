@@ -45,6 +45,7 @@ css =
                 , alignItems flexEnd
                 , paddingBottom gutterSize
                 , maxWidth (pct 100)
+                , height (vh 70)
                 , descendants
                     [ a
                         [ display inlineBlock

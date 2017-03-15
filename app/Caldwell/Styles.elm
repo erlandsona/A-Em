@@ -107,7 +107,8 @@ styles_ model =
         [ stylesheet
             [ nav <|
                 if navState == Open then
-                    [ transform (translate3d zero zero zero)
+                    [ transform (translate2 zero zero)
+                    , transform (translate3d zero zero zero)
                     ]
                 else
                     []
