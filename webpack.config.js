@@ -28,7 +28,7 @@ var commonConfig = {
   },
 
   module: {
-    noParse: /\.elm$/,
+    // noParse: /\.elm$/,
     rules: [
       {
         test: /\.(eot|ttf|woff|woff2|svg)$/,
@@ -49,7 +49,7 @@ var commonConfig = {
 
 // additional webpack settings for local env (when invoked by 'npm start')
 if ( TARGET_ENV === 'development' ) {
-  console.log( 'Serving locally...');
+  console.log('Serving locally...');
 
   module.exports = merge(commonConfig, {
 
@@ -60,26 +60,28 @@ if ( TARGET_ENV === 'development' ) {
 
     devServer: {
       // serve index.html in place of 404 responses
-      historyApiFallback: true,
       contentBase: './app',
+      historyApiFallback: true
+      // inline: true,
+      // stats: 'errors-only'
     },
 
     module: {
       rules: [
         {
           test:    /\.elm$/,
-          exclude: [/elm-stuff/, /node_modules/, /Stylesheets.elm/],
+          exclude: [/elm-stuff/, /node_modules/, /Stylesheets\.elm$/],
           use: [
             'elm-hot-loader',
             'elm-webpack-loader?verbose=true&warn=true&debug=true'
           ]
         },
         {
-          test: /app\/Stylesheets.elm/,
+          test: /Stylesheets\.elm$/,
           use: [
             'style-loader',
             'css-loader',
-            'postcss-loader',
+            // 'postcss-loader',
             'elm-css-webpack-loader'
           ]
         }
@@ -91,7 +93,7 @@ if ( TARGET_ENV === 'development' ) {
 
 // additional webpack settings for prod env (when invoked via 'npm run build')
 if ( TARGET_ENV === 'production' ) {
-  console.log( 'Building for prod...');
+  console.log('Building for prod...');
 
   module.exports = merge(commonConfig, {
 
@@ -101,21 +103,19 @@ if ( TARGET_ENV === 'production' ) {
       rules: [
         {
           test:    /\.elm$/,
-          exclude: [/elm-stuff/, /node_modules/, /Stylesheets.elm/],
+          exclude: [/elm-stuff/, /node_modules/, /Stylesheets\.elm$/],
           use:     'elm-webpack-loader'
         },
         {
-          test: /Stylesheets.elm/,
-          use: ExtractTextPlugin.extract(
-            {
-              fallback: "style-loader",
-              use: [
-                'css-loader',
-                'postcss-loader',
-                'elm-css-webpack-loader'
-              ],
-              allChunks: true
-            })
+          test: /Stylesheets\.elm$/,
+          use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
+            use: [
+              'css-loader',
+              // 'postcss-loader',
+              'elm-css-webpack-loader'
+            ]
+          })
         }
       ]
     },
@@ -128,7 +128,7 @@ if ( TARGET_ENV === 'production' ) {
         },
         {
           from: 'app/assets/icons/favicon.ico'
-        },
+        }
       ]),
 
       new webpack.optimize.OccurrenceOrderPlugin(),
