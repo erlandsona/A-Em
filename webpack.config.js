@@ -31,8 +31,12 @@ var commonConfig = {
     // noParse: /\.elm$/,
     rules: [
       {
-        test: /\.(eot|ttf|woff|woff2|svg)$/,
+        test: /\.(ttf|woff|woff2|svg)$/,
         use:  'file-loader'
+      },
+      {
+        test: /\.(eot)$/,
+        use:  'url-loader'
       }
     ]
   },
@@ -83,6 +87,14 @@ if ( TARGET_ENV === 'development' ) {
             'css-loader',
             'postcss-loader',
             'elm-css-webpack-loader'
+          ]
+        },
+        {
+          test: /fonts\.css$/,
+          use: [
+            'style-loader',
+            'css-loader'
+            // 'postcss-loader'
           ]
         }
       ]
