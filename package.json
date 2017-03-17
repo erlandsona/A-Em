@@ -45,6 +45,6 @@
     "build-ci": "elm-package install --yes && npm run build && npm run build-css",
     "build-css": "shx mkdir -p ./public && elm-css app/Stylesheets.elm -o ./public",
     "postinstall": "elm package install",
-    "start": "webpack-dev-server --hot --inline --port 7777"
+    "start": "webpack-dev-server --hot"
   }
 }

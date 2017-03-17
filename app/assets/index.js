@@ -1,15 +1,12 @@
 'use strict';
 
 // Libraries
-require('smoothscroll-polyfill');
-var FastClick = require('fastclick');
+require('smoothscroll-polyfill').polyfill();
+require('fastclick').attach(document.body);
 
 // Source
 require('../Stylesheets.elm');
-
 var Site = require('../Site.elm').Site;
-
-FastClick.attach(document.body);
 
 var app = Site.fullscreen(Date.now());
 

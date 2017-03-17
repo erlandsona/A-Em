@@ -5,8 +5,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer      = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var entryPath         = path.join(__dirname, 'app/assets/index.js');
-var outputPath        = path.join(__dirname, 'public');
+var entryPath         = path.resolve(__dirname, 'app/assets/index.js');
+var outputPath        = path.resolve(__dirname, 'public');
 
 console.log( 'WEBPACK GO!');
 
@@ -60,10 +60,10 @@ if ( TARGET_ENV === 'development' ) {
 
     devServer: {
       // serve index.html in place of 404 responses
-      contentBase: './app',
-      historyApiFallback: true
-      // inline: true,
-      // stats: 'errors-only'
+      contentBase: outputPath,
+      historyApiFallback: true,
+      inline: true,
+      port: 7777
     },
 
     module: {
@@ -81,7 +81,7 @@ if ( TARGET_ENV === 'development' ) {
           use: [
             'style-loader',
             'css-loader',
-            // 'postcss-loader',
+            'postcss-loader',
             'elm-css-webpack-loader'
           ]
         }
@@ -112,7 +112,7 @@ if ( TARGET_ENV === 'production' ) {
             fallback: "style-loader",
             use: [
               'css-loader',
-              // 'postcss-loader',
+              'postcss-loader',
               'elm-css-webpack-loader'
             ]
           })
@@ -124,7 +124,7 @@ if ( TARGET_ENV === 'production' ) {
       new CopyWebpackPlugin([
         {
           from: 'app/assets/images/',
-          to:   'assets/images/'
+          to:   'images/'
         },
         {
           from: 'app/assets/icons/favicon.ico'

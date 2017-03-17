@@ -63,7 +63,7 @@ css =
                     , children
                         [ selector caldwellBackground
                             [ backgroundColor black
-                            , prop "background" "url(/assets/images/stairs.jpg) center 27% no-repeat"
+                            , prop "background" "url(/images/stairs.jpg) center 27% no-repeat"
                             , prop "background-size" "cover"
                             , height (vh 100)
                             , width (vw 100)
