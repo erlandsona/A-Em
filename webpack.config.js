@@ -28,15 +28,10 @@ var commonConfig = {
   },
 
   module: {
-    // noParse: /\.elm$/,
     rules: [
       {
-        test: /\.(ttf|woff|woff2|svg)$/,
+        test: /\.(eot|ttf|woff|woff2|svg)$/,
         use:  'file-loader'
-      },
-      {
-        test: /\.(eot)$/,
-        use:  'url-loader'
       }
     ]
   },
@@ -46,7 +41,18 @@ var commonConfig = {
       template: 'app/assets/index.html',
       inject:   'body',
       filename: 'index.html'
-    })
+    }),
+
+    new CopyWebpackPlugin([
+      {
+        from: 'app/assets/images/',
+        to:   'images/'
+      },
+      {
+        from: 'app/assets/icons',
+        flatten: true
+      }
+    ])
   ]
 
 }
@@ -93,8 +99,8 @@ if ( TARGET_ENV === 'development' ) {
           test: /fonts\.css$/,
           use: [
             'style-loader',
-            'css-loader'
-            // 'postcss-loader'
+            'css-loader',
+            'postcss-loader'
           ]
         }
       ]
@@ -128,21 +134,24 @@ if ( TARGET_ENV === 'production' ) {
               'elm-css-webpack-loader'
             ]
           })
+        },
+        {
+          test: /fonts\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            },
+            'postcss-loader'
+          ]
         }
       ]
     },
 
     plugins: [
-      new CopyWebpackPlugin([
-        {
-          from: 'app/assets/images/',
-          to:   'images/'
-        },
-        {
-          from: 'app/assets/icons/favicon.ico'
-        }
-      ]),
-
       new webpack.optimize.OccurrenceOrderPlugin(),
 
       // extract CSS into a separate file
@@ -150,9 +159,9 @@ if ( TARGET_ENV === 'production' ) {
 
       // minify & mangle JS/CSS
       new webpack.optimize.UglifyJsPlugin({
-          minimize:   true,
-          compressor: { warnings: false }
-          // mangle:  true
+        minimize:   true,
+        compressor: { warnings: false },
+        comments: false
       })
     ]
 

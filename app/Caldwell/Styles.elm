@@ -63,13 +63,15 @@ css =
                     , children
                         [ selector caldwellBackground
                             [ backgroundColor black
-                            , prop "background" "url(/images/stairs.jpg) center 27% no-repeat"
-                            , prop "background-size" "cover"
+                            , backgroundImage (url "/images/stairs.jpg")
+                            , backgroundPosition2 (pct 50) (pct 27)
+                            , backgroundRepeat noRepeat
+                            , backgroundSize cover
                             , height (vh 100)
                             , width (vw 100)
                             , display block
                             , position fixed
-                            , prop "z-index" "0"
+                            , zIndex (int 0)
                             , prop "content" "''"
                             ]
                         , selector blackOverlay

@@ -1,5 +1,7 @@
 module Normalize exposing (css, snippets)
 
+-- Copy Pasta from https://github.com/scottcorgan/elm-css-reset/blob/1.0.2/src/Css/Reset.elm#L96
+-- until the version of elm-css get's updated
 -- Libraries
 
 import Css exposing (..)
@@ -22,46 +24,44 @@ snippets =
     [ selector
         (clean
             """
-            html, body,
-            center, div, span,
-            h1, h2, h3, h4, h5, h6,
-            a, p,
-            ol, ul, li,
-            img,
-            form,
-            pre,
-            fieldset, legend, caption,
-            table, tbody, tfoot, thead,
-            tr, th, td,
-            label,
-            article, aside, section,
-            header, footer, nav,
-            audio, video,
-            strong,
-            canvas, iframe,
-            abbr, acronym,
-            address, big,
-            blockquote, cite,
-            code, del,
-            dl, dt, dd,
-            dfn, em, ins, kbd,
-            object,
-            q, s,
-            samp, small,
-            b, u, i,
-            strike, sub, sup, tt,
-            details, embed,
-            figure, figcaption,
-            menu, output, ruby,
-            summary, time, mark
+            html, body
+            , center, div, span
+            , h1, h2, h3, h4, h5, h6
+            , a, p
+            , ol, ul, li
+            , img
+            , form
+            , pre
+            , fieldset, legend, caption
+            , table, tbody, tfoot, thead
+            , tr, th, td
+            , label
+            , article, aside, section
+            , header, footer, nav
+            , audio, video
+            , strong
+            , canvas, iframe
+            , abbr, acronym
+            , address, big
+            , blockquote, cite
+            , code, del
+            , dl, dt, dd
+            , dfn, em, ins, kbd
+            , object
+            , q, s
+            , samp, small
+            , b, u, i
+            , strike, sub, sup, tt
+            , var, details, embed
+            , figure, figcaption
+            , menu, output, ruby
+            , summary, time, mark
             """
         )
         [ margin zero
         , padding zero
         , border zero
         , fontSize (pct 115)
-          -- , prop "font" "inherit"
-          -- , fontFamilies [ "sans-serif" ]
         , lineHeight (int 1)
         , prop "-ms-text-size-adjust" "100%"
         , prop "-webkit-text-size-adjust" "100%"
