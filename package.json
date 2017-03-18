@@ -42,9 +42,8 @@
     "clean": "rimraf public node_modules elm-stuff",
     "prebuild": "rimraf public",
     "build": "webpack",
-    "build-ci": "elm-package install --yes && npm run build && npm run build-css",
-    "build-css": "shx mkdir -p ./public && elm-css app/Stylesheets.elm -o ./public",
     "postinstall": "elm package install",
-    "start": "webpack-dev-server --hot"
+    "start": "webpack-dev-server --hot",
+    "deploy": "npm run build && ./deploy"
   }
 }

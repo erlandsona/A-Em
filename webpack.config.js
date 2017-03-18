@@ -38,9 +38,7 @@ var commonConfig = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'app/assets/index.html',
-      inject:   'body',
-      filename: 'index.html'
+      template: 'app/assets/index.html'
     }),
 
     new CopyWebpackPlugin([
@@ -51,7 +49,8 @@ var commonConfig = {
       {
         from: 'app/assets/icons',
         flatten: true
-      }
+      },
+      { from: 'app/assets/CNAME' }
     ])
   ]
 
@@ -129,7 +128,12 @@ if ( TARGET_ENV === 'production' ) {
           use: ExtractTextPlugin.extract({
             fallback: "style-loader",
             use: [
-              'css-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  minimize: true
+                }
+              },
               'postcss-loader',
               'elm-css-webpack-loader'
             ]
@@ -156,6 +160,12 @@ if ( TARGET_ENV === 'production' ) {
 
       // extract CSS into a separate file
       new ExtractTextPlugin('[name]-[hash].css'),
+
+      new HtmlWebpackPlugin({
+        template: 'app/assets/index.html',
+        // Hack github to serve elm app at all routes.
+        filename: '404.html'
+      }),
 
       // minify & mangle JS/CSS
       new webpack.optimize.UglifyJsPlugin({
