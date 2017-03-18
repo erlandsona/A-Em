@@ -38,7 +38,7 @@ css =
         , backgroundColor (rgba 0 0 0 0.93)
         , prop "box-shadow" "0px 0px 7px black, 0px 0px 37px black, 0px 0px 57px black, 0px 0px 77px black"
         , prop "text-shadow" "0px 0px 7px white"
-        , prop "z-index" "1"
+        , zIndex (int 1)
         , lineHeight (num 1.4)
         , children
             [ span
