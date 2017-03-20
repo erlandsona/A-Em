@@ -11,7 +11,7 @@ port files : CssFileStructure -> Cmd msg
 
 structure : CssFileStructure
 structure =
-    toFileStructure [ ( "main.css", compile [ Normalize.css, Styles.css ] ) ]
+    toFileStructure [ ( "styles.css", compile [ Normalize.css, Styles.css ] ) ]
 
 
 main : CssCompilerProgram

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+# Clean
+rm -rf ./public
+mkdir public
+
+# Copy Libraries / Polyfills etc...
+cp node_modules/smoothscroll-polyfill/dist/smoothscroll.js public/
+cp node_modules/fastclick/lib/fastclick.js public/
