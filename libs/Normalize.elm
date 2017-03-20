@@ -62,6 +62,8 @@ snippets =
         , padding zero
         , border zero
         , fontSize (pct 115)
+          -- , prop "font" "inherit"
+          -- , fontFamilies [ "sans-serif" ]
         , lineHeight (int 1)
         , prop "-ms-text-size-adjust" "100%"
         , prop "-webkit-text-size-adjust" "100%"
@@ -82,8 +84,8 @@ snippets =
         ]
         [ display block ]
     , each
-        [ ol, ul ]
-        [ prop "list-style" "none" ]
+      [ ol, ul ]
+      [ prop "list-style" "none" ]
     , html
         [ boxSizing borderBox ]
     , everything

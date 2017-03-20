@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+
+./build/development/prestart
+
+./build/development/tasks
+
+# copy index.html to 404.html for "pushstate" imitation
+cp public/index.html public/404.html
+
+echo caldwell.band > public/CNAME
+
+# Compile elm-js
+elm-make app/Site.elm --output=public/bundle.js
+
+# Send to gh-pages branch
+./build/production/deploy
+
