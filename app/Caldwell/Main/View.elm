@@ -2,8 +2,6 @@ module Caldwell.Main.View exposing (template)
 
 -- Libraries
 
-import Date exposing (Month(..), Day(..), Date)
-
 import FontAwesome.Brand as Social
 import FontAwesome.Web as Icon
 
@@ -13,15 +11,12 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 
 import Html.CssHelpers exposing (withNamespace)
-import String.Extra exposing (clean)
 
 
 -- Source
 
 import Caldwell.Bio.View as Bio
 import Caldwell.Constants exposing (caldwellCalendar)
-import Caldwell.Helpers exposing (clickWithStopProp)
-import Caldwell.Model exposing (Model)
 import Caldwell.Types exposing (..)
 
 

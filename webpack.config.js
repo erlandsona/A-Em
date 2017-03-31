@@ -128,12 +128,7 @@ if ( TARGET_ENV === 'production' ) {
           use: ExtractTextPlugin.extract({
             fallback: "style-loader",
             use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  minimize: true
-                }
-              },
+              'css-loader',
               'postcss-loader',
               'elm-css-webpack-loader'
             ]
