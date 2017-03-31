@@ -43,7 +43,7 @@ css =
                         , marginRight gutterSize
                         ]
                     , class "fa"
-                        [ fontSize (Css.rem 2) ]
+                        [ fontSize (Css.rem 1.5) ]
                     ]
                 ]
             , id About
