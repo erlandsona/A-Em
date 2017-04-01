@@ -138,12 +138,7 @@ if ( TARGET_ENV === 'production' ) {
           test: /fonts\.css$/,
           use: [
             'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true
-              }
-            },
+            'css-loader',
             'postcss-loader'
           ]
         }
@@ -162,7 +157,7 @@ if ( TARGET_ENV === 'production' ) {
         filename: '404.html'
       }),
 
-      // minify & mangle JS/CSS
+      // minify & mangle JS
       new webpack.optimize.UglifyJsPlugin({
         minimize:   true,
         compressor: { warnings: false },
