@@ -1,23 +1,21 @@
 'use strict';
 
 // Libraries
+require('font-awesome/css/font-awesome');
 require('smoothscroll-polyfill').polyfill();
 require('fastclick').attach(document.body);
 
 // Source
-require('./fonts/fonts.css');
-require('../Stylesheets.elm');
-var Site = require('../Site.elm').Site;
+require('./assets/fonts');
+require('./Stylesheets');
 
-var app = Site.fullscreen(Date.now());
-
-// Attach JS handlers to app instance.
+// Attach port handlers to app instance.
+var app = require('./Client').Site.fullscreen(Date.now());
 app.ports.easeIntoView.subscribe(function(id) {
   document
     .getElementById(id)
     .scrollIntoView({behavior: "smooth", block: "start"});
-});
-
+})
 app.ports.snapIntoView.subscribe(function (id) {
   document
     .getElementById(id)

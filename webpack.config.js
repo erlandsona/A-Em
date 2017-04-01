@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer      = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var entryPath         = path.resolve(__dirname, 'app/assets/index.js');
+var entryPath         = path.resolve(__dirname, 'app/index.js');
 var outputPath        = path.resolve(__dirname, 'public');
 
 console.log( 'WEBPACK GO!');
@@ -24,14 +24,14 @@ var commonConfig = {
   },
 
   resolve: {
-    extensions: ['.js', '.elm']
+    extensions: ['.js', '.elm', '.css']
   },
 
   module: {
     rules: [
       {
-        test: /\.(eot|ttf|woff|woff2|svg)$/,
-        use:  'file-loader'
+        test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+        loader: 'url-loader'
       }
     ]
   },
@@ -50,7 +50,9 @@ var commonConfig = {
         from: 'app/assets/icons',
         flatten: true
       },
-      { from: 'app/assets/CNAME' }
+      { from: 'app/assets/CNAME' },
+      { from: 'app/assets/manifest.json' },
+      { from: 'app/assets/browserconfig.xml' }
     ])
   ]
 
@@ -78,7 +80,7 @@ if ( TARGET_ENV === 'development' ) {
     module: {
       rules: [
         {
-          test:    /\.elm$/,
+          test: /\.elm$/,
           exclude: [/elm-stuff/, /node_modules/, /Stylesheets\.elm$/],
           use: [
             'elm-hot-loader',
@@ -95,7 +97,7 @@ if ( TARGET_ENV === 'development' ) {
           ]
         },
         {
-          test: /fonts\.css$/,
+          test: /\.css$/,
           use: [
             'style-loader',
             'css-loader',
@@ -135,12 +137,14 @@ if ( TARGET_ENV === 'production' ) {
           })
         },
         {
-          test: /fonts\.css$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'postcss-loader'
-          ]
+          test: /\.css$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              'css-loader',
+              'postcss-loader'
+            ]
+          })
         }
       ]
     },

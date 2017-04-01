@@ -62,8 +62,7 @@ template =
                 , ul [ class [ Gigs ] ] <|
                     List.intersperse fadingHr <|
                         List.map (venueToElmHtml)
-                            [ Venue "March 31st" "Tennessee Brew Works" "7:00pm"
-                            , Venue "April 2nd" "Natchez Hills Winery" "2:00pm"
+                            [ Venue "April 2nd" "Natchez Hills Winery" "2:00pm"
                             , Venue "April 9th" "Drifter's BBQ" "2:00pm"
                             , Venue "April 15th" "Belcourt Taps" "7:00pm"
                             ]
