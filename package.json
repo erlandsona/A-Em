@@ -44,6 +44,6 @@
     "build": "webpack",
     "postinstall": "elm package install",
     "start": "webpack-dev-server --hot",
-    "deploy": "npm run build && ./deploy"
+    "deploy": "npm run build && ./bin/deploy"
   }
 }
