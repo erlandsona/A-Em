@@ -1,10 +1,9 @@
 {
     "version": "1.0.0",
-    "summary": "Band page for the duo A&Em",
-    "repository": "https://github.com/erlandsona/a-em.git",
+    "summary": "Band page for Caldwell the Duo",
+    "repository": "https://github.com/erlandsona/caldwell.git",
     "license": "MIT",
     "source-directories": [
-        "build",
         "app",
         "libs"
     ],

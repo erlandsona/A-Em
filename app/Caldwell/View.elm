@@ -3,7 +3,6 @@ module Caldwell.View exposing (template)
 -- Libraries
 
 import Html exposing (Html, Attribute, node)
-import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
 

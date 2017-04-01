@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 100;
+    /* src: url(fonts/Josefin+Sans_100_normal.eot); /1* {{embedded-opentype-gf-url}} *1/ */
+    src: local('☺'),
+        /* url(fonts/Josefin+Sans_100_normal.eot?#iefix) format('embedded-opentype'), /1* {{embedded-opentype-gf-url}} *1/ */
+        url(fonts/Josefin+Sans_100_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/josefinsans/v9/q9w3H4aeBxj0hZ8Osfi3dy1dfeF-hbOdKKuBDEXxqhQ.woff */
+        url(fonts/Josefin+Sans_100_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/josefinsans/v9/q9w3H4aeBxj0hZ8Osfi3dwcqhJGA2L1PEeyZ-CMmBrk.ttf */
+        /* url(fonts/Josefin+Sans_100_normal.svg#Josefin+Sans_100_normal) format('svg'); /1* {{svg-gf-url}} *1/ */
+}
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 300;
+    /* src: url(fonts/Josefin+Sans_300_normal.eot); /1* {{embedded-opentype-gf-url}} *1/ */
+    src: local('☺'),
+        /* url(fonts/Josefin+Sans_300_normal.eot?#iefix) format('embedded-opentype'), /1* {{embedded-opentype-gf-url}} *1/ */
+        url(fonts/Josefin+Sans_300_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/josefinsans/v9/C6HYlRF50SGJq1XyXj04z2Fp2sMiApZm5Dx7NpSTOZk.woff */
+        url(fonts/Josefin+Sans_300_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/josefinsans/v9/C6HYlRF50SGJq1XyXj04z07nEl83IKQRaQwpv_tz1Eg.ttf */
+        /* url(fonts/Josefin+Sans_300_normal.svg#Josefin+Sans_300_normal) format('svg'); /1* {{svg-gf-url}} *1/ */
+}
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    /* src: url(fonts/Josefin+Sans_400_normal.eot); /1* {{embedded-opentype-gf-url}} *1/ */
+    src: local('☺'),
+        /* url(fonts/Josefin+Sans_400_normal.eot?#iefix) format('embedded-opentype'), /1* {{embedded-opentype-gf-url}} *1/ */
+        url(fonts/Josefin+Sans_400_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5nhCUOGz7vYGh680lGh-uXM.woff */
+        url(fonts/Josefin+Sans_400_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5pS3E-kSBmtLoNJPDtbj2Pk.ttf */
+        url(fonts/Josefin+Sans_400_normal.svg#Josefin+Sans_400_normal) format('svg'); /* http://fonts.gstatic.com/l/font?kit=xgzbb53t8j-Mo-vYa23n5llIn5tFQcqMuf-jhyJP0ps&skey=22ddf758bcf1d5cd&v=v9#JosefinSans */
+}
+@font-face {
+    font-family: 'Megrim';
+    font-style: normal;
+    font-weight: 400;
+    /* src: url(fonts/Megrim_400_normal.eot); /1* {{embedded-opentype-gf-url}} *1/ */
+    src: local('☺'),
+        /* url(fonts/Megrim_400_normal.eot?#iefix) format('embedded-opentype'), /1* {{embedded-opentype-gf-url}} *1/ */
+        url(fonts/Megrim_400_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/megrim/v7/wEAANqPdhC-qap-OX73FcA.woff */
+        url(fonts/Megrim_400_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/megrim/v7/zQG96NeQtUBO9dGJr6AhruvvDin1pK8aKteLpeZ5c0A.ttf */
+        url(fonts/Megrim_400_normal.svg#Megrim_400_normal) format('svg'); /* http://fonts.gstatic.com/l/font?kit=-6J_vSaWI0ygNudra7ynng&skey=4589d61c1b6a14ca&v=v7#Megrim */
+}
+@font-face {
+    font-family: 'Monoton';
+    font-style: normal;
+    font-weight: 400;
+    /* src: url(fonts/Monoton_400_normal.eot); /1* {{embedded-opentype-gf-url}} *1/ */
+    src: local('☺'),
+        /* url(fonts/Monoton_400_normal.eot?#iefix) format('embedded-opentype'), /1* {{embedded-opentype-gf-url}} *1/ */
+        url(fonts/Monoton_400_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/monoton/v6/AKI-lyzyNHXByGHeOcds_w.woff */
+        url(fonts/Monoton_400_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/monoton/v6/-hIF1G4AVCFVlMk0DdtnJQLUuEpTyoUstqEm5AMlJo4.ttf */
+        url(fonts/Monoton_400_normal.svg#Monoton_400_normal) format('svg'); /* http://fonts.gstatic.com/l/font?kit=Fmn5PI0YEB_TqikG18Yh7Q&skey=6851b793dcae5a6c&v=v6#Monoton */
+}
