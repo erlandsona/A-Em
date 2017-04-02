@@ -2,11 +2,8 @@ module Caldwell.Model exposing (init, Model)
 
 -- Libraries
 import Date exposing (Date)
-import Maybe exposing (withDefault)
 import Navigation exposing (Location)
-import Task
 import Time exposing (Time)
-import UrlParser as Url
 
 -- Source
 import Caldwell.Helpers exposing (parse)

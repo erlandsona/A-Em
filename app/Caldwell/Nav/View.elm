@@ -8,7 +8,6 @@ import Html.Events exposing (onClick)
 
 -- Source
 
-import Caldwell.Constants exposing (..)
 import Caldwell.Helpers exposing (clickWithStopProp)
 import Caldwell.Types exposing (Msg(..), Nav(..), Page(..))
 

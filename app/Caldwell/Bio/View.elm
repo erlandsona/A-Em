@@ -4,7 +4,6 @@ module Caldwell.Bio.View exposing (template)
 
 import Html exposing (Html)
 import Markdown exposing (toHtml)
-import String.Extra exposing (clean)
 
 
 template : List (Html a)
