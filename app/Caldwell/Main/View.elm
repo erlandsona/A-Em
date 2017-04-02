@@ -35,21 +35,25 @@ template =
             [ a
                 [ href "https://www.facebook.com/Caldwellband/"
                 , target "_blank"
+                , rel "noopener"
                 ]
                 [ Social.facebook_square ]
             , a
                 [ href "https://twitter.com/caldwell_band"
                 , target "_blank"
+                , rel "noopener"
                 ]
                 [ Social.twitter_square ]
             , a
                 [ href "https://www.instagram.com/caldwell_band/"
                 , target "_blank"
+                , rel "noopener"
                 ]
                 [ Social.instagram ]
             , a
                 [ href "https://www.reverbnation.com/caldwellband"
                 , target "_blank"
+                , rel "noopener"
                 ]
                 [ Icon.star ]
             ]
