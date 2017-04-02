@@ -1,12 +1,10 @@
 path = require 'path'
-glob = require 'glob'
 webpack = require 'webpack'
 merge = require 'webpack-merge'
 HtmlWebpackPlugin = require 'html-webpack-plugin'
 autoprefixer = require 'autoprefixer'
 ExtractTextPlugin = require 'extract-text-webpack-plugin'
 CopyWebpackPlugin = require 'copy-webpack-plugin'
-PurifyCSSPlugin = require 'purifycss-webpack'
 
 entryFile = path.resolve __dirname, 'app/index.js'
 outputPath = path.resolve __dirname, 'public'
@@ -16,6 +14,12 @@ TARGET_ENV = if process.env.npm_lifecycle_event is 'build' then 'production' els
 outputFilename = if TARGET_ENV is 'production' then '[name]-[hash].js' else '[name].js'
 
 console.log 'WEBPACKing with ENV:', TARGET_ENV
+
+cssLoader =
+  loader: 'css-loader'
+  options:
+    minimize:
+      convertValues: false
 
 postcssLoader =
   loader: 'postcss-loader'
@@ -116,7 +120,7 @@ if TARGET_ENV is 'production'
         use: ExtractTextPlugin.extract
           fallback: "style-loader"
           use: [
-            'css-loader'
+            cssLoader
             postcssLoader
             'elm-css-webpack-loader'
           ]
@@ -125,7 +129,7 @@ if TARGET_ENV is 'production'
         use: ExtractTextPlugin.extract
           fallback: 'style-loader'
           use: [
-            'css-loader'
+            cssLoader
             postcssLoader
           ]
       ]
@@ -146,10 +150,4 @@ if TARGET_ENV is 'production'
         minimize:   true
         compressor: warnings: false
         comments: false
-
-      new PurifyCSSPlugin
-        # Give paths to parse for rules. These should be absolute!
-        styleExtensions: ['.css']
-        moduleExtensions: ['.html', '.js']
-        paths: glob.sync path.join(__dirname, 'public/*.html')
     ]
