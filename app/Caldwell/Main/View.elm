@@ -59,12 +59,12 @@ template =
             ]
         , section [ id About ] Bio.template
         , section [ id Shows ]
-            [ caldwellCalendar_ <| List.drop 2
+            [ caldwellCalendar_ <| List.drop 3
                 [ Venue "April 15th" "Belcourt Taps" "7:00pm"
                 , Venue "April 26th" "SLOCO" "7:00pm"
                 , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
                 , Venue "May 8th" "The Commodore" "9:00pm"
-                , Venue "May 27th" "TN Brew Works" "5:00pm"
+                -- , Venue "May 27th" "TN Brew Works" "5:00pm"
                 , Venue "May 28th" "The Commodore" "7:00pm"
                 , Venue "June 13th" "12th South Farmers Market" "TBD"
                 , Venue "June 17th" "Natchez Hills Winery" "2:00pm"
