@@ -59,7 +59,7 @@ template =
             ]
         , section [ id About ] Bio.template
         , section [ id Shows ]
-            [ caldwellCalendar_ <| List.drop 3
+            [ caldwellCalendar_ <| List.drop 4
                 [ Venue "April 15th" "Belcourt Taps" "7:00pm"
                 , Venue "April 26th" "SLOCO" "7:00pm"
                 , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
