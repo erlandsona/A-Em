@@ -66,8 +66,11 @@ template =
                 , Venue "May 8th" "The Commodore" "9:00pm"
                 -- , Venue "May 27th" "TN Brew Works" "5:00pm"
                 , Venue "May 28th" "The Commodore" "7:00pm"
-                , Venue "June 13th" "12th South Farmers Market" "TBD"
+                , Venue "June 7th" "Tavern 96" "6:00pm"
+                , Venue "June 13th" "12th South Farmers Market" "3:00pm"
                 , Venue "June 17th" "Natchez Hills Winery" "2:00pm"
+                , Venue "June 20th" "Bridge Bar" "9:40pm"
+                , Venue "July 11th" "Artist Round @ Commodore Grille" "6:00pm"
                 ]
             ]
         , section [ id Music ]
