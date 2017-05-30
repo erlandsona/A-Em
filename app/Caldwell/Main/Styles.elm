@@ -4,12 +4,12 @@ module Caldwell.Main.Styles exposing (css)
 
 import Css exposing (..)
 import Css.Elements exposing (..)
+import CssHelpers exposing (prop)
 
 
 -- Source
 
 import Caldwell.Constants exposing (caldwellCalendar, gutterSize)
-import Caldwell.Helpers exposing (prop)
 import Caldwell.Types exposing (Page(..), HtmlClass(..), Nav(..))
 import Caldwell.Constants exposing (..)
 

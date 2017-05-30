@@ -8,11 +8,11 @@ import Css.Elements
         ( header
         , span
         )
+import CssHelpers exposing (prop)
 
 
 -- Source
 
-import Caldwell.Helpers exposing (prop)
 import Caldwell.Constants
     exposing
         ( black

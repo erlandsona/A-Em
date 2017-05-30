@@ -11,10 +11,10 @@ import String.Extra exposing (clean)
 -- Source
 
 import Caldwell.Constants exposing (..)
-import Caldwell.Helpers exposing (prop)
+import CssHelpers exposing (prop)
+import Caldwell.Model exposing (Model)
 import Caldwell.Header.Styles as Header
 import Caldwell.Main.Styles as Main
-import Caldwell.Model exposing (Model)
 import Caldwell.Nav.Styles as Nav
 import Caldwell.Types exposing (Nav(..), Page(..))
 

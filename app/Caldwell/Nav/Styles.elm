@@ -4,12 +4,12 @@ module Caldwell.Nav.Styles exposing (css)
 
 import Css exposing (..)
 import Css.Elements exposing (..)
+import CssHelpers exposing (prop)
 
 
 -- Source
 
 import Caldwell.Constants exposing (..)
-import Caldwell.Helpers exposing (prop)
 
 
 css : List Snippet

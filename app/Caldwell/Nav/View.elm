@@ -3,12 +3,12 @@ module Caldwell.Nav.View exposing (template)
 -- Libs
 
 import Html exposing (..)
-import Html.Events exposing (onClick)
+import Html.Events exposing (onClick, onWithOptions, Options)
+import Json.Decode exposing (succeed)
 
 
 -- Source
 
-import Caldwell.Helpers exposing (clickWithStopProp)
 import Caldwell.Types exposing (Msg(..), Nav(..), Page(..))
 
 
@@ -37,3 +37,8 @@ not navState =
   case navState of
     Open -> Closed
     Closed -> Open
+
+clickWithStopProp : Msg -> Attribute Msg
+clickWithStopProp msg =
+    onWithOptions "click" (Options True     False) (succeed msg)
+                        -- Options stopProp prevDefault

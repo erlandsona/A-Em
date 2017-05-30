@@ -3,11 +3,6 @@ module Caldwell.Constants exposing (..)
 -- Libraries
 import Css exposing (hex, Color, Rem)
 
--- Source
-
-import Caldwell.Types exposing (Page(..))
-
-
 -- Paddings / Margins
 
 
@@ -46,21 +41,6 @@ darkGrey =
 black : Color
 black =
     hex "#000000"
-
-pageList : List Page
-pageList =
-    [ Home
-    , Music
-    , Shows
-    , About
-    , Contact
-    ]
-
-intOfPages : Int
-intOfPages = List.length pageList
-
-floatOfPages : Float
-floatOfPages = toFloat intOfPages
 
 
 -- Cross FileType Names

@@ -6,12 +6,8 @@ module Normalize exposing (css, snippets)
 
 import Css exposing (..)
 import Css.Elements as Elem exposing (..)
+import CssHelpers exposing (prop)
 import String.Extra exposing (clean)
-
-
--- Source
-
-import Caldwell.Helpers exposing (prop)
 
 
 css : Stylesheet

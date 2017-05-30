@@ -32,39 +32,18 @@ template : Html Msg
 template =
     main_ []
         [ section [ id Home ]
-            [ a
-                [ href "https://www.facebook.com/Caldwellband/"
-                , target "_blank"
-                , rel "noopener"
-                ]
-                [ Social.facebook_square ]
-            , a
-                [ href "https://twitter.com/caldwell_band"
-                , target "_blank"
-                , rel "noopener"
-                ]
-                [ Social.twitter_square ]
-            , a
-                [ href "https://www.instagram.com/caldwell_band/"
-                , target "_blank"
-                , rel "noopener"
-                ]
-                [ Social.instagram ]
-            , a
-                [ href "https://www.reverbnation.com/caldwellband"
-                , target "_blank"
-                , rel "noopener"
-                ]
-                [ Icon.star ]
+            [ socialLink "facebook" "CaldwellBand" Social.facebook_square
+            , socialLink "twitter" "caldwell_band" Social.twitter_square
+            , socialLink "instagram" "caldwell_band" Social.instagram
+            , socialLink "reverbnation" "caldwellband" Icon.star
             ]
         , section [ id About ] Bio.template
         , section [ id Shows ]
-            [ caldwellCalendar_ <| List.drop 4
+            [ caldwellCalendar_ <| List.drop 5
                 [ Venue "April 15th" "Belcourt Taps" "7:00pm"
                 , Venue "April 26th" "SLOCO" "7:00pm"
                 , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
                 , Venue "May 8th" "The Commodore" "9:00pm"
-                -- , Venue "May 27th" "TN Brew Works" "5:00pm"
                 , Venue "May 28th" "The Commodore" "7:00pm"
                 , Venue "June 7th" "Tavern 96" "6:00pm"
                 , Venue "June 13th" "12th South Farmers Market" "3:00pm"
@@ -130,3 +109,12 @@ soundCloudiFrameParams =
 fadingHr : Html a
 fadingHr =
     node "fading-hr" [] []
+
+socialLink : String -> String -> Html a -> Html a
+socialLink siteDomain userName icon =
+    a
+        [ href <| "https://www." ++ siteDomain ++ ".com/" ++ userName
+        , target "_blank"
+        , rel "noopener"
+        ]
+        [ icon ]
