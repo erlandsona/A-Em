@@ -13,7 +13,6 @@ import String.Extra exposing (clean)
 import Caldwell.Constants exposing (..)
 import CssHelpers exposing (prop)
 import Caldwell.Model exposing (Model)
-import Caldwell.Header.Styles as Header
 import Caldwell.Main.Styles as Main
 import Caldwell.Nav.Styles as Nav
 import Caldwell.Types exposing (Nav(..), Page(..))
@@ -88,7 +87,31 @@ css =
                         ]
                     ]
               ]
-            , Header.css
+            , [ header
+                [ prop "user-select" "none"
+                , fontFamily cursive
+                , fontFamilies [ "Megrim" ]
+                , fontSize titleHeight
+                , cursor pointer
+                , position fixed
+                , right zero
+                -- plus padding ends up being 68px
+                -- , width (pct 100)
+                , padding4 (gutterSize |*| Css.rem 2) gutterSize zero (Css.rem 0.5)
+                , borderBottomLeftRadius (px 30)
+                , backgroundColor (rgba 0 0 0 0.93)
+                , prop "box-shadow" "0px 0px 7px black, 0px 0px 37px black, 0px 0px 57px black, 0px 0px 77px black"
+                , prop "text-shadow" "0px 0px 7px white"
+                , zIndex (int 1)
+                , lineHeight (num 1.4)
+                , children
+                    [ span
+                        [ fontFamilies [ "Monoton" ]
+                        , float left
+                        ]
+                    ]
+                ]
+            ]
             , Nav.css
             , Main.css
             ]

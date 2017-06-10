@@ -10,7 +10,7 @@ require('./assets/fonts');
 require('./Stylesheets');
 
 // Attach port handlers to app instance.
-var app = require('./Client').Site.fullscreen(Date.now());
+var app = require('./Main').Site.fullscreen(Date.now());
 app.ports.easeIntoView.subscribe(function(id) {
   document
     .getElementById(id)
