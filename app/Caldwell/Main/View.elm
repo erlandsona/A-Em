@@ -20,16 +20,8 @@ import Caldwell.Types exposing (..)
 { id, class } =
     withNamespace ""
 
-type alias Date = String
-type alias Place = String
-type alias Time = String
-
-type Venue
-    = Venue Date Place Time
-
-
-template : Html Msg
-template =
+template : List Venue -> Html Msg
+template venues =
     main_ []
         [ section [ id Home ]
             [ socialLink "facebook" "CaldwellBand" Social.facebook_square
@@ -38,20 +30,7 @@ template =
             , socialLink "reverbnation" "caldwellband" Icon.star
             ]
         , section [ id About ] Bio.template
-        , section [ id Shows ]
-            [ caldwellCalendar_ <| List.drop 5
-                [ Venue "April 15th" "Belcourt Taps" "7:00pm"
-                , Venue "April 26th" "SLOCO" "7:00pm"
-                , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
-                , Venue "May 8th" "The Commodore" "9:00pm"
-                , Venue "May 28th" "The Commodore" "7:00pm"
-                , Venue "June 7th" "Tavern 96" "6:00pm"
-                , Venue "June 13th" "12th South Farmers Market" "3:00pm"
-                , Venue "June 17th" "Natchez Hills Winery" "2:00pm"
-                , Venue "June 20th" "Bridge Bar" "9:40pm"
-                , Venue "July 11th" "Artist Round @ Commodore Grille" "6:00pm"
-                ]
-            ]
+        , section [ id Shows ] [ caldwellCalendar_ venues ]
         , section [ id Music ]
             [ h2 [] [ text (toString Music) ]
             , fadingHr

@@ -21,3 +21,7 @@ type HtmlClass
     | Gig
 
 type Nav = Open | Closed
+
+
+type Venue = Venue String String String
+

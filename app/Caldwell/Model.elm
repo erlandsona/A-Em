@@ -9,4 +9,5 @@ type alias Model =
     { history : List Page
     , nav : Nav
     , date : Date
+    , shows : List Venue
     }

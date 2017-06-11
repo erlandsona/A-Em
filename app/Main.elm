@@ -33,7 +33,7 @@ import Caldwell.Nav.View as Nav
 import Caldwell.Model exposing (Model)
 import Caldwell.Ports exposing (easeIntoView, snapIntoView)
 import Caldwell.Styles as Styles
-import Caldwell.Types exposing (Msg(..), Nav(..), Page(..))
+import Caldwell.Types exposing (..)
 
 
 -- Source
@@ -46,6 +46,18 @@ init now location =
             { history = [ parse location ]
             , nav = Closed
             , date = Date.fromTime now
+            , shows = List.drop 6
+                [ Venue "April 15th" "Belcourt Taps" "7:00pm"
+                , Venue "April 26th" "SLOCO" "7:00pm"
+                , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
+                , Venue "May 8th" "The Commodore" "9:00pm"
+                , Venue "May 28th" "The Commodore" "7:00pm"
+                , Venue "June 7th" "Tavern 96" "6:00pm"
+                , Venue "June 13th" "12th South Farmers Market" "3:00pm"
+                , Venue "June 17th" "Natchez Hills Winery" "2:00pm"
+                , Venue "June 20th" "Bridge Bar" "9:40pm"
+                , Venue "July 11th" "Artist Round @ Commodore Grille" "6:00pm"
+                ]
             }
     in
         ( model
@@ -92,7 +104,7 @@ template model =
             , text "aldwell"
             ]
         , Nav.template model.nav
-        , Main.template
+        , Main.template model.shows
         ]
 
 
