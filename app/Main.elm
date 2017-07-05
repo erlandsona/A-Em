@@ -46,7 +46,7 @@ init now location =
             { history = [ parse location ]
             , nav = Closed
             , date = Date.fromTime now
-            , shows = List.drop 6
+            , shows = List.drop 9
                 [ Venue "April 15th" "Belcourt Taps" "7:00pm"
                 , Venue "April 26th" "SLOCO" "7:00pm"
                 , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
