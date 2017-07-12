@@ -46,7 +46,7 @@ init now location =
             { history = [ parse location ]
             , nav = Closed
             , date = Date.fromTime now
-            , shows = List.drop 9
+            , shows = List.drop 10
                 [ Venue "April 15th" "Belcourt Taps" "7:00pm"
                 , Venue "April 26th" "SLOCO" "7:00pm"
                 , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
@@ -57,6 +57,10 @@ init now location =
                 , Venue "June 17th" "Natchez Hills Winery" "2:00pm"
                 , Venue "June 20th" "Bridge Bar" "9:40pm"
                 , Venue "July 11th" "Artist Round @ Commodore Grille" "6:00pm"
+                , Venue "July 15th" "Natchez Hills Winery" "2:00pm"
+                , Venue "July 25th" "12th South Farmers Market" "4:30pm"
+                , Venue "July 26th" "East Nashville Farmers Market" "3:30pm"
+                , Venue "July 29th" "Richland Park Farmers Market" "9:30am"
                 ]
             }
     in
