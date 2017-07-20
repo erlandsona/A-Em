@@ -62,7 +62,12 @@ template venues =
 caldwellCalendar_ : List Venue -> Html a
 caldwellCalendar_ venues =
     node caldwellCalendar []
-        [ h2 [] [ text (toString Shows) ]
+        [ header []
+            [ h2 [] [ text (toString Shows) ]
+            -- , a []
+            --     [ small [] [text "previous shows..."]
+            --     ]
+            ]
         , fadingHr
         , ul [ class [ Gigs ] ] <|
             List.intersperse fadingHr <|

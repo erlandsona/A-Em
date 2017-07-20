@@ -61,8 +61,22 @@ css =
                     [ selector caldwellCalendar
                         [ display block
                         , children
-                            [ h2
-                                [ textAlign center
+                            [ header
+                                [ displayFlex
+                                , alignItems baseline
+                                , justifyContent center
+                                , before
+                                    [ display block
+                                    , property "content" "previous shows..."
+                                    ]
+                                , children
+                                    [ h2
+                                        [
+                                        ]
+                                    , a
+                                        [
+                                        ]
+                                    ]
                                 ]
                             , fadingHr lightGrey
                             , class Gigs
