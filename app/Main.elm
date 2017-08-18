@@ -46,22 +46,26 @@ init now location =
             { history = [ parse location ]
             , nav = Closed
             , date = Date.fromTime now
-            , shows = List.drop 10
-                [ Venue "April 15th" "Belcourt Taps" "7:00pm"
-                , Venue "April 26th" "SLOCO" "7:00pm"
-                , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
-                , Venue "May 8th" "The Commodore" "9:00pm"
-                , Venue "May 28th" "The Commodore" "7:00pm"
-                , Venue "June 7th" "Tavern 96" "6:00pm"
-                , Venue "June 13th" "12th South Farmers Market" "3:00pm"
-                , Venue "June 17th" "Natchez Hills Winery" "2:00pm"
-                , Venue "June 20th" "Bridge Bar" "9:40pm"
-                , Venue "July 11th" "Artist Round @ Commodore Grille" "6:00pm"
-                , Venue "July 15th" "Natchez Hills Winery" "2:00pm"
-                , Venue "July 25th" "12th South Farmers Market" "4:30pm"
-                , Venue "July 26th" "East Nashville Farmers Market" "3:30pm"
-                , Venue "July 29th" "Richland Park Farmers Market" "9:30am"
-                ]
+            , shows =
+                List.drop 14
+                    [ Venue "April 15th" "Belcourt Taps" "7:00pm"
+                    , Venue "April 26th" "SLOCO" "7:00pm"
+                    , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
+                    , Venue "May 8th" "The Commodore" "9:00pm"
+                    , Venue "May 28th" "The Commodore" "7:00pm"
+                    , Venue "June 7th" "Tavern 96" "6:00pm"
+                    , Venue "June 13th" "12th South Farmers Market" "3:00pm"
+                    , Venue "June 17th" "Natchez Hills Winery" "2:00pm"
+                    , Venue "June 20th" "Bridge Bar" "9:40pm"
+                    , Venue "July 11th" "Artist Round @ Commodore Grille" "6:00pm"
+                    , Venue "July 15th" "Natchez Hills Winery" "2:00pm"
+                    , Venue "July 25th" "12th South Farmers Market" "4:30pm"
+                    , Venue "July 26th" "East Nashville Farmers Market" "3:30pm"
+                    , Venue "July 29th" "Richland Park Farmers Market" "9:30am"
+                    , Venue "August 27th" "Natchez Hills Winery" "2:00pm"
+                    , Venue "September 5th" "Bridge Bar" "8:00pm"
+                    , Venue "September 17th" "Natchez Hills Winery" "2:00pm"
+                    ]
             }
     in
         ( model
@@ -71,9 +75,11 @@ init now location =
             |> snapIntoView
         )
 
+
 parse : Location -> Page
 parse location =
     withDefault Home (Url.parsePath urlParser location)
+
 
 urlParser : Url.Parser (Page -> a) a
 urlParser =
