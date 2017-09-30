@@ -47,7 +47,7 @@ init now location =
             , nav = Closed
             , date = Date.fromTime now
             , shows =
-                List.drop 14
+                List.drop 17
                     [ Venue "April 15th" "Belcourt Taps" "7:00pm"
                     , Venue "April 26th" "SLOCO" "7:00pm"
                     , Venue "May 3rd" "Blue Moon Waterfront Grille" "6:00pm"
@@ -65,6 +65,9 @@ init now location =
                     , Venue "August 27th" "Natchez Hills Winery" "2:00pm"
                     , Venue "September 5th" "Bridge Bar" "8:00pm"
                     , Venue "September 17th" "Natchez Hills Winery" "2:00pm"
+                    , Venue "October 6th" "SomeWhere SOS" "9:00pm"
+                    , Venue "October 17th" "SOUTH" "7:00pm"
+                    , Venue "November 7th" "Bridge Bar" "8:30pm"
                     ]
             }
     in
