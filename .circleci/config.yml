@@ -1,0 +1,68 @@
+version: 2
+jobs:
+  client:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: deps
+
+      - run:
+          name: Speed Up elm-make by limiting cpus to 2 in build env.
+          command: | # epic build time improvement - see https://github.com/elm-lang/elm-compiler/issues/1473#issuecomment-245704142
+            if [ ! -d sysconfcpus/bin ];
+            then
+              git clone https://github.com/obmarg/libsysconfcpus.git;
+              cd libsysconfcpus;
+              ./configure --prefix=/home/circleci/project/sysconfcpus;
+              make && make install;
+              cd ..;
+            fi
+
+      - run:
+          name: Install some stuff
+          command: npm install --quiet --unsafe-perm
+
+      - run:
+          name: HotFix elm-make til 0.19 comes out...
+          command: |
+            if ! command -v "./node_modules/.bin/elm-make-old"; then
+              mv node_modules/.bin/elm-make node_modules/.bin/elm-make-old
+              printf "#\041/bin/bash\n\necho \"Running elm-make with sysconfcpus -n 2\"\n\n/home/circleci/project/sysconfcpus/bin/sysconfcpus -n 2 elm-make-old \"\$@\"" > node_modules/.bin/elm-make
+              chmod +x node_modules/.bin/elm-make
+            fi
+
+      - run:
+          name: Build static assets to public/
+          command: npm run build
+
+      - save_cache:
+          key: deps-{{checksum "package-lock.json"}}-{{checksum "elm-package.json"}}
+          paths:
+            - sysconfcpus
+            - node_modules
+            - elm-stuff
+
+      - run:
+          name: Deploy to S3 if tests pass and branch is Master
+          command: |
+            sudo apt-get -qq update
+            sudo apt-get -qq install python-pip libpython-dev
+            sudo pip install awscli -q
+            aws s3 sync public/ s3://caldwell.band/ --acl public-read
+
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - client:
+          filters:
+            branches:
+              only: master
+
+test:
+  override:
+    - "test"

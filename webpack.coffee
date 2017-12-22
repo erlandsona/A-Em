@@ -163,11 +163,6 @@ if TARGET_ENV is 'production'
       # extract CSS into a separate file
       new ExtractTextPlugin '[name]-[hash].css'
 
-      new HtmlWebpackPlugin
-        template: 'app/index.html'
-        # Hack github to serve elm app at all routes.
-        filename: '404.html'
-
       # minify & mangle JS
       new webpack.optimize.UglifyJsPlugin
         minimize:   true
