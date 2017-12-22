@@ -6,14 +6,17 @@ autoprefixer = require 'autoprefixer'
 ExtractTextPlugin = require 'extract-text-webpack-plugin'
 CopyWebpackPlugin = require 'copy-webpack-plugin'
 
-entryFile = path.resolve __dirname, 'app/index.js'
+entryFile = path.resolve __dirname, 'app/index.coffee'
 outputPath = path.resolve __dirname, 'public'
 
 # determine build env
-TARGET_ENV = if process.env.npm_lifecycle_event is 'build' then 'production' else 'development'
-outputFilename = if TARGET_ENV is 'production' then '[name]-[hash].js' else '[name].js'
+TARGET_ENV =
+  if process.env.npm_lifecycle_event is 'build'
+  then 'production' else 'development'
 
 console.log 'WEBPACKing with ENV:', TARGET_ENV
+
+outputFilename = if TARGET_ENV is 'production' then '[name]-[hash].js' else '[name].js'
 
 cssLoader =
   loader: 'css-loader'
@@ -47,6 +50,9 @@ commonConfig =
     rules: [
       test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/
       loader: 'url-loader?limit=10000'
+    ,
+      test: /\.coffee$/
+      loader: 'coffee-loader'
     ]
 
   plugins: [
@@ -69,27 +75,44 @@ commonConfig =
 if TARGET_ENV is 'development'
   module.exports = merge commonConfig,
     entry: [
-      'webpack-dev-server/client?http://localhost:7777'
       entryFile
     ]
 
     devServer:
-      # serve index.html in place of 404 responses
       contentBase: outputPath
+      disableHostCheck: true # Required for usage behind a proxy, see https://github.com/webpack/webpack-dev-server/releases/tag/v2.4.3
+      # serve index.html in place of 404 responses
       historyApiFallback: true
+      # For docker-compose
+      host: '0.0.0.0'
       inline: true
+      hot: true
       port: 7777
+      stats:
+        # hash: false
+        # version: false
+        # timings: false
+        # assets: false
+        chunks: false
+        # modules: false
+        # reasons: false
+        # children: false
+        # source: false
+        # errors: false
+        # errorDetails: false
+        # warnings: false
+        # publicPath: false
 
     module:
       rules: [
         test: /\.elm$/
-        exclude: [/elm-stuff/, /node_modules/, /Stylesheets\.elm$/]
+        exclude: [/elm-stuff/, /node_modules/, /app\/Stylesheets\.elm$/]
         use: [
           'elm-hot-loader'
           'elm-webpack-loader?verbose=true&warn=true&debug=true'
         ]
       ,
-        test: /Stylesheets\.elm$/
+        test: /app\/Stylesheets\.elm$/
         use: [
           'style-loader'
           'css-loader'
@@ -113,10 +136,10 @@ if TARGET_ENV is 'production'
     module:
       rules: [
         test:    /\.elm$/
-        exclude: [/elm-stuff/, /node_modules/, /Stylesheets\.elm$/]
+        exclude: [/elm-stuff/, /node_modules/, /app\/Stylesheets\.elm$/]
         use:     'elm-webpack-loader'
       ,
-        test: /Stylesheets\.elm$/
+        test: /app\/Stylesheets\.elm$/
         use: ExtractTextPlugin.extract
           fallback: "style-loader"
           use: [
