@@ -2,6 +2,7 @@ port module Ports exposing (..)
 
 import Types exposing (ClassName)
 import Scroll exposing (Move)
+import Server exposing (Gig)
 
 
 -- Cmd's -> JS

@@ -12,10 +12,19 @@ import Html exposing (Html, Attribute, header, node, span, text)
 import Html.CssHelpers exposing (withNamespace)
 import Html.Events exposing (onClick, onWithOptions, Options)
 import Html.Lazy as LHtml
-import Json.Decode exposing (decodeValue, int, keyValuePairs, maybe, string, succeed)
+import Json.Decode
+    exposing
+        ( decodeValue
+        , int
+        , keyValuePairs
+        , list
+        , maybe
+        , string
+        , succeed
+        )
 import Json.Encode exposing (Value)
 import Maybe exposing (withDefault)
-import Maybe.Extra exposing (unpack)
+import Maybe.Extra exposing (unwrap)
 import Navigation as Nav exposing (Location, programWithFlags)
 import Scroll exposing (Direction(..), direction)
 import String exposing (toLower)
@@ -30,11 +39,16 @@ import Main.View as Main
 import Nav.View as Nav
 import Model exposing (Model)
 import Ports exposing (..)
-import Server exposing (Gig, getV1Shows, decodeGig)
+import Server exposing (Gig, decodeGig)
 import Types exposing (..)
 
 
 -- Source
+
+
+type Env
+    = Development
+    | Production
 
 
 type alias Initializer =
@@ -55,17 +69,17 @@ decodedGigs json =
 
 decodeLocalStorageGigs : Maybe Value -> List Gig
 decodeLocalStorageGigs =
-    unpack (\() -> Debug.log "No shows in local storage." []) decodedGigs
+    unwrap [] decodedGigs
 
 
 init : Initializer -> Location -> ( Model, Cmd Action )
-init { cachedGigs, now } location =
+init initializer location =
     let
         today =
-            Date.fromTime now
+            Date.fromTime initializer.now
 
         gigs =
-            (decodeLocalStorageGigs cachedGigs)
+            decodeLocalStorageGigs initializer.cachedGigs
 
         _ =
             List.map (Debug.log "Gig Date:" << .gigDate) gigs
@@ -73,17 +87,14 @@ init { cachedGigs, now } location =
         _ =
             Debug.log "Today:" today
 
-        initialHistory =
-            [ parse location ]
-
         initialPage =
-            withDefault Home (List.head initialHistory)
+            parse location
 
         _ =
             Debug.log "initialPage:" initialPage
 
         model =
-            { history = initialHistory
+            { history = [ initialPage ]
             , currentPage = initialPage
             , scrolling = False
             , scrollTargets = []
@@ -95,8 +106,8 @@ init { cachedGigs, now } location =
     in
         model
             ! [ locationToScroll location |> snapIntoView
-              , Http.send ShowResponse getV1Shows
               , postInit scrollTargetNames
+              , getShows initialPage
               ]
 
 
@@ -186,134 +197,146 @@ view model =
 
 update : Action -> Model -> ( Model, Cmd Action )
 update action model =
-    case action of
-        ScrollTo page ->
-            (if Home == page then
-                { model
-                    | scrolling = False
-                    , nav = Open
-                }
-             else
-                { model
-                    | scrolling = False
-                    , nav = Closed
-                }
-            )
-                ! [ Nav.modifyUrl <|
-                        if page == Home then
-                            "/"
-                        else
-                            urlFrom page
-                  , querySelector page |> easeIntoView
-                  ]
-
-        UpdateUrlWith page ->
-            (if Home == page then
-                { model | nav = Open }
-             else
-                { model | nav = Closed }
-            )
-                ! [ Nav.modifyUrl <|
-                        if page == Home then
-                            "/"
-                        else
-                            urlFrom page
-                  ]
-
-        From location ->
-            let
-                currentPage =
-                    parse location
-
-                _ =
-                    Debug.log "CurrentPage:" currentPage
-            in
-                if currentPage == model.currentPage then
-                    model ! []
-                else
+    let
+        urlFrom : Page -> String
+        urlFrom =
+            toString >> toLower
+    in
+        case action of
+            ScrollTo page ->
+                (if Home == page then
                     { model
-                        | history = currentPage :: model.history
-                        , currentPage = currentPage
+                        | scrolling = False
+                        , nav = Open
                     }
-                        ! []
+                 else
+                    { model
+                        | scrolling = False
+                        , nav = Closed
+                    }
+                )
+                    ! [ Nav.modifyUrl <|
+                            if page == Home then
+                                "/"
+                            else
+                                urlFrom page
+                      , querySelector page |> easeIntoView
+                      ]
 
-        ToggleNav newState ->
-            { model | nav = newState } ! []
+            UpdateUrlWith page ->
+                (if Home == page then
+                    { model | nav = Open }
+                 else
+                    { model | nav = Closed }
+                )
+                    ! [ Nav.modifyUrl <|
+                            if page == Home then
+                                "/"
+                            else
+                                urlFrom page
+                      ]
 
-        TogglePreviousShows ->
-            let
-                newModel =
-                    { model | showPrevious = not model.showPrevious }
-
-                _ =
-                    Debug.log "showPrevious" newModel.showPrevious
-            in
-                update GetPageTops newModel
-
-        ShowResponse response ->
-            case response of
-                Ok shows ->
-                    -- let
-                    --     _ =
-                    --         List.map (Debug.log "Gig Date:" << .gigDate) shows
-                    -- in
-                    { model | shows = shows } ! []
-
-                Err msg ->
-                    let
-                        _ =
-                            Debug.log "Shows Reponse" <| toString msg
-                    in
-                        model ! []
-
-        ScrollBar move ->
-            if model.scrolling then
+            From location ->
                 let
-                    indexedPageTops =
-                        List.indexedMap (\idx px -> ( idx, px )) model.scrollTargets
+                    currentPage =
+                        parse location
+
+                    _ =
+                        Debug.log "CurrentPage:" currentPage
                 in
-                    Scroll.handle
-                        -- when scrollTop > 10px, send Darken message
-                        (List.map
-                            (\( idx, px ) ->
-                                let
-                                    pageArr =
-                                        fromList pages
-
-                                    topPage =
-                                        withDefault Home <| get idx <| pageArr
-
-                                    bottomPage =
-                                        withDefault About <| get (idx + 1) <| pageArr
-                                in
-                                    Scroll.onCrossOver px <|
-                                        if Scroll.Up == direction move then
-                                            update (UpdateUrlWith topPage)
-                                            -- get  0 (fromList [0,5,3]) == Just 0
-                                        else
-                                            update (UpdateUrlWith bottomPage)
-                            )
-                            indexedPageTops
-                        )
-                        move
+                    (if currentPage == model.currentPage then
                         model
-            else
-                model ! []
+                     else
+                        { model
+                            | history = currentPage :: model.history
+                            , currentPage = currentPage
+                        }
+                    )
+                        ! [ getShows currentPage ]
 
-        Stop v ->
-            { model | scrolling = True } ! []
+            ToggleNav newState ->
+                { model | nav = newState } ! []
 
-        SetPageTops scrollTargets ->
-            { model | scrollTargets = scrollTargets } ! []
+            TogglePreviousShows ->
+                let
+                    newModel =
+                        { model | showPrevious = not model.showPrevious }
 
-        GetPageTops ->
-            model
-                ! [ getScrollTargets scrollTargetNames ]
+                    _ =
+                        Debug.log "showPrevious" newModel.showPrevious
+                in
+                    update GetPageTops newModel
+
+            ShowResponse response ->
+                case response of
+                    Ok shows ->
+                        -- let
+                        --     _ =
+                        --         List.map (Debug.log "Gig Date:" << .gigDate) shows
+                        -- in
+                        { model | shows = shows }
+                            ! [-- saveShows shows
+                              ]
+
+                    Err msg ->
+                        let
+                            _ =
+                                Debug.log "Shows Reponse" <| toString msg
+                        in
+                            model ! []
+
+            ScrollBar move ->
+                if model.scrolling then
+                    let
+                        indexedPageTops =
+                            List.indexedMap (\idx px -> ( idx, px )) model.scrollTargets
+                    in
+                        Scroll.handle
+                            -- when scrollTop > 10px, send Darken message
+                            (List.map
+                                (\( idx, px ) ->
+                                    let
+                                        pageArr =
+                                            fromList pages
+
+                                        topPage =
+                                            withDefault Home <| get idx <| pageArr
+
+                                        bottomPage =
+                                            withDefault About <| get (idx + 1) <| pageArr
+                                    in
+                                        Scroll.onCrossOver px <|
+                                            if Scroll.Up == direction move then
+                                                update (UpdateUrlWith topPage)
+                                                -- get  0 (fromList [0,5,3]) == Just 0
+                                            else
+                                                update (UpdateUrlWith bottomPage)
+                                )
+                                indexedPageTops
+                            )
+                            move
+                            model
+                else
+                    model ! []
+
+            Stop v ->
+                { model | scrolling = True } ! []
+
+            SetPageTops scrollTargets ->
+                { model | scrollTargets = scrollTargets } ! []
+
+            GetPageTops ->
+                model
+                    ! [ getScrollTargets scrollTargetNames ]
 
 
-urlFrom : Page -> String
-urlFrom =
-    toString >> toLower
+getShows : Page -> Cmd Action
+getShows page =
+    if page == Shows then
+        Http.send ShowResponse (Http.get "gigs.json" (list decodeGig))
+            |> Debug.log ("Shows Response: " ++ toString page)
+    else
+        Cmd.none
 
 
 main : Program Initializer Model Action

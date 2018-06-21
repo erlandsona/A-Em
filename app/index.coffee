@@ -31,21 +31,20 @@ class App
       document.documentElement.scrollTop =
         target.offsetTop - @getCurrentScrollPosition()
 
+    # @ports.saveShows.subscribe (showsList) =>
+    #   localStorage.gigs = try JSON.stringify showsList
+
   setScrolling: =>
-    setTimeout =>
-      @ports.scrollStart.send null
-    , 1000
+    requestAnimationFrame => @ports.scrollStart.send null
 
   initializeScrollTargets: (classNames) =>
-    setTimeout =>
-      console.log '#initializeScrollTargets'
+    requestAnimationFrame =>
       elems = classNames.map (className) =>
         document.querySelector className
       bottoms = elems.map (e) =>
         # 250 px from the bottom to update routes.
         (e.offsetTop + e.offsetHeight) - 250
       @ports.setScrollTargets.send bottoms
-    , 100
 
   setupScrollSubscription: =>
     scroll = @getCurrentScrollPosition()
@@ -54,7 +53,7 @@ class App
       newScroll =  @getCurrentScrollPosition()
       @ports.scroll.send [scroll, newScroll]
       scroll = newScroll
-    , 60
+    , 60 # ms
 
   getCurrentScrollPosition: =>
     window.pageYOffset or
@@ -64,6 +63,6 @@ class App
 # Attach port handlers to app instance.
 # app : Initializer -> Program (Maybe Value) Model Msg
 now = new Date().getTime()
-cachedGigs = try JSON.parse(localStorage.getItem 'gigs')
+cachedGigs = try JSON.parse localStorage.gigs
 elm = require('./Client').Site.fullscreen { cachedGigs, now }
 new App(elm.ports)

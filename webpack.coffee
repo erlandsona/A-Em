@@ -65,6 +65,9 @@ commonConfig =
     ,
       from: 'app/assets/icons'
       flatten: true
+    ,
+      from: 'app/assets/data'
+      flatten: true
     , { from: 'app/assets/CNAME' }
     , { from: 'app/assets/manifest.json' }
     , { from: 'app/assets/browserconfig.xml' }
